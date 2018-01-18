@@ -15,6 +15,7 @@ An implementation example is provided here.
 Map<String, String> parameter = new HashMap<>();
 parameter.put("q", "Coffee");
 parameter.put("location", "Portland");
+parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
 GoogleSearchResults serp = new GoogleSearchResults(parameter);
 
 JsonObject data = serp.getJson();
