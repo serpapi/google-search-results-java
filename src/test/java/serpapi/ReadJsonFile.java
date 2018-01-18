@@ -2,7 +2,10 @@ package serpapi;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import static java.nio.file.Files.readAllBytes;
@@ -25,10 +28,12 @@ public class ReadJsonFile
     }
   }
 
-  public static JsonObject readAsJson(Path path)
+  public static JsonObject readAsJson(Path path) throws FileNotFoundException
   {
+    JsonReader reader = new JsonReader(new FileReader(path.toFile()));
+    reader.setLenient(true);
     return new JsonParser()
-        .parse(readAsString(path))
+        .parse(reader)
         .getAsJsonObject();
   }
 }

@@ -1,6 +1,3 @@
-// 20180115183745
-// https://serpapi.com/search?q=Coffee&location=Portland&output=json
-
 {
   "search_information": {
     "total_results": 1670000000,
