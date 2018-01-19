@@ -1,6 +1,8 @@
 Google search result JAVA API
 ===
 
+[![Build Status](https://travis-ci.org/serpapi/google_search_results_java.svg?branch=master)](https://travis-ci.org/serpapi/google_search_results_java)
+
 This Java package enables to scrape and parse Google results using [SERP API](https://serpapi.com). Feel free to fork this repository to add more backends.
 
 This project is an implementation of Serp API in Java 7.
