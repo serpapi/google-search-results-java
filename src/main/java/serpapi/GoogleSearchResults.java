@@ -3,10 +3,11 @@ package serpapi;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 import java.util.Map;
 
-public class GoogleSearchResults
+public class GoogleSearchResults extends Exception
 {
   // Set of constant
   public static final String SERP_API_KEY_NAME = "serp_api_key";
@@ -80,8 +81,7 @@ public class GoogleSearchResults
       }
       else
       {
-        // Let serp api undefined
-        // throw new GoogleSearchException(SERP_API_KEY_NAME + " is not defined");
+        throw new GoogleSearchException(SERP_API_KEY_NAME + " is not defined");
       }
     }
 
@@ -115,7 +115,13 @@ public class GoogleSearchResults
   public JsonObject getJson() throws GoogleSearchException
   {
     Map<String, String> query = buildQuery("json");
-    return asJson(client.getResults(query));
+    JsonObject data = asJson(client.getResults(query));
+    JsonPrimitive error = data.getAsJsonPrimitive("error");
+    if(error != null)
+    {
+      throw new GoogleSearchException(error.getAsString());
+    }
+    return data;
   }
 
   /***

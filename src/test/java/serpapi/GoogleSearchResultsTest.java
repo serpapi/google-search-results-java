@@ -21,8 +21,8 @@ import static org.mockito.Mockito.*;
  */
 public class GoogleSearchResultsTest
 {
-  private static final String SERP_API_INSTANCE_FAKE_KEY = "instance_key";
-  private static final String SERP_API_DEFAULT_FAKE_KEY = "default_key";
+  private static final String SERP_API_INSTANCE_FAKE_KEY = "demo";
+  private static final String SERP_API_DEFAULT_FAKE_KEY = "demo";
 
   GoogleSearchResults search;
 
@@ -75,7 +75,7 @@ public class GoogleSearchResultsTest
   {
     GoogleSearchResultsClient client = mock(GoogleSearchResultsClient.class);
 
-    String htmlContent = ReadJsonFile.readAsString(Paths.get("search_coffee_sample.html"));
+    String htmlContent = ReadJsonFile.readAsString(Paths.get("src/test/java/serpapi/search_coffee_sample.html"));
     when(client.getResults(ArgumentMatchers.<String, String>anyMap()))
         .thenReturn(htmlContent);
     GoogleSearchResults gsr = new GoogleSearchResults(search.parameter);
@@ -103,8 +103,28 @@ public class GoogleSearchResultsTest
   }
 
   @Test
-  public void getJsonWithImages() throws Exception
+  public void getJsonError() throws Exception
   {
+    Map<String, String> parameter = new HashMap<>();
+    parameter.put("q", "Coffee");
+    parameter.put("location", "Portland");
+
+    GoogleSearchResultsClient client = mock(GoogleSearchResultsClient.class);
+
+    when(client.getResults(ArgumentMatchers.<String, String>anyMap()))
+        .thenReturn(ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/error_sample.json")).toString());
+
+    GoogleSearchResults gsr = new GoogleSearchResults(search.parameter);
+    gsr.client = client;
+
+    try {
+      gsr.getJson();
+      fail("Exception expected");
+    }
+    catch(Exception ex)
+    {
+      assertEquals(GoogleSearchException.class, ex.getClass());
+    }
   }
 
 }
