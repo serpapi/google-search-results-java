@@ -38,6 +38,28 @@ public class GoogleSearchResultsTest
   }
 
   @Test
+  public void realWorldExample() throws GoogleSearchException
+  {
+    Map<String, String> parameter = new HashMap<>();
+
+    parameter.put("q", "Coffee");
+    parameter.put("location", "Portland, Oregon, United States");
+    parameter.put("hl", "en");
+    parameter.put("gl", "us");
+    parameter.put("google_domain", "google.com");
+    parameter.put("api_key", "demo");
+    parameter.put("safe", "active");
+    parameter.put("start", "10");
+    parameter.put("num", "10");
+    parameter.put("device", "desktop");
+
+    GoogleSearchResults serp = new GoogleSearchResults(parameter);
+    JsonObject results = serp.getJson();
+
+    assertEquals(3, results.getAsJsonArray("organic_results").size());
+  }
+
+  @Test
   public void buildParameter() throws GoogleSearchException
   {
     search.buildQuery("html");
@@ -100,31 +122,6 @@ public class GoogleSearchResultsTest
     gsr.client = client;
 
     assertEquals(3, gsr.getJson().getAsJsonArray("local_results").size());
-  }
-
-  @Test
-  public void getJsonError() throws Exception
-  {
-    Map<String, String> parameter = new HashMap<>();
-    parameter.put("q", "Coffee");
-    parameter.put("location", "Portland");
-
-    GoogleSearchResultsClient client = mock(GoogleSearchResultsClient.class);
-
-    when(client.getResults(ArgumentMatchers.<String, String>anyMap()))
-        .thenReturn(ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/error_sample.json")).toString());
-
-    GoogleSearchResults gsr = new GoogleSearchResults(search.parameter);
-    gsr.client = client;
-
-    try {
-      gsr.getJson();
-      fail("Exception expected");
-    }
-    catch(Exception ex)
-    {
-      assertEquals(GoogleSearchException.class, ex.getClass());
-    }
   }
 
 }

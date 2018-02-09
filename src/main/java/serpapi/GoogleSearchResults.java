@@ -115,13 +115,7 @@ public class GoogleSearchResults extends Exception
   public JsonObject getJson() throws GoogleSearchException
   {
     Map<String, String> query = buildQuery("json");
-    JsonObject data = asJson(client.getResults(query));
-    JsonPrimitive error = data.getAsJsonPrimitive("error");
-    if(error != null)
-    {
-      throw new GoogleSearchException(error.getAsString());
-    }
-    return data;
+    return asJson(client.getResults(query));
   }
 
   /***

@@ -9,6 +9,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.Map;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+
 /**
  * HTTPS client for Serp API
  */
@@ -21,6 +26,9 @@ public class GoogleSearchResultsClient
   public static String VERSION = "1.0.0";
   public static String BACKEND = "serpapi.com";
 
+  // initialize gson
+  private static Gson gson = new Gson();
+  
   /***
    * Build URL
    *
@@ -114,10 +122,25 @@ public class GoogleSearchResultsClient
   {
     HttpURLConnection con = buildConnection(parameter);
 
+    // Get HTTP status
+    int statusCode = -1;
+    // Hold response stream
+    InputStream is = null;
+    // Read buffer
     BufferedReader in = null;
     try
     {
-      InputStream is = con.getInputStream();
+      statusCode = con.getResponseCode();
+
+      if(statusCode == 200) 
+      {
+        is = con.getInputStream();
+      }
+      else 
+      {
+        is = con.getErrorStream();
+      }
+      
       Reader reader = new InputStreamReader(is);
       in = new BufferedReader(reader);
     }
@@ -142,10 +165,22 @@ public class GoogleSearchResultsClient
 
     // Disconnect
     con.disconnect();
+    
+    if(statusCode != 200)
+    {
+      triggerGoogleSearchException(content.toString());
+    }
 
     return content.toString();
     //TODO Catch error
     //TODO Read error message in the JSON ["error"]
+  }
+  
+  public void triggerGoogleSearchException(String content) throws GoogleSearchException
+  {
+    JsonObject element = gson.fromJson(content, JsonObject.class);
+    JsonPrimitive error = element.getAsJsonPrimitive("error");
+    throw new GoogleSearchException(error.getAsString());
   }
 
   public int getHttpConnectionTimeout()

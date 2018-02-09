@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.nio.file.Paths;
+
 import static org.junit.Assert.*;
 
 /**
@@ -37,9 +39,16 @@ public class GoogleSearchResultsClientTest
   }
 
   @Test
-  public void getResults() throws Exception
+  public void triggerGoogleSearchException() throws Exception
   {
-
+    try {
+      String content = ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/error_sample.json")).toString();
+      client.triggerGoogleSearchException(content);
+    }
+    catch(Exception ex)
+    {
+      assertEquals(GoogleSearchException.class, ex.getClass());
+    }
   }
 
 }
