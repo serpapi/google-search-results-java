@@ -56,7 +56,7 @@ public class GoogleSearchResultsTest
     GoogleSearchResults serp = new GoogleSearchResults(parameter);
     JsonObject results = serp.getJson();
 
-    assertEquals(3, results.getAsJsonArray("organic_results").size());
+    assertEquals(9, results.getAsJsonArray("organic_results").size());
   }
 
   @Test
