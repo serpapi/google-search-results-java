@@ -33,7 +33,7 @@ public class GoogleSearchResultsTest
 
     Map<String, String> parameter = new HashMap<>();
     parameter.put("q", "Coffee");
-    parameter.put("location", "Portland");
+    parameter.put("location", "Austin, Texas");
     search = new GoogleSearchResults(parameter, SERP_API_INSTANCE_FAKE_KEY);
   }
 
@@ -43,7 +43,7 @@ public class GoogleSearchResultsTest
     Map<String, String> parameter = new HashMap<>();
 
     parameter.put("q", "Coffee");
-    parameter.put("location", "Portland, Oregon, United States");
+    parameter.put("location", "Austin, Texas, United States");
     parameter.put("hl", "en");
     parameter.put("gl", "us");
     parameter.put("google_domain", "google.com");
@@ -111,7 +111,7 @@ public class GoogleSearchResultsTest
   {
     Map<String, String> parameter = new HashMap<>();
     parameter.put("q", "Coffee");
-    parameter.put("location", "Portland");
+    parameter.put("location", "Austin, Texas");
 
     GoogleSearchResultsClient client = mock(GoogleSearchResultsClient.class);
 

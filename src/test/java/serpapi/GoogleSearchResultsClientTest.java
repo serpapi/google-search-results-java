@@ -26,7 +26,7 @@ public class GoogleSearchResultsClientTest
 
     parameter = new HashMap<>();
     parameter.put("q", "Coffee");
-    parameter.put("location", "Portland");
+    parameter.put("location", "Austin, Texas");
     parameter.put("output", "json");
     parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
   }
@@ -35,7 +35,7 @@ public class GoogleSearchResultsClientTest
   public void build_connection() throws GoogleSearchException
   {
     HttpURLConnection connection = client.buildConnection(parameter);
-    assertEquals("https://serpapi.com/search?output=json&q=Coffee&serp_api_key=demo&location=Portland", connection.getURL().toString());
+    assertEquals("https://serpapi.com/search?output=json&q=Coffee&serp_api_key=demo&location=Austin%2C+Texas", connection.getURL().toString());
   }
 
   @Test

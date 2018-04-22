@@ -1,316 +1,188 @@
 {
-  "search_information": {
-    "total_results": 1670000000,
-    "time_taken": 0.77,
-    "query": "Coffee",
-    "location": "Portland, Oregon"
-  },
   "serp_api_data": {
-    "id": {
-      "$oid": "5a5c7762defb2f7726dabf9c"
-    },
-    "total_time_taken": 70.556139227,
-    "google_url": "https://www.google.com/search?q=Coffee&oq=Coffee&uule=w+CAIQICIdUG9ydGxhbmQsT3JlZ29uLFVuaXRlZCBTdGF0ZXM&sourceid=chrome&ie=UTF-8"
+    "internal_id": "5adc8e4cdefb2f3cd7482e07",
+    "total_time_taken": 2.949662293,
+    "google_url": "https://www.google.com/search?q=Coffee&oq=Coffee&uule=w+CAIQICIaQXVzdGluLFRleGFzLFVuaXRlZCBTdGF0ZXM&hl=en&gl=us&sourceid=chrome&ie=UTF-8"
   },
-  "map": {
-    "link": "https://www.google.com/search?q=Coffee&npsic=0&rflfq=1&rldoc=1&rlha=0&rllag=45520495,-122678661,430&tbm=lcl&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QtgMIKQ",
-    "image": true
+  "search_information": {
+    "total_results": 0,
+    "time_taken": 0.8,
+    "query": "Coffee",
+    "location": "Austin, Texas"
+  },
+  "local_map": {
+    "link": "https://www.google.com/search?hl=en&gl=us&q=Coffee&npsic=0&rflfq=1&rldoc=1&rlha=0&rllag=30266836,-97744140,271&tbm=lcl&sa=X&ved=2ahUKEwiAqe_S_s3aAhUms1QKHYlJAYYQtgN6BAgAECo",
+    "gps_coordinates": {
+      "latitude": 30.266836,
+      "longitude": -97.74414,
+      "altitude": 271
+    },
+    "image": "https://www.google.com/maps/vt/data=2NSTbSpojs16HQaUpxo6zcWYQcCrm7SksDnyP4aRZZlXkLZnu2oLnbmVgNS7JYL32QHrCEQgBIgWu6VGiBVi0iVfWhmkElU8FKfD_BMoYo_WTjjG7lZ8dfX3D9h2IAQqr9wzgTNPLiPmhXqr4SJMCavfKPn8Nm_p_XVgbkfFUdA-GhkIYCNAEfk7ZcWh6NSu2ufmeDJS0S8AR_ci2yGYLpGVmaYK1A4XtnzeZpv8874JMemT6pREUhvzmWbL-m_TTRq9dSeIdCK1lR2SVg20c8ZOx3ft9pmw0OLQVwkZsTM5FDm5-Cs09mhG42-e-Da8ZCAv39Tx39HPPuQTrvM1utXD9Aq3VSR8v-iID8sxqy_hCL5s7VWPIZUHxxtCzUZssFtan1idPh0WyXMcolf_Sav8T9nJw5jr9P-QdzQ7bQfTICkxnmpqm6sNq3VhbUYWMB5c7ez-JgaqMOAzShWbXWqya3uCejIaR4lXeqEGQeAtYHBNeFag_b4tovGDsiLdreaHLVM-llcGmlzU3FnX78ZX09zlCbyfZ1HBERw3lVwVatjGwtn2WlQsHl8e6yYtY7fQF80KDU1SyafHgS1v-gXEZC8o49ICyLEd1UXMOh_78mbLDADgB2ZLly9vp9ibHJFLraUY11qcRLOyDGQ7LJ82NbZybsZG7QNju2SacxloE7pIubl7ATTj9WxJBF6zEwT_bDQzfaHsGHpYV7PKmF-sA7SN3XjVK1rBJOODppq8lk1slyzZyHTeXnGhbmy1WQYWjAJDKBLJOCWJeB5z3XkW9G67N7jldaU_NOL3EBBqvfRMYhZcgt56tZoWa3PRiIKtQigZCVSUfSJPSfP2GG7fGfhNmBK_7cOK1OM-S0w449tXZE6_ZG0a6iN7AzYkQrZsMUIpz3Gvvwab39qnZ3zAnUVYYAcWnO_MU2CyTm2HxVh-cTh2POpkQNQ7TvzIpH7xQyVqXMZAvGAYE528s31ydQ_SHPLNznz-aEX0BYFAAK1FGyRrHWw9RQDcp-h9JFzxPBNlWF2-nHODMqjtXtwIxtoGI-GniAt9Vg4PlCgFjrKYDC-QOL_io0Hb5RA"
   },
   "local_results": [
     {
       "position": 1,
-      "title": "Stumptown Coffee Roasters",
-      "rating": 4.4,
-      "reviews": 941,
+      "title": "Houndstooth Coffee",
+      "reviews": 318,
       "price": "$",
-      "type": "Cafe",
-      "address": "128 SW 3rd Ave",
-      "description": "Coffee bar serving direct-trade java",
-      "hours": "Opens at 6:00 AM",
-      "thumbnail": true
+      "type": "Coffee Shop",
+      "address": "401 Congress Ave #100c",
+      "description": "Cozy hangout for carefully sourced brews",
+      "extensions": [
+        "Breakfast",
+        "Outdoor seating",
+        "Fast service"
+      ],
+      "thumbnail": "data:image/jpeg;base64,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"
     },
     {
       "position": 2,
-      "title": "Heart Coffee",
-      "rating": 4.5,
-      "reviews": 282,
+      "title": "The Hideout Coffee House",
+      "reviews": 123,
       "type": "Coffee Shop",
-      "address": "537 SW 12th Ave",
-      "description": "Stylish spot for coffee drinking",
-      "hours": "Opens at 7:00 AM",
-      "thumbnail": true
+      "address": "617 Congress Ave",
+      "description": "Area institution with a theater upstairs",
+      "extensions": [
+        "Quick bite",
+        "Fast service",
+        "Great dessert"
+      ],
+      "thumbnail": "data:image/jpeg;base64,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"
     },
     {
       "position": 3,
-      "title": "Barista",
-      "rating": 4.5,
-      "reviews": 155,
+      "title": "Jo's Coffee",
+      "reviews": 450,
+      "price": "$$",
       "type": "Coffee Shop",
-      "address": "529 SW 3rd Ave #110",
-      "description": "Petite cafe serving multiple roasters",
-      "hours": "Opens at 6:00 AM",
-      "thumbnail": true
+      "address": "242 W 2nd St",
+      "description": "Coffee outpost with snacks & a patio",
+      "extensions": [
+        "Comfort food",
+        "Quick bite",
+        "Fast service"
+      ],
+      "thumbnail": "data:image/jpeg;base64,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"
     }
   ],
-  "knowledge_graph": {
-    "title": "Coffee",
-    "type": "Drink",
-    "image": true,
-    "description": "Coffee is a brewed drink prepared from roasted coffee beans, which are the seeds of berries from the Coffea plant. The genus Coffea is native to tropical Africa and Madagascar, the Comoros, Mauritius, and Réunion in the Indian Ocean.",
-    "source": {
-      "name": "Wikipedia",
-      "link": "https://en.wikipedia.org/wiki/Coffee"
-    },
-    "related_searches": [
-      {
-        "name": "Tea",
-        "link": "https://www.google.com/search?q=Tea&stick=H4sIAAAAAAAAAONgFuLUz9U3MCorTMtV4gAxzZNzKrQE_UpLijJLMvPzgjNTUssTK4sByyY5qioAAAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QxA0IkQIwGw",
-        "image": true
-      },
-      {
-        "name": "Espresso",
-        "link": "https://www.google.com/search?q=Espresso&stick=H4sIAAAAAAAAAONgFuLUz9U3MCorTMtV4gAxk0vSsrUE_UpLijJLMvPzgjNTUssTK4sBwYKq7CoAAAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QxA0IkwIwGw",
-        "image": true
-      },
-      {
-        "name": "Chocolate",
-        "link": "https://www.google.com/search?q=Chocolate&stick=H4sIAAAAAAAAAONgFuLUz9U3MCorTMtV4gAzDcpytAT9SkuKMksy8_OCM1NSyxMriwHR8y5PKgAAAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QxA0IlQIwGw",
-        "image": true
-      },
-      {
-        "name": "Cappuccino",
-        "link": "https://www.google.com/search?q=Cappuccino&stick=H4sIAAAAAAAAAONgFuLUz9U3MCorTMtV4gAxLc0NjLQE_UpLijJLMvPzgjNTUssTK4sB6b-xkioAAAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QxA0IlwIwGw",
-        "image": true
-      },
-      {
-        "name": "Latte",
-        "link": "https://www.google.com/search?q=Latte&stick=H4sIAAAAAAAAAONgFuLUz9U3MCorTMtVAjMN84pMzbQE_UpLijJLMvPzgjNTUssTK4sBjSmgBisAAAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QxA0ImQIwGw",
-        "image": true
-      }
-    ],
-    "more_related_searches_link": "https://www.google.com/search?q=Coffee&stick=H4sIAAAAAAAAAONgFuLUz9U3MCorTMtVQjC1xLKTrfTT8vNTwIRVcWZKanliZTEAKVBbezAAAAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QzToIjgIoATAb"
-  },
-  "answer_box": {
-    "type": "unknow"
-  },
   "organic_results": [
     {
       "position": 1,
-      "title": "Portland Roasting Coffee",
-      "link": "https://portlandroastingcoffee.com/",
-      "displayed_link": "https://portlandroastingcoffee.com/",
-      "snippet": "Costa Rica. Light | Single OriginBUY · Tour the roastery click here for information. Locate Portland Roasting Coffee. Locate. Portland Roasting Coffee, established 1996. Learn More. FOLLOW US ON INSTAGRAM @pdxroasting ...",
-      "related_link": "https://www.google.com/search?q=related:https://portlandroastingcoffee.com/+Coffee&tbo=1&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QHwhtMAM"
+      "title": "All About Coffee - Page 522 - Google Books Result",
+      "link": "https://books.google.com/books?id=4O_RAAAAMAAJ&pg=PA522&lpg=PA522&dq=Coffee&source=bl&ots=QfeEK8jWl_&sig=SWDfj277-YbtgrWpG7IIPCLq5HA&hl=en&sa=X&ved=2ahUKEwiAqe_S_s3aAhUms1QKHYlJAYYQ6AEwCHoECAAQdw",
+      "snippet": "Although little thinking at the time that their greatest success was to be achieved in coffee, and that a new idea of one of the partners — that of marketing roasted coffee in original packages — would make their name familiar in every hamlet in the country, yet the first two entries in the original day-book of McDonald ...",
+      "rich_snippet": {
+        "top": {
+          "extensions": [
+            "William Harrison Ukers - 1922",
+            "Coffee"
+          ]
+        }
+      }
     },
     {
       "position": 2,
-      "title": "Sip Coffee at These 20 Portland Roasters and Cafes - Eater Portland",
-      "link": "https://pdx.eater.com/maps/20-great-portland-coffee-shops",
-      "displayed_link": "https://pdx.eater.com/maps/20-great-portland-coffee-shops",
-      "date": "Sep 20, 2017",
-      "snippet": "Sometimes, when you love something, you just keep talking about it. In this case, that would be coffee, coffee people, and coffeeshops. To get up close and personal with Portland coffee, Emily McIntyre, a former barista turned coffee writer and consultant, shares the 20 coffee shops she thinks serve the best ...",
-      "sitelinks": {
-        "inline": [
-          {
-            "title": "Sip Coffee at These 20 ...",
-            "link": "https://pdx.eater.com/maps/20-great-portland-coffee-shops/either-or"
-          },
-          {
-            "title": "Good Coffee",
-            "link": "https://pdx.eater.com/maps/20-great-portland-coffee-shops/good-coffee"
-          },
-          {
-            "title": "Coava Coffee Brew Bar",
-            "link": "https://pdx.eater.com/maps/20-great-portland-coffee-shops/coava-coffee-brew-bar"
-          },
-          {
-            "title": "Courier Coffee",
-            "link": "https://pdx.eater.com/maps/20-great-portland-coffee-shops/courier-coffee"
-          }
-        ]
-      },
-      "related_link": "https://www.google.com/search?q=related:https://pdx.eater.com/maps/20-great-portland-coffee-shops+Coffee&tbo=1&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QHwhzMAQ"
+      "title": "Coffee: A Dark History - Page 70 - Google Books Result",
+      "link": "https://books.google.com/books?id=82ourCcpnpwC&pg=PA70&lpg=PA70&dq=Coffee&source=bl&ots=K_Q_n5i5ct&sig=FqCLQ1vxqroNbVDkccmmGRBi_gM&hl=en&sa=X&ved=2ahUKEwiAqe_S_s3aAhUms1QKHYlJAYYQ6AEwCXoECAAQeg",
+      "snippet": "the demand for coffee was met by Ethiopia entirely. Evidence of coffee exports from Zeila, near Djibouti on the western Red Sea coast, can be found in reports of the jurist Ibn Hadjar al-Haytami of Mecca in the late fifteenth century as well as in an account of a boat captured by the Portuguese in 1542 on the way to Shihr in ...",
+      "rich_snippet": {
+        "top": {
+          "extensions": [
+            "Antony Wild - 2005",
+            "Cooking"
+          ]
+        }
+      }
     },
     {
       "position": 3,
-      "title": "Coffee - Wikipedia",
-      "link": "https://en.wikipedia.org/wiki/Coffee",
-      "displayed_link": "https://en.wikipedia.org/wiki/Coffee",
-      "snippet": "Coffee is a brewed drink prepared from roasted coffee beans, which are the seeds of berries from the Coffea plant. The genus Coffea is native to tropical Africa and Madagascar, the Comoros, Mauritius, and Réunion in the Indian Ocean. The plant was exported from Africa to Arabia and to countries around the world. Coffee ...",
-      "sitelinks": {
-        "inline": [
-          {
-            "title": "History",
-            "link": "https://en.wikipedia.org/wiki/Coffee#History"
-          },
-          {
-            "title": "Cultivation",
-            "link": "https://en.wikipedia.org/wiki/Coffee#Cultivation"
-          },
-          {
-            "title": "Processing",
-            "link": "https://en.wikipedia.org/wiki/Coffee#Processing"
-          },
-          {
-            "title": "Health effects",
-            "link": "https://en.wikipedia.org/wiki/Coffee#Health_effects"
-          }
-        ]
-      },
-      "related_link": "https://www.google.com/search?q=related:https://en.wikipedia.org/wiki/Coffee+Coffee&tbo=1&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QHwh_MAU"
+      "title": "Coffee Boom, Government Expenditure, and Agricultural Prices: The ...",
+      "link": "https://books.google.com/books?id=HN_dAbD-IQUC&pg=PA32&lpg=PA32&dq=Coffee&source=bl&ots=gN30G0MHdv&sig=OFlzmJKMEpP9EXcGZL5irDXdHgg&hl=en&sa=X&ved=2ahUKEwiAqe_S_s3aAhUms1QKHYlJAYYQ6AEwCnoECAAQfQ",
+      "snippet": "Ts + PCC = Td. (8) Effects of Changes in Coffee Price From the above set of equations, what happens to the real exchange rate when the price of coffee goes up can be examined. With the level of resources for the economy held constant, the market for nontraded goods is looked at first. On the supply side, an increase in ...",
+      "rich_snippet": {
+        "top": {
+          "extensions": [
+            "Jorge García García, ‎Gabriel Montes Llamas - 1988",
+            "Business & Economics"
+          ]
+        }
+      }
     },
     {
       "position": 4,
-      "title": "Public Domain Specialty Coffee Shop - Portland, OR",
-      "link": "http://www.publicdomaincoffee.com/",
-      "displayed_link": "www.publicdomaincoffee.com/",
-      "snippet": "Specialty coffee shop. Artisanal roast masters batch roast coffee weekly. Skilled baristas create customized coffee drinks.",
-      "cached_link": "http://webcache.googleusercontent.com/search?q=cache:6VLIhl7rVCsJ:www.publicdomaincoffee.com/+&cd=7&hl=en&ct=clnk&gl=us",
-      "related_link": "https://www.google.com/search?q=related:www.publicdomaincoffee.com/+Coffee&tbo=1&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QHwiKATAG"
+      "title": "Liberian Coffee in Ceylon: The History of the Introduction and ...",
+      "link": "https://books.google.com/books?id=YFZJAAAAYAAJ&pg=PA16-IA4&lpg=PA16-IA4&dq=Coffee&source=bl&ots=eTuoXacF3Z&sig=1EbMZ0rO5ry6MKpqZiMwdl9wNRQ&hl=en&sa=X&ved=2ahUKEwiAqe_S_s3aAhUms1QKHYlJAYYQ6AEwC3oFCAAQgQE",
+      "snippet": "Liberian coffee — its future in Ceylon ... 72 Liberian coffee : hybrids, shade, &c... ... 74 Shade for coffee, Aranian and Liberian... ... 76 Rapid germination of dry Liberian coffee seeds by means of pulp water... ... ... 77 Liberian and Mocha coffee on our eastern ranges 77 The Liberian coffee plant in India ... ... 78 Liberian coffee.",
+      "rich_snippet": {
+        "top": {
+          "extensions": [
+            "G. A. Cruwell - 1878",
+            "Coffee"
+          ]
+        }
+      }
     },
     {
       "position": 5,
-      "title": "Case Study Coffee - Portland",
-      "link": "https://www.casestudycoffee.com/",
-      "displayed_link": "https://www.casestudycoffee.com/",
-      "snippet": "Roasting direct trade and seasonal coffees in Portland, Oregon.",
-      "related_link": "https://www.google.com/search?q=related:https://www.casestudycoffee.com/+Coffee&tbo=1&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QHwiQATAH"
+      "title": "Fair Trade Coffee: The Prospects and Pitfalls of Market-driven ...",
+      "link": "https://books.google.com/books?id=TBrCVj_LTq0C&pg=PA118&lpg=PA118&dq=Coffee&source=bl&ots=iRsOxYg8dQ&sig=TTIy4_1TYoBb4TwBYEemd9HZtyE&hl=en&sa=X&ved=2ahUKEwiAqe_S_s3aAhUms1QKHYlJAYYQ6AEwDHoFCAAQhAE",
+      "snippet": "the boom, prices are artificially high as new trees mature; and during the bust, planters are unable to easily switch to other commodities due to relatively large amounts of fixed capital they have invested in coffee. According to Talbot (2004: 35): 'In the absence of any intervention in the market, [the nature of coffee cultivation] ...",
+      "rich_snippet": {
+        "top": {
+          "extensions": [
+            "Gavin Fridell - 2007",
+            "Political Science"
+          ]
+        }
+      }
     },
     {
       "position": 6,
-      "title": "Heart Coffee Roasters - Portland",
-      "link": "https://www.heartroasters.com/",
-      "displayed_link": "https://www.heartroasters.com/",
-      "snippet": "Heart is a café, roaster & bustling destination point located in Portland, Oregon.",
-      "related_link": "https://www.google.com/search?q=related:https://www.heartroasters.com/+Coffee&tbo=1&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QHwiWATAI"
+      "title": "The Art and Craft of Coffee: An Enthusiast's Guide to Selecting, ...",
+      "link": "https://books.google.com/books?id=2nZsiYAftV4C&pg=PA144&lpg=PA144&dq=Coffee&source=bl&ots=mVEWT9pOET&sig=z6ivz5Di88awuTdHaWMfVa6F09Y&hl=en&sa=X&ved=2ahUKEwiAqe_S_s3aAhUms1QKHYlJAYYQ6AEwDXoFCAAQhwE",
+      "snippet": "Brewed coffee is a volatile liquid; it cools and evaporates quickly. For best results, drink coffee immediately after brewing. If you can't drink it right away, place it in a vessel that keeps it hot and preserves as much flavor as possible. Because coffee flavor deteriorates quickly, give storage some thought so you can enjoy more ...",
+      "rich_snippet": {
+        "top": {
+          "extensions": [
+            "Kevin Sinnott - 2011",
+            "Cooking"
+          ]
+        }
+      }
     },
     {
       "position": 7,
-      "title": "16 Places in Portland to Drink Coffee Right Now | Portland Monthly",
-      "link": "https://www.pdxmonthly.com/articles/2017/2/20/16-places-in-portland-to-drink-coffee-right-now",
-      "displayed_link": "https://www.pdxmonthly.com/.../2/.../16-places-in-portland-to-drink-coffee-right-now",
-      "date": "Feb 20, 2017",
-      "snippet": "Northeast's Roseway hood was a coffee wasteland until BFFs Marten Boyden and Austin Roberts opened this bright, spartan café in 2016. Now neighbors clamor for the chatty pair's exuberant yet balanced roasts—consumed via drip, via pour-over, or prepped on the café's Rocket R9 (plus, heady, ...",
-      "related_link": "https://www.google.com/search?q=related:https://www.pdxmonthly.com/articles/2017/2/20/16-places-in-portland-to-drink-coffee-right-now+Coffee&tbo=1&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QHwicATAJ"
+      "title": "The History of Coffee in Guatemala - Page 110 - Google Books Result",
+      "link": "https://books.google.com/books?id=trfs8E0EdbUC&pg=PA110&lpg=PA110&dq=Coffee&source=bl&ots=fMXVqjRCUP&sig=TOhkunMUnTTetVxWgXn3tjgK7vQ&hl=en&sa=X&ved=2ahUKEwiAqe_S_s3aAhUms1QKHYlJAYYQ6AEwDnoFCAAQigE",
+      "snippet": "Beginning in 1818, Le Havre, France had a market both for coffee bought for immediate delivery and for coffee bought pending delivery; New York was the next to establish such a system. Hamburg, the European port importing the most coffee shipped overseas, created the futures system (also known as the futures ...",
+      "rich_snippet": {
+        "top": {
+          "extensions": [
+            "Regina Wagner, ‎Cristóbal von Rothkirch, ‎Eric Stull - 2001",
+            "Cooking"
+          ]
+        }
+      }
     },
     {
       "position": 8,
-      "title": "Water Avenue Coffee - Portland",
-      "link": "https://wateravenuecoffee.com/",
-      "displayed_link": "https://wateravenuecoffee.com/",
-      "snippet": "Roaster and coffee bars located in Portland, Oregon.",
-      "related_link": "https://www.google.com/search?q=related:https://wateravenuecoffee.com/+Coffee&tbo=1&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8QHwijATAK"
+      "title": "Coffee; from Plantation to Cup: A Brief History of Coffee Production ...",
+      "link": "https://books.google.com/books?id=YcJBAAAAIAAJ&pg=PA148&lpg=PA148&dq=Coffee&source=bl&ots=BWx7TLzZLx&sig=aHHre22Q_gVMtQIBJzBgu5ya1As&hl=en&sa=X&ved=2ahUKEwiAqe_S_s3aAhUms1QKHYlJAYYQ6AEwD3oFCAAQjwE",
+      "snippet": "A well-developed tree yields from one-half to one pound of coffee. Laguayra coffee is grown on highlands in the province of Valencia, some six or eight miles from the capital city of Caracas, in Venezuela. A coast range of mountains extends through the northwestern part of the province of Caracas. The bulk of the crop is ...",
+      "rich_snippet": {
+        "top": {
+          "extensions": [
+            "Francis Beatty Thurber - 1881",
+            "Coffee"
+          ]
+        }
+      }
     },
     {
       "position": 9,
-      "title": "Downtown Portland's 10 best coffee shops | OregonLive.com - Portland",
-      "link": "http://www.oregonlive.com/dining/index.ssf/2017/09/downtown_portlands_10_best_cof.html",
-      "displayed_link": "www.oregonlive.com/dining/index.ssf/2017/.../downtown_portlands_10_best_cof.ht...",
-      "date": "Sep 27, 2017",
-      "snippet": "When you're looking for locally roasted beans, a treat yourself latte or somewhere relaxing to post up for a couple hours, these 10 downtown coffee shops are for you.",
-      "cached_link": "http://webcache.googleusercontent.com/search?q=cache:ec8ZBekWxroJ:www.oregonlive.com/dining/index.ssf/2017/09/downtown_portlands_10_best_cof.html+&cd=12&hl=en&ct=clnk&gl=us"
-    },
-    {
-      "position": 10,
-      "title": "Bulletproof Coffee: Debunking the Hot Buttered Hype - Gizmodo",
-      "link": "https://gizmodo.com/bulletproof-coffee-debunking-the-hot-buttered-hype-1681321467",
-      "displayed_link": "https://gizmodo.com/bulletproof-coffee-debunking-the-hot-buttered-hype-1681321467",
-      "snippet": "People are putting butter in their coffee. And hey, if you're just craving a new flavor experience, more power to you. The problem is that Bulletproof Coffee, the company behind the trend, is claiming that drinking a mug of fatty joe every morning instead of eating breakfast is a secret shortcut to weight loss and ..."
-    },
-    {
-      "position": 11,
-      "title": "The Case for Drinking as Much Coffee as You Like - The Atlantic",
-      "link": "https://www.theatlantic.com/health/archive/2012/11/the-case-for-drinking-as-much-coffee-as-you-like/265693/",
-      "displayed_link": "https://www.theatlantic.com/health/archive/2012/11/the-case-for...coffee.../265693/",
-      "snippet": "\"What I tell patients is, if you like coffee, go ahead and drink as much as you want and can,\" says Dr. Peter Martin, director of the Institute for Coffee Studies at Vanderbilt University. He's even developed a metric for monitoring your dosage: If you are having trouble sleeping, cut back on your last cup of the ..."
-    },
-    {
-      "position": 12,
-      "title": "More Consensus on Coffee's Effect on Health Than You Might Think ...",
-      "link": "https://www.nytimes.com/2015/05/12/upshot/more-consensus-on-coffees-benefits-than-you-might-think.html",
-      "displayed_link": "https://www.nytimes.com/.../more-consensus-on-coffees-benefits-than-you-might-think....",
-      "snippet": "A review of studies shows that coffee's reputation as being unhealthy is undeserved, with the potential health benefits surprisingly large."
+      "title": "A Review of Literature of COFFEE RESEARCH in Indonesia",
+      "link": "https://books.google.com/books?id=VZYOAQAAIAAJ&pg=PA2&lpg=PA2&dq=Coffee&source=bl&ots=ndrxnv2P5g&sig=swM2cTlH07OvUCfUQc6gFm3sD2w&hl=en&sa=X&ved=2ahUKEwiAqe_S_s3aAhUms1QKHYlJAYYQ6AEwEHoFCAAQkgE",
+      "snippet": "A few other books published as coffee planters manuals may have some value, but they are wholly obsolete and of little historical interest. For example, in Dutch are the manuals by de Munnick (1843 and 1863), a report by van Spall on Ceylon (1861), Steinmetz (1865), the Handle- iding of 1873, de Sturler (no date), and ..."
     }
-  ],
-  "related_place_searches": [
-    {
-      "query": "Best coffee",
-      "link": "https://www.google.com/search?tbm=lcl&q=Coffee&rflfq=1&num=20&uule=w+CAIQICIdUG9ydGxhbmQsT3JlZ29uLFVuaXRlZCBTdGF0ZXM&stick=H4sIAAAAAAAAACWQO04EMRBENQlCIpyNHHGE_lV_Uq6CZlMCOBjn4hSUdyXLQbtc_apeX9bphomQyKwsaZWwdU6lp0u1TQy0Bcnh-KRyzCPQlJJ1tmu1aoV1oulTvW5aEBHv5t0IBcbXGZGd7k3fscgyG0odEuoNKKg3uDunUJ_qSAe1afaccolPN0GMJrRNbIcJSjLVkxghQ9ibPja09xiMWUKNtEwZOxJFXmjP3rYuttMEqeAVWhJMi5wZ8GXUOErZu6SLYdUtIU0cVG2uqI0pznZqgAruKjd-ZKPMxU8Mbg8pC9uMAjHaz7BZQ8OAYJFpRRpjXcNqe5pMRRfmTvs9jr_j7eP6_nn__Lrfr-sfANw1CsEBAAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q_KoBCLUBMA8",
-      "snippet": "Spella Caffe, Courier Coffee, and 18 more"
-    },
-    {
-      "query": "Coffee and Wi-Fi",
-      "link": "https://www.google.com/search?tbm=lcl&q=Coffee&rflfq=1&num=20&uule=w+CAIQICIdUG9ydGxhbmQsT3JlZ29uLFVuaXRlZCBTdGF0ZXM&stick=H4sIAAAAAAAAAB2QS0pEMRRE6Yk4FJ-jjHoDwv3V_YwFt-BYsBt6oltzXa7CSkN4CeHm1Hn1-LAOH7MYTGjAAFHR9aIFEfFufhuhwPg62rVatcI60SFRvY4Zn9R04RJoSgnfu9g-xljAK7Qk1hGRne7tUrzPMhuORhAbMhCIDWwmNwAS6g0oaGFw9z1r7dPNTCOEWok9O2FpmepJt43KO7cYk-KUqwGYQVvkDEM0R41WKRuQoYKyUCYJYQXbWOP_1LSTwXp41vUcyb4o5VM9WZnsZUTSFOnsMTEavXupdFZSbcNrkil1mLhNs5eA2p6fYNC9i_Yeg_FNqNHUusScRQ83tUro7-n0d3p6-7leL5fz5_fX-eP2-n77B5_2sdPFAQAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q_KoBCLcBMBA",
-      "snippet": "Floyd's Coffee Shop Old Town, Public Domain, and 18 more"
-    },
-    {
-      "query": "Espresso bars",
-      "link": "https://www.google.com/search?tbm=lcl&q=Coffee&rflfq=1&num=20&uule=w+CAIQICIdUG9ydGxhbmQsT3JlZ29uLFVuaXRlZCBTdGF0ZXM&stick=H4sIAAAAAAAAABWQu01FMRBE9RJEQsIluhElzO7O_gqgEJCIQbzGqIsqmGtZtrSy53MeH84XC7gVmuvMaFqDmpJhTWwi4Zu-W5qmxfawInu93CNC004AMaNzkpa5cR67sWUV0EZeDjiP8FwSrOpqjIF-Hj4zOyh9bqsO40i0aMh22sCx9E6_wrq0eicKsbKyNqkqe8qvc5jg6NRTBKk2MYHhwiIUoM12EkZX3vXmNaTawrO8Sp5qUVcAlROZZCiy9LHqetiQqb8eoHnXQP6ChtqoUlpdsmq12hQX25yWSk0szmfhE9VQb4FdeI9ACSh2OrVaWIT1Si9szlZvl0emEv_ebn-3p7f798_n_f71-vH-c_8HG6XI1MEBAAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q_KoBCLkBMBE",
-      "snippet": "Water Avenue Coffee, Caffè Umbria, and 18 more"
-    },
-    {
-      "query": "College hangouts",
-      "link": "https://www.google.com/search?tbm=lcl&q=Coffee&rflfq=1&num=20&uule=w+CAIQICIdUG9ydGxhbmQsT3JlZ29uLFVuaXRlZCBTdGF0ZXM&stick=H4sIAAAAAAAAAB2RO04dQRRE9RLLIWKIJvISbtX9x6yEAOEAQYC9L6-LVbjmRd3quV3V58zPH-fBnGRmDFBsI-jnExzO3O5iOsmu7PNABmpn19tpUwE_j-3ycuvhxibGss5jHK3ADk7lhEXPeUTUlPtoeBnV5F5NacqZTOSMqc6v_vv38VkmFR-gXbMbLFbBS9Fhq64nWNpYpW00W6k291xaone8TNegPQQ7InS9abXgwsI1KuqyDr0qvQNtcR41iOHkYgiw5EP3XSJYCJMq7WOkxXcbKkeVGUqUOkyIlLUhIbsKV9Ojw8xa_SVLrLlUidAjklLq3pScizQAWQ6Dfo5QJJP_brfv28Pz5_v769vrr98vH2-ff_98_QcqlTeuwwEAAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q_KoBCLsBMBI",
-      "snippet": "Revolución Coffee House, Rimsky-Korsakoffee House, and 18 more"
-    },
-    {
-      "query": "Coffee shops",
-      "link": "https://www.google.com/search?tbm=lcl&q=Coffee&rflfq=1&num=20&uule=w+CAIQICIdUG9ydGxhbmQsT3JlZ29uLFVuaXRlZCBTdGF0ZXM&stick=H4sIAAAAAAAAACVQO25cQQzDNkEKd5vqVTmCRIn61DnLLtxtAF_M5_IpwomBwRQUKZH8-eO674TPDpLtNrFTuO5ZldjctI3mRE1c9w44xHHOtHvE4PrlTTOLGf3DdHJFzawpEcJ6kdXA6lJXlJA5m-ljLOn_jydmQWicDhMaBi_rlJrR6W153eW0x70TU5y07DlUWnoMeXwZGBFCM0WWfRoNS-yeY7GJQpVHacsZH1T7lHt2A7KnCEW5Ze1K6LVK3VYmMMBNHa7qajVhqbJiAQXa9CRIc3PJN7ZccfWMJ8uJRTnoyQqqlwK-vVa6sZGqBCaHzVOsnZLbA0UbWWT35-32dXv783o-H4_fH--vvx__AN8MsxXCAQAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q_KoBCL0BMBM",
-      "snippet": "Deadstock Coffee, Portland Roasting, and 18 more"
-    },
-    {
-      "query": "Quiet cafes",
-      "link": "https://www.google.com/search?tbm=lcl&q=Coffee&rflfq=1&num=20&uule=w+CAIQICIdUG9ydGxhbmQsT3JlZ29uLFVuaXRlZCBTdGF0ZXM&stick=H4sIAAAAAAAAAB2QTUolQRCEeRsZcGfPqlceIf8z4hgeQeQJrme8l-fyFEYLRRUEEVlf5J-H86mGEe2dXHB2Js9j3Yk2r0iAsZV2HggjyyxsPdwRwfOomQqWdOY2cqA4mRyfNB1rH1vFo9HRXXCfWAuPPP96ua91hlWUW3D4qzatQVG4BAxQUjMb0DWJ7cxhrcaOopEewysGoIVKJ6lvWYWELfx8Whthd06wxaveMk6Xyqc8zqwSxXn0VPpSLk6L1jjnkcawrHETlol1LiRFoUWYtkSqnXGlwhtWYF4lPTUO2umVYc6oqB7zvKxq3vpLi7Nkad661K21XN8QLWKiA1-32_ft8eXz4_7_-e31_f7vB9j0MRO8AQAA&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q_KoBCL8BMBQ",
-      "snippet": "Urban Grind Coffee, Museum Grounds Cafe, and 18 more"
-    }
-  ],
-  "related_searches": [
-    {
-      "query": "top 5 best coffee roasters in portland",
-      "link": "https://www.google.com/search?q=top+5+best+coffee+roasters+in+portland&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q1QIIwQEoAA"
-    },
-    {
-      "query": "oregon coffee companies",
-      "link": "https://www.google.com/search?q=oregon+coffee+companies&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q1QIIwgEoAQ"
-    },
-    {
-      "query": "portland roasting coffee",
-      "link": "https://www.google.com/search?q=portland+roasting+coffee&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q1QIIwwEoAg"
-    },
-    {
-      "query": "coava coffee roasters portland or",
-      "link": "https://www.google.com/search?q=coava+coffee+roasters+portland+or&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q1QIIxAEoAw"
-    },
-    {
-      "query": "stumptown coffee roasters portland or",
-      "link": "https://www.google.com/search?q=stumptown+coffee+roasters+portland+or&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q1QIIxQEoBA"
-    },
-    {
-      "query": "where to buy portland roasting coffee",
-      "link": "https://www.google.com/search?q=where+to+buy+portland+roasting+coffee&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q1QIIxgEoBQ"
-    },
-    {
-      "query": "portland roasting coffee menu",
-      "link": "https://www.google.com/search?q=portland+roasting+coffee+menu&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q1QIIxwEoBg"
-    },
-    {
-      "query": "portland roasting coffee k cups",
-      "link": "https://www.google.com/search?q=portland+roasting+coffee+k+cups&sa=X&ved=0ahUKEwjqmbOG19nYAhXhmeAKHWwnCW8Q1QIIyAEoBw"
-    }
-  ],
-  "pagination": {
-    "current": 1,
-    "next": "https://www.google.com/search?q=Coffee&ei=p3dcWqqqM-GzggfszqT4Bg&start=10&sa=N",
-    "other_pages": {
-      "2": "https://www.google.com/search?q=Coffee&ei=p3dcWqqqM-GzggfszqT4Bg&start=10&sa=N",
-      "3": "https://www.google.com/search?q=Coffee&ei=p3dcWqqqM-GzggfszqT4Bg&start=20&sa=N",
-      "4": "https://www.google.com/search?q=Coffee&ei=p3dcWqqqM-GzggfszqT4Bg&start=30&sa=N",
-      "5": "https://www.google.com/search?q=Coffee&ei=p3dcWqqqM-GzggfszqT4Bg&start=40&sa=N",
-      "6": "https://www.google.com/search?q=Coffee&ei=p3dcWqqqM-GzggfszqT4Bg&start=50&sa=N",
-      "7": "https://www.google.com/search?q=Coffee&ei=p3dcWqqqM-GzggfszqT4Bg&start=60&sa=N",
-      "8": "https://www.google.com/search?q=Coffee&ei=p3dcWqqqM-GzggfszqT4Bg&start=70&sa=N",
-      "9": "https://www.google.com/search?q=Coffee&ei=p3dcWqqqM-GzggfszqT4Bg&start=80&sa=N",
-      "10": "https://www.google.com/search?q=Coffee&ei=p3dcWqqqM-GzggfszqT4Bg&start=90&sa=N"
-    }
-  }
+  ]
 }

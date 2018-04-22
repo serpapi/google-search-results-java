@@ -3,7 +3,7 @@ package serpapi;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.junit.Test;
-
+import static org.junit.Assert.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,13 +18,14 @@ public class GoogleSearchResultsImplementationTest
     {
         Map<String, String> parameter = new HashMap<>();
         parameter.put("q", "Coffee");
-        parameter.put("location", "Portland");
+        parameter.put("location", "Austin,Texas");
         parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
         GoogleSearchResults serp = new GoogleSearchResults(parameter);
 
         JsonObject data = serp.getJson();
         JsonArray results = (JsonArray) data.get("local_results");
         JsonObject first_result = results.get(0).getAsJsonObject();
-        System.out.println("first coffee: " + first_result.get("title").getAsString());
+        //System.out.println("first coffee: " + first_result.get("title").getAsString());
+        assertEquals("Houndstooth Coffee", first_result.get("title").getAsString());
     }
 }

@@ -16,7 +16,7 @@ An implementation example is provided here.
 ```java
 Map<String, String> parameter = new HashMap<>();
 parameter.put("q", "Coffee");
-parameter.put("location", "Portland");
+parameter.put("location", "Austin,Texas");
 parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
 GoogleSearchResults serp = new GoogleSearchResults(parameter);
 
@@ -62,7 +62,7 @@ query_parameter = {
 }
 
 query = GoogleSearchResults.new(query_parameter)
-query.parameter.put("location", "Portland")
+query.parameter.put("location", "Austin,Texas")
 
 String html_results = query.getHtml()
 JsonObject json_results = query.getJson()
