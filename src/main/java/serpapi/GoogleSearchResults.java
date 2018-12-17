@@ -63,6 +63,7 @@ public class GoogleSearchResults extends Exception
     if(client == null)
     {
       this.client = new GoogleSearchResultsClient();
+      this.client.setHttpConnectionTimeout(6000);
     }
 
     // Set current programming language
@@ -127,17 +128,6 @@ public class GoogleSearchResults extends Exception
   {
     JsonElement element = gson.fromJson(content, JsonElement.class);
     return element.getAsJsonObject();
-  }
-
-  /***
-   * Get JSON with images included
-   * @return JsonObject parent node
-   * @throws GoogleSearchException
-   */
-  public JsonObject getJsonWithImages() throws GoogleSearchException
-  {
-    Map<String, String> query = buildQuery("json_with_images");
-    return asJson(client.getResults(query));
   }
 
   public GoogleSearchResultsClient getClient()
