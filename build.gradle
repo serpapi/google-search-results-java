@@ -29,5 +29,5 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'SampleApp'
+mainClassName = 'serpapi.GoogleSearchResults'
 

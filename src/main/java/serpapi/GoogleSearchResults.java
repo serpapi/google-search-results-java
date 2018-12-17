@@ -7,11 +7,23 @@ import com.google.gson.JsonPrimitive;
 
 import java.util.Map;
 
+/***
+ * Google Search Results using SerpApi
+ *
+ * Usage
+ * ---
+ * Map<String, String> parameter = new HashMap<>();
+ * parameter.put("q", "Coffee");
+ * parameter.put("location", "Austin,Texas");
+ * parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
+ * GoogleSearchResults serp = new GoogleSearchResults(parameter);
+ * 
+ * JsonObject data = serp.getJson();
+ */
 public class GoogleSearchResults extends Exception
 {
   // Set of constant
   public static final String SERP_API_KEY_NAME = "serp_api_key";
-
 
   // default static key
   public static String serp_api_key_default;

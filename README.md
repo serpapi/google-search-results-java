@@ -9,8 +9,10 @@ This project is an implementation of SerpApi in Java 7.
 This code depends on GSON for efficient JSON processing.
 The HTTP response are converted to JSON Object.
 
-An implementation example is provided here.
+An example is provided in the test.
 @see src/test/java/GoogleSearchResultsImplementationTest.java
+
+[The full documentation is available here.](https://serpapi.com/search-api)
 
 ## Simple Example
 ```java
@@ -66,8 +68,18 @@ query.parameter.put("location", "Austin,Texas")
 
 String html_results = query.getHtml()
 JsonObject json_results = query.getJson()
-JsonObject json_results_with_images = query.getJsonWithImages()
 ```
+
+This service supports Google Images, News, Shopping.
+To enable a type of search, the field tbm (to be matched) must be set to:
+
+ * isch: Google Images API.
+ * nws: Google News API.
+ * shop: Google Shopping API.
+ * any other Google service should work out of the box.
+ * (no tbm parameter): regular Google Search.
+
+[The full documentation is available here.](https://serpapi.com/search-api)
 
 Limitation
 ---
@@ -79,4 +91,6 @@ Source
  * http://www.baeldung.com/java-http-request
  * https://github.com/google/gson
 
-@author Victor Benarbia
+Author
+---
+Victor Benarbia
