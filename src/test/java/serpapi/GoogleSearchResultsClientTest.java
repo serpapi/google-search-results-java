@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.net.HttpURLConnection;
 import java.util.HashMap;
-import java.util.Map;
 
 import java.nio.file.Paths;
 
@@ -22,20 +21,25 @@ public class GoogleSearchResultsClientTest
   @Before
   public void setUp() throws Exception
   {
-    client = new GoogleSearchResultsClient();
+    client = new GoogleSearchResultsClient("/search");
 
     parameter = new HashMap<>();
     parameter.put("q", "Coffee");
     parameter.put("location", "Austin, Texas");
     parameter.put("output", "json");
-    parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
+
+    String api_key = System.getenv("API_KEY");
+    if(api_key== null) {
+        api_key = "demo";
+    }
+    parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, api_key);
   }
 
   @Test
-  public void build_connection() throws GoogleSearchException
+  public void buildConnection() throws GoogleSearchException
   {
-    HttpURLConnection connection = client.buildConnection(parameter);
-    assertEquals("https://serpapi.com/search?output=json&q=Coffee&serp_api_key=demo&location=Austin%2C+Texas", connection.getURL().toString());
+    HttpURLConnection connection = client.buildConnection("/search", parameter);
+    assertEquals("https://serpapi.com/search?output=json&q=Coffee&serp_api_key=" + GoogleSearchResults.serp_api_key_default + "&location=Austin%2C+Texas", connection.getURL().toString());
   }
 
   @Test

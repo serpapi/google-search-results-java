@@ -19,7 +19,12 @@ public class GoogleSearchResultsImplementationTest
         Map<String, String> parameter = new HashMap<>();
         parameter.put("q", "Coffee");
         parameter.put("location", "Austin,Texas");
-        parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
+
+        String api_key = System.getenv("API_KEY");
+        if(api_key== null) {
+            api_key = "demo";
+        }
+        parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, api_key);
         GoogleSearchResults serp = new GoogleSearchResults(parameter);
 
         JsonObject data = serp.getJson();

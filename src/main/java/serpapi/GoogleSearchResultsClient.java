@@ -10,7 +10,6 @@ import java.security.cert.X509Certificate;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
@@ -23,26 +22,41 @@ public class GoogleSearchResultsClient
   private int httpConnectionTimeout;
   private int httpReadTimeout;
 
-  public static String VERSION = "1.0.0";
-  public static String BACKEND = "serpapi.com";
+  public static String VERSION = "1.2.0";
+  public static String BACKEND = "https://serpapi.com";
 
   // initialize gson
   private static Gson gson = new Gson();
   
+  // path
+  public String path;
+
+/***
+ * @param String path
+ */
+  public GoogleSearchResultsClient(String path)
+  {
+    this.path = path;
+  }
   /***
    * Build URL
    *
+   * @param path url end point
+   * @param param hash 
    * @return httpUrlConnection
    * @throws IOException
    */
-  public HttpURLConnection buildConnection(Map<String, String> parameter) throws GoogleSearchException
+  public HttpURLConnection buildConnection(String path, Map<String, String> parameter) throws GoogleSearchException
   {
     HttpURLConnection con;
     try
     {
       allowHTTPS();
       String query = ParameterStringBuilder.getParamsString(parameter);
-      URL url = new URL("https://" + BACKEND + "/search?" + query);
+      URL url = new URL(BACKEND + path + "?" + query);
+
+      System.out.println(url.toString());
+
       con = (HttpURLConnection) url.openConnection();
       con.setRequestMethod("GET");
     }
@@ -63,10 +77,12 @@ public class GoogleSearchResultsClient
 
     if(parameter.get("output") == null)
     {
-      throw new GoogleSearchException("output format must be defined");
+      if( path != "/locations.json") 
+      {
+        throw new GoogleSearchException("output format must be defined");
+      }
     }
-
-    if(parameter.get("output").startsWith("json"))
+    else if (parameter.get("output").startsWith("json"))
     {
       con.setRequestProperty("Content-Type", "application/json");
     }
@@ -120,7 +136,7 @@ public class GoogleSearchResultsClient
    */
   public String getResults(Map<String, String> parameter) throws GoogleSearchException
   {
-    HttpURLConnection con = buildConnection(parameter);
+    HttpURLConnection con = buildConnection(this.path, parameter);
 
     // Get HTTP status
     int statusCode = -1;
@@ -170,17 +186,18 @@ public class GoogleSearchResultsClient
     {
       triggerGoogleSearchException(content.toString());
     }
-
     return content.toString();
-    //TODO Catch error
-    //TODO Read error message in the JSON ["error"]
   }
   
   public void triggerGoogleSearchException(String content) throws GoogleSearchException
   {
-    JsonObject element = gson.fromJson(content, JsonObject.class);
-    JsonPrimitive error = element.getAsJsonPrimitive("error");
-    throw new GoogleSearchException(error.getAsString());
+    try {
+      JsonObject element = gson.fromJson(content, JsonObject.class);
+      JsonPrimitive error = element.getAsJsonPrimitive("error");
+      throw new GoogleSearchException(error.getAsString());
+    } catch(Exception e) {
+      throw new AssertionError("invalid response format expected json and not html: " + content);
+    } 
   }
 
   public int getHttpConnectionTimeout()

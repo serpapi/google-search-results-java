@@ -1,0 +1,66 @@
+{
+  "location": [
+    {
+      "id": "585069bdee19ad271e9bc072",
+      "google_id": 200635,
+      "google_parent_id": 21176,
+      "name": "Austin, TX",
+      "canonical_name": "Austin,TX,Texas,United States",
+      "country_code": "US",
+      "target_type": "DMA Region",
+      "reach": 5560000,
+      "gps": [
+        -97.7430608,
+        30.267153
+      ],
+      "keys": [
+        "austin",
+        "tx",
+        "texas",
+        "united",
+        "states"
+      ]
+    },
+    {
+      "id": "585069b8ee19ad271e9ba949",
+      "google_id": 1026201,
+      "google_parent_id": 21176,
+      "name": "Austin",
+      "canonical_name": "Austin,Texas,United States",
+      "country_code": "US",
+      "target_type": "City",
+      "reach": 4870000,
+      "gps": [
+        -97.7430608,
+        30.267153
+      ],
+      "keys": [
+        "austin",
+        "texas",
+        "united",
+        "states"
+      ]
+    },
+    {
+      "id": "585069bdee19ad271e9bc05e",
+      "google_id": 200611,
+      "google_parent_id": 2840,
+      "name": "Rochester, MN-Mason City, IA-Austin, MN",
+      "canonical_name": "Rochester,MN-Mason City,IA-Austin,MN,United States",
+      "country_code": "US",
+      "target_type": "DMA Region",
+      "reach": 555000,
+      "keys": [
+        "rochester",
+        "mn",
+        "mason",
+        "city",
+        "ia",
+        "austin",
+        "mn",
+        "united",
+        "states"
+      ]
+    }
+  ]
+}

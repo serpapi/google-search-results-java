@@ -1,6 +1,7 @@
 package serpapi;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
@@ -10,18 +11,14 @@ import java.util.Map;
 /***
  * Google Search Results using SerpApi
  *
- * Usage
- * ---
- * Map<String, String> parameter = new HashMap<>();
- * parameter.put("q", "Coffee");
- * parameter.put("location", "Austin,Texas");
+ * Usage --- Map<String, String> parameter = new HashMap<>(); parameter.put("q",
+ * "Coffee"); parameter.put("location", "Austin,Texas");
  * parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
  * GoogleSearchResults serp = new GoogleSearchResults(parameter);
  * 
  * JsonObject data = serp.getJson();
  */
-public class GoogleSearchResults extends Exception
-{
+public class GoogleSearchResults extends Exception {
   // Set of constant
   public static final String SERP_API_KEY_NAME = "serp_api_key";
 
@@ -32,7 +29,7 @@ public class GoogleSearchResults extends Exception
   private String serp_api_key;
 
   // persist query parameter
-  public Map<String,String> parameter;
+  public Map<String, String> parameter;
 
   // initialize gson
   private static Gson gson = new Gson();
@@ -44,10 +41,10 @@ public class GoogleSearchResults extends Exception
    * Constructor
    *
    * @param parameter
+   * 
    * @param serp_api_key
    */
-  public GoogleSearchResults(Map<String,String> parameter, String serp_api_key)
-  {
+  public GoogleSearchResults(Map<String, String> parameter, String serp_api_key) {
     this.parameter = parameter;
     this.serp_api_key = serp_api_key;
   }
@@ -57,8 +54,7 @@ public class GoogleSearchResults extends Exception
    *
    * @param parameter
    */
-  public GoogleSearchResults(Map<String,String> parameter)
-  {
+  public GoogleSearchResults(Map<String, String> parameter) {
     this.parameter = parameter;
   }
 
@@ -69,31 +65,25 @@ public class GoogleSearchResults extends Exception
    * @return query
    * @throws GoogleSearchException
    */
-  public Map<String, String> buildQuery(String output) throws GoogleSearchException
-  {
+  public Map<String, String> buildQuery(String path, String output) throws GoogleSearchException {
     // Initialize client if not done
-    if(client == null)
-    {
-      this.client = new GoogleSearchResultsClient();
+    if (client == null) {
+      this.client = new GoogleSearchResultsClient(path);
       this.client.setHttpConnectionTimeout(6000);
+    } else {
+      this.client.path = path;
     }
 
     // Set current programming language
     this.parameter.put("source", "java");
 
     // Set serp_api_key
-    if(this.parameter.get(SERP_API_KEY_NAME) == null)
-    {
-      if(this.serp_api_key != null)
-      {
+    if (this.parameter.get(SERP_API_KEY_NAME) == null) {
+      if (this.serp_api_key != null) {
         this.parameter.put(SERP_API_KEY_NAME, this.serp_api_key);
-      }
-      else if(getSerpApiKey() != null)
-      {
+      } else if (getSerpApiKey() != null) {
         this.parameter.put(SERP_API_KEY_NAME, getSerpApiKey());
-      }
-      else
-      {
+      } else {
         throw new GoogleSearchException(SERP_API_KEY_NAME + " is not defined");
       }
     }
@@ -104,35 +94,35 @@ public class GoogleSearchResults extends Exception
     return this.parameter;
   }
 
-  public static String getSerpApiKey()
-  {
+  public static String getSerpApiKey() {
     return serp_api_key_default;
   }
 
   /***
    * Get HTML output
+   * 
    * @return String
    * @throws GoogleSearchException
    */
-  public String getHtml() throws GoogleSearchException
-  {
-    Map<String, String> query = buildQuery("html");
+  public String getHtml() throws GoogleSearchException {
+    Map<String, String> query = buildQuery("/search", "html");
     return client.getResults(query);
   }
 
   /***
    * Get JSON output
+   * 
    * @return JsonObject parent node
    * @throws GoogleSearchException
    */
-  public JsonObject getJson() throws GoogleSearchException
-  {
-    Map<String, String> query = buildQuery("json");
+  public JsonObject getJson() throws GoogleSearchException {
+    Map<String, String> query = buildQuery("/search", "json");
     return asJson(client.getResults(query));
   }
 
   /***
    * Convert HTTP content to JsonValue
+   * 
    * @param content
    * @return JsonObject
    */
@@ -142,9 +132,55 @@ public class GoogleSearchResults extends Exception
     return element.getAsJsonObject();
   }
 
-  public GoogleSearchResultsClient getClient()
-  {
+  /***
+   * @return http client
+   */
+  public GoogleSearchResultsClient getClient() {
     return this.client;
+  }
+
+  /***
+   * Get location
+   * 
+   * @param q     query
+   * @param limit number of location
+   * @return JsonObject location using Location API
+   * @throws GoogleSearchException
+   */
+  public JsonArray getLocation(String q, Integer limit) throws GoogleSearchException {
+    Map<String, String> query = buildQuery("/locations.json", "json");
+    query.remove("output");
+    query.remove(SERP_API_KEY_NAME);
+    query.put("q", q);
+    query.put("limit", limit.toString());
+    String s = client.getResults(query);
+    return gson.fromJson(s, JsonArray.class);
+  }
+
+  /***
+   * Get search result from the Search Archive API
+   * 
+   * @return JsonObject search result
+   * @throws GoogleSearchException
+   */
+  public JsonObject getSearchArchive(Integer search_id) throws GoogleSearchException {
+    Map<String, String> query = buildQuery("/searches/" + search_id.toString() + ".json", "json");
+    query.remove("output");
+    query.remove("q");
+    return asJson(client.getResults(query));
+  }
+
+  /***
+   * Get account information using Account API
+   * 
+   * @return JsonObject account information
+   * @throws GoogleSearchException
+   */
+  public JsonObject getAccount() throws GoogleSearchException {
+    Map<String, String> query = buildQuery("/account", "json");
+    query.remove("output");
+    query.remove("q");
+    return asJson(client.getResults(query));
   }
 
 }

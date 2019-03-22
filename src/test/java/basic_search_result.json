@@ -1,0 +1,176 @@
+{
+  "search_metadata": {
+    "id": "5c91926661a1347a7a2ebe3a",
+    "status": "Success",
+    "created_at": "2019-03-20 01:07:50 UTC",
+    "processed_at": "2019-03-20 01:07:50 UTC",
+    "google_url": "https://www.google.com/search?q=Coffee&oq=Coffee&uule=w+CAIQICIaQXVzdGluLFRleGFzLFVuaXRlZCBTdGF0ZXM&hl=en&gl=us&num=10&safe=active&start=10&sourceid=chrome&ie=UTF-8",
+    "total_time_taken": 10.29
+  },
+  "search_parameters": {
+    "q": "Coffee",
+    "location_requested": "Austin, Texas, United States",
+    "location_used": "Austin,Texas,United States",
+    "google_domain": "google.com",
+    "hl": "en",
+    "gl": "us",
+    "safe": "active",
+    "start": "10",
+    "num": "10",
+    "device": "desktop"
+  },
+  "search_information": {
+    "total_results": 23620000000,
+    "time_taken_displayed": 0.6,
+    "query_displayed": "Coffee"
+  },
+  "organic_results": [
+    {
+      "position": 1,
+      "title": "What is Coffee? - National Coffee Association",
+      "link": "http://www.ncausa.org/about-coffee/what-is-coffee",
+      "displayed_link": "www.ncausa.org › About Coffee › What is Coffee?",
+      "snippet": "Coffee trees are pruned short to conserve their energy and aid in harvesting, but can grow to more than 30 feet (9 meters) high. Each tree is covered with green, ...",
+      "cached_page_link": "http://webcache.googleusercontent.com/search?q=cache:eukMDyc_TlwJ:www.ncausa.org/about-coffee/what-is-coffee+&cd=11&hl=en&ct=clnk&gl=us"
+    },
+    {
+      "position": 2,
+      "title": "The History of Coffee - National Coffee Association",
+      "link": "http://www.ncausa.org/about-coffee/history-of-coffee",
+      "displayed_link": "www.ncausa.org › About Coffee › History of Coffee",
+      "snippet": "No one knows exactly how or when coffee was discovered, though there are many legends about its origin. ... Coffee grown worldwide can trace its heritage back centuries to the ancient coffee forests on the Ethiopian plateau. There, legend says the goat herder Kaldi first discovered the ...",
+      "cached_page_link": "http://webcache.googleusercontent.com/search?q=cache:lVL_jlE3B80J:www.ncausa.org/about-coffee/history-of-coffee+&cd=12&hl=en&ct=clnk&gl=us"
+    },
+    {
+      "position": 3,
+      "title": "The Coffee House « Austin Improv Comedy Shows, Classes – The ...",
+      "link": "http://www.hideouttheatre.com/coffeehouse",
+      "displayed_link": "www.hideouttheatre.com/coffeehouse",
+      "snippet": "The Hideout is downtown Austin's oldest independent coffee house. We are open morning to night, weekdays and weekends and serve beer, wine, fresh ...",
+      "cached_page_link": "http://webcache.googleusercontent.com/search?q=cache:VD32HaeikQMJ:www.hideouttheatre.com/coffeehouse+&cd=13&hl=en&ct=clnk&gl=us",
+      "related_pages_link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=related:www.hideouttheatre.com/coffeehouse+Coffee&tbo=1&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChAfMAJ6BAgJEAU",
+      "rich_snippet": {
+        "bottom": {
+          "extensions": [
+            "Thu, Mar 21",
+            "PGraph",
+            "Thu, Mar 21",
+            "Austin Secrets",
+            "Thu, Mar 21",
+            "The Free Fringe"
+          ]
+        }
+      }
+    },
+    {
+      "position": 4,
+      "title": "Home | The Coffee Bean & Tea Leaf",
+      "link": "https://www.coffeebean.com/",
+      "displayed_link": "https://www.coffeebean.com/",
+      "snippet": "Never run out of your favorite coffees, teas and powders again with our auto-delivery subscription. Select how often your products arrive, pause and cancel ...",
+      "cached_page_link": "https://webcache.googleusercontent.com/search?q=cache:WpQxSYo2c6AJ:https://www.coffeebean.com/+&cd=14&hl=en&ct=clnk&gl=us",
+      "related_pages_link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=related:https://www.coffeebean.com/+Coffee&tbo=1&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChAfMAN6BAgFEAU"
+    },
+    {
+      "position": 5,
+      "title": "Coffee Review - The World's Leading Coffee Guide",
+      "link": "https://www.coffeereview.com/",
+      "displayed_link": "https://www.coffeereview.com/",
+      "snippet": "Coffee reviews, espresso ratings, informative articles, and coffee blogs by Kenneth Davids and other coffee experts.",
+      "cached_page_link": "https://webcache.googleusercontent.com/search?q=cache:c9jncvPT1SsJ:https://www.coffeereview.com/+&cd=15&hl=en&ct=clnk&gl=us"
+    },
+    {
+      "position": 6,
+      "title": "Coffee: Benefits, nutrition, and risks - Medical News Today",
+      "link": "https://www.medicalnewstoday.com/articles/270202.php",
+      "displayed_link": "https://www.medicalnewstoday.com/articles/270202.php",
+      "date": "Dec 14, 2017",
+      "snippet": "Drinking coffee may do much more than simply provide an energy boost when needed. Several scientific studies have identified a number of ...",
+      "cached_page_link": "https://webcache.googleusercontent.com/search?q=cache:FB_36c_qnUAJ:https://www.medicalnewstoday.com/articles/270202.php+&cd=16&hl=en&ct=clnk&gl=us"
+    },
+    {
+      "position": 7,
+      "title": "Peet's Coffee: The Original Craft Coffee",
+      "link": "https://www.peets.com/",
+      "displayed_link": "https://www.peets.com/",
+      "snippet": "Since 1966, Peet's Coffee has offered superior coffees and teas by sourcing the best quality coffee beans and tea leaves in the world and adhering to strict ...",
+      "cached_page_link": "https://webcache.googleusercontent.com/search?q=cache:BCjzno6zP6wJ:https://www.peets.com/+&cd=17&hl=en&ct=clnk&gl=us",
+      "related_pages_link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=related:https://www.peets.com/+Coffee&tbo=1&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChAfMAZ6BAgGEAU"
+    },
+    {
+      "position": 8,
+      "title": "The Best Coffee from Starbucks Coffee",
+      "link": "https://www.starbucks.com/coffee",
+      "displayed_link": "https://www.starbucks.com/coffee",
+      "snippet": "Next stop: Asia / Pacific. Journey through the world's coffee regions with our Passport Series—coffee selected to give you a sense of place. Now we're visiting ...",
+      "cached_page_link": "https://webcache.googleusercontent.com/search?q=cache:R7fHYjcarfsJ:https://www.starbucks.com/coffee+&cd=18&hl=en&ct=clnk&gl=us",
+      "related_pages_link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=related:https://www.starbucks.com/coffee+Coffee&tbo=1&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChAfMAd6BAgHEAU"
+    },
+    {
+      "position": 9,
+      "title": "Seventh Flag Coffee - Austin",
+      "link": "http://www.seventhflagcoffee.com/",
+      "displayed_link": "www.seventhflagcoffee.com/",
+      "snippet": "Seventh Flag Coffee Co. is dedicated to creating the best overall coffee experience for every customer that walks through our doors. We are transforming the ...",
+      "cached_page_link": "http://webcache.googleusercontent.com/search?q=cache:VZCbBEneWWkJ:www.seventhflagcoffee.com/+&cd=19&hl=en&ct=clnk&gl=us",
+      "related_pages_link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=related:www.seventhflagcoffee.com/+Coffee&tbo=1&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChAfMAh6BAgIEAU"
+    },
+    {
+      "position": 10,
+      "title": "Cosmic Coffee + Beer Garden - Austin, Tx",
+      "link": "https://www.cosmiccoffeebeer.com/",
+      "displayed_link": "https://www.cosmiccoffeebeer.com/",
+      "snippet": "specialty coffee, craft cocktails, locally brewed beer, food trailers and live music in a permaculture inspired garden setting in south austin, tx.",
+      "cached_page_link": "https://webcache.googleusercontent.com/search?q=cache:tsOR-R1-gmQJ:https://www.cosmiccoffeebeer.com/+&cd=20&hl=en&ct=clnk&gl=us"
+    }
+  ],
+  "related_searches": [
+    {
+      "query": "mozarts coffee",
+      "link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=mozarts+coffee&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDVAigAegQIChAB"
+    },
+    {
+      "query": "bennu coffee",
+      "link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=bennu+coffee&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDVAigBegQIChAC"
+    },
+    {
+      "query": "coffee near me",
+      "link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=coffee+near+me&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDVAigCegQIChAD"
+    },
+    {
+      "query": "coffee austin",
+      "link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=coffee+austin&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDVAigDegQIChAE"
+    },
+    {
+      "query": "best coffee in austin",
+      "link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=best+coffee+in+austin&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDVAigEegQIChAF"
+    },
+    {
+      "query": "coffee shops near me",
+      "link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=coffee+shops+near+me&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDVAigFegQIChAG"
+    },
+    {
+      "query": "houndstooth coffee",
+      "link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=houndstooth+coffee&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDVAigGegQIChAH"
+    },
+    {
+      "query": "epoch coffee",
+      "link": "https://www.google.com/search?safe=active&gl=us&hl=en&q=epoch+coffee&sa=X&ved=2ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDVAigHegQIChAI"
+    }
+  ],
+  "pagination": {
+    "current": 2,
+    "next": "https://www.google.com/search?q=Coffee&safe=active&gl=us&hl=en&ei=b5KRXOC6Bc3EswWc34_YDQ&start=20&sa=N&ved=0ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDw0wMIjAE",
+    "other_pages": {
+      "1": "https://www.google.com/search?q=Coffee&safe=active&gl=us&hl=en&ei=b5KRXOC6Bc3EswWc34_YDQ&start=0&sa=N&ved=0ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDy0wMIeQ",
+      "3": "https://www.google.com/search?q=Coffee&safe=active&gl=us&hl=en&ei=b5KRXOC6Bc3EswWc34_YDQ&start=20&sa=N&ved=0ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDy0wMIfA",
+      "4": "https://www.google.com/search?q=Coffee&safe=active&gl=us&hl=en&ei=b5KRXOC6Bc3EswWc34_YDQ&start=30&sa=N&ved=0ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDy0wMIfg",
+      "5": "https://www.google.com/search?q=Coffee&safe=active&gl=us&hl=en&ei=b5KRXOC6Bc3EswWc34_YDQ&start=40&sa=N&ved=0ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDy0wMIgAE",
+      "6": "https://www.google.com/search?q=Coffee&safe=active&gl=us&hl=en&ei=b5KRXOC6Bc3EswWc34_YDQ&start=50&sa=N&ved=0ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDy0wMIggE",
+      "7": "https://www.google.com/search?q=Coffee&safe=active&gl=us&hl=en&ei=b5KRXOC6Bc3EswWc34_YDQ&start=60&sa=N&ved=0ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDy0wMIhAE",
+      "8": "https://www.google.com/search?q=Coffee&safe=active&gl=us&hl=en&ei=b5KRXOC6Bc3EswWc34_YDQ&start=70&sa=N&ved=0ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDy0wMIhgE",
+      "9": "https://www.google.com/search?q=Coffee&safe=active&gl=us&hl=en&ei=b5KRXOC6Bc3EswWc34_YDQ&start=80&sa=N&ved=0ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDy0wMIiAE",
+      "10": "https://www.google.com/search?q=Coffee&safe=active&gl=us&hl=en&ei=b5KRXOC6Bc3EswWc34_YDQ&start=90&sa=N&ved=0ahUKEwigrp6FxI_hAhVN4qwKHZzvA9s4ChDy0wMIigE"
+    }
+  }
+}
