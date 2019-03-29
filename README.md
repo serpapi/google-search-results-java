@@ -14,42 +14,65 @@ An example is provided in the test.
 
 [The full documentation is available here.](https://serpapi.com/search-api)
 
+## Requirement
+
+You must be using the latest version of Java.
+Older version of java do not support SSLv3 which lead to Java sending an exception: javax.net.ssl.SSLHandshakeException
+
 ## Quick start
 
-You must clone this repository.
+To get started with this project in Java. 
+We provided a fully working example.
 ```bash
 git clone https://github.com/serpapi/google_search_results_java.git
+cd google_search_results_java/demo
+make run api_key=<your private key>
 ```
-Build the jar file.
-```bash
-gradle build
-```
-Copy the jar to your project lib/ directory.
-```bash
-cp build/libs/google_search_results_java.jar path/to/yourproject/lib
-```
+Note: You need an account with SerpAPI to obtain this key from: https://serpapi.com/dashboard
 
-Note: we are looking at better solution.
-
+file: demo/src/main/java/demo/App.java
 ```java
-Map<String, String> parameter = new HashMap<>();
-parameter.put("q", "Coffee");
-parameter.put("location", "Austin,Texas");
-parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
-GoogleSearchResults serp = new GoogleSearchResults(parameter);
+public class App {
+    public static void main(String[] args) throws GoogleSearchException {
+        if(args.length != 1) {
+            System.out.println("Usage: app <secret api key>");
+            System.exit(1);
+        }
 
-JsonObject data = serp.getJson();
-JsonArray results = (JsonArray) data.get("local_results");
-JsonObject first_result = results.get(0).getAsJsonObject();
-System.out.println("first coffee: " + first_result.get("title").getAsString());
- ```
+        String location = "Austin,Texas";
+        System.out.println("find the first Coffee in " + location);
+
+        // parameters
+        Map<String, String> parameter = new HashMap<>();
+        parameter.put("q", "Coffee");
+        parameter.put("location", location);
+        parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, args[0]);
+
+        // Create client
+        GoogleSearchResults client = new GoogleSearchResults(parameter);
+
+        try {
+            // Execute search
+            JsonObject data = client.getJson();
+
+            // Decode response
+            JsonArray results = (JsonArray) data.get("local_results");
+            JsonObject first_result = results.get(0).getAsJsonObject();
+            System.out.println("first coffee: " + first_result.get("title").getAsString() + " in " + location);
+        } catch (GoogleSearchException e) {
+            System.out.println("oops exception detected!");
+            e.printStackTrace();
+        }
+    }
+}
+```
 
 This example runs a search about "coffee" using your secret api key.
 
 The Serp API service (backend)
  - searches on Google using the query: q = "coffee"
  - parses the messy HTML responses
- - return a standardizes JSON response
+ - return a standardized JSON response
 The Ruby class GoogleSearchResults
  - Format the request to Serp API server
  - Execute GET http request
@@ -68,12 +91,12 @@ Et voila..
 The Serp API key can be set globally using a singleton pattern.
 ```java
 GoogleSearchResults.serp_api_key_default = "Your Private Key"
-query = GoogleSearchResults(parameter)
+client = GoogleSearchResults(parameter)
 ```
 Or the Serp API key can be provided for each query.
 
 ```java
-query = GoogleSearchResults(parameter, "Your Private Key")
+client = GoogleSearchResults(parameter, "Your Private Key")
 ```
 
 ## Example with all params and all outputs
@@ -126,28 +149,57 @@ it prints the first 3 location matching Austin (Texas, Texas, Rochester)
 ### Search Archive API
 
 Let's run a search to get a search_id.
-TODO write java code
-```ruby
-search = GoogleSearchResults.new(q: "Coffee", location: "Portland")
-original_search = search.get_hash
-search_id = original_search[:search_metadata][:id]
+```java
+Map<String, String> parameter = new HashMap<>();
+parameter.put("q", "Coffee");
+parameter.put("location", "Austin,Texas");
+
+GoogleSearchResults client = new GoogleSearchResults(parameter);
+JsonObject result = client.getJson();
+int search_id = result.get("search_metadata").getAsJsonObject().get("id").getAsInt();
+```
 
 Now let retrieve the previous search from the archive.
-```ruby
-search = GoogleSearchResults.new
-archive_search = search.get_search_archive(search_id)
-pp archive_search
+```java
+JsonObject archived_result = client.getSearchArchive(search_id);
+System.out.println(archived_result.toString());
 ```
 it prints the search from the archive.
 
 ### Account API
-TODO write java code
-```ruby
-search = GoogleSearchResults.new
-pp search.get_account
+Get account API
+```java
+GoogleSearchResults.serp_api_key_default = "Your Private Key"
+GoogleSearchResults client = new GoogleSearchResults();
+JsonObject info = client.getAccount();
+System.out.println(info.toString());
 ```
 it prints your account information.
 
+## Build project
+
+### How to build from the source ?
+
+You must clone this repository.
+```bash
+git clone https://github.com/serpapi/google_search_results_java.git
+```
+Build the jar file.
+```bash
+gradle build
+```
+Copy the jar to your project lib/ directory.
+```bash
+cp build/libs/google_search_results_java.jar path/to/yourproject/lib
+```
+
+### How to test ?
+
+```bash
+make test
+```
+
+### Conclusion
 
 This service supports Google Images, News, Shopping.
 To enable a type of search, the field tbm (to be matched) must be set to:
@@ -160,16 +212,13 @@ To enable a type of search, the field tbm (to be matched) must be set to:
 
 [The full documentation is available here.](https://serpapi.com/search-api)
 
-Limitation
----
- - No wrapper method around parametrization.
-  the parameters are passed by a simple Map<String,String>
-
 Issue
 ---
- - SerpAPI is using HTTPS / SSLv3. The older version of Java are not supporting this protocol. You must upgrade to 1.8_201+
+ - SerpAPI is using HTTPS / SSLv3. The older version of Java are not supporting this protocol. 
+ You must upgrade to 1.8_201+
+If you see the exception: javax.net.ssl.SSLHandshakeException
 
-For example: To switch
+On OSX you can switch versino of Java.
 ```sh
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_201`
 java -version

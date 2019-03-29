@@ -1,11 +1,16 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin: 'maven'
 
 // Apply the application plugin to add support for building an application
-apply plugin: 'application'
+//apply plugin: 'application'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+archivesBaseName = 'google-search-results'
+version = '1.2.0'
+group = 'serpapi'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -29,5 +34,5 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'serpapi.GoogleSearchResults'
+//mainClassName = 'serpapi.GoogleSearchResults'
 
