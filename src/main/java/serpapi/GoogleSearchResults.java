@@ -4,29 +4,34 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 
 import java.util.Map;
+import java.util.HashMap;
 
 /***
  * Google Search Results using SerpApi
  *
- * Usage --- Map<String, String> parameter = new HashMap<>(); parameter.put("q",
- * "Coffee"); parameter.put("location", "Austin,Texas");
- * parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
+ * Usage 
+ * --- 
+ *```java
+ * Map<String, String> parameter = new HashMap<>(); 
+ * parameter.put("q", "Coffee"); 
+ * parameter.put("location", "Austin,Texas");
+ * parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "your secret key");
  * GoogleSearchResults serp = new GoogleSearchResults(parameter);
+ *```
  * 
  * JsonObject data = serp.getJson();
  */
 public class GoogleSearchResults extends Exception {
   // Set of constant
-  public static final String SERP_API_KEY_NAME = "serp_api_key";
+  public static final String SERP_API_KEY_NAME = "api_key";
 
   // default static key
   public static String serp_api_key_default;
 
   // instance level key
-  private String serp_api_key;
+  private String api_key;
 
   // persist query parameter
   public Map<String, String> parameter;
@@ -40,13 +45,12 @@ public class GoogleSearchResults extends Exception {
   /*
    * Constructor
    *
-   * @param parameter
-   * 
+   * @param parameter 
    * @param serp_api_key
    */
-  public GoogleSearchResults(Map<String, String> parameter, String serp_api_key) {
+  public GoogleSearchResults(Map<String, String> parameter, String api_key) {
     this.parameter = parameter;
-    this.serp_api_key = serp_api_key;
+    this.api_key = api_key;
   }
 
   /***
@@ -56,6 +60,22 @@ public class GoogleSearchResults extends Exception {
    */
   public GoogleSearchResults(Map<String, String> parameter) {
     this.parameter = parameter;
+  }
+
+  /***
+   * Constructor with no parameter
+   */
+  public GoogleSearchResults() {
+    this.parameter = new HashMap<String, String>();
+  }
+
+    /*
+   * Constructor
+   *
+   * @param serp_api_key
+   */
+  public GoogleSearchResults(String serp_api_key) {
+    this.api_key = serp_api_key;
   }
 
   /***
@@ -79,8 +99,8 @@ public class GoogleSearchResults extends Exception {
 
     // Set serp_api_key
     if (this.parameter.get(SERP_API_KEY_NAME) == null) {
-      if (this.serp_api_key != null) {
-        this.parameter.put(SERP_API_KEY_NAME, this.serp_api_key);
+      if (this.api_key != null) {
+        this.parameter.put(SERP_API_KEY_NAME, this.api_key);
       } else if (getSerpApiKey() != null) {
         this.parameter.put(SERP_API_KEY_NAME, getSerpApiKey());
       } else {
@@ -160,6 +180,7 @@ public class GoogleSearchResults extends Exception {
   /***
    * Get search result from the Search Archive API
    * 
+   * @param search_id archived search result = search_metadata.id
    * @return JsonObject search result
    * @throws GoogleSearchException
    */

@@ -54,9 +54,6 @@ public class GoogleSearchResultsClient
       allowHTTPS();
       String query = ParameterStringBuilder.getParamsString(parameter);
       URL url = new URL(BACKEND + path + "?" + query);
-
-      System.out.println(url.toString());
-
       con = (HttpURLConnection) url.openConnection();
       con.setRequestMethod("GET");
     }
