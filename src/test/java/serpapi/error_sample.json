@@ -1,6 +1,0 @@
-// 20180115183731
-// https://serpapi.com/search?q=Coffee&location=Portland&output=json&api_key=2a09c3d5c663314640a0c4382bc2d6be73c233417011040f689318801bf9d328
-
-{
-  "error": "Your account credit is too low, plesae add more credits."
-}

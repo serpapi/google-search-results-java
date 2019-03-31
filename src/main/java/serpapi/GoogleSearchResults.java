@@ -104,7 +104,7 @@ public class GoogleSearchResults extends Exception {
       } else if (getSerpApiKey() != null) {
         this.parameter.put(SERP_API_KEY_NAME, getSerpApiKey());
       } else {
-        throw new GoogleSearchException(SERP_API_KEY_NAME + " is not defined");
+        //throw new GoogleSearchException(SERP_API_KEY_NAME + " is not defined");
       }
     }
 

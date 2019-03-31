@@ -74,7 +74,10 @@ public class GoogleSearchResultsClient
 
     if(parameter.get("output") == null)
     {
-      if( path != "/locations.json") 
+      if( path.startsWith("/locations.json") || path.startsWith("/account")) 
+      {
+      }
+      else
       {
         throw new GoogleSearchException("output format must be defined");
       }
@@ -193,7 +196,7 @@ public class GoogleSearchResultsClient
       JsonPrimitive error = element.getAsJsonPrimitive("error");
       throw new GoogleSearchException(error.getAsString());
     } catch(Exception e) {
-      throw new AssertionError("invalid response format expected json and not html: " + content);
+      throw new AssertionError("invalid response format: " + content);
     } 
   }
 

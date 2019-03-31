@@ -29,24 +29,27 @@ public class GoogleSearchResultsClientTest
     parameter.put("output", "json");
 
     String api_key = System.getenv("API_KEY");
-    if(api_key== null) {
-        api_key = "demo";
+    if(api_key == null) {
+      GoogleSearchResults.serp_api_key_default = "demo";
+      parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
+    } else {
+      parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, api_key);
     }
-    parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, api_key);
   }
 
   @Test
   public void buildConnection() throws GoogleSearchException
   {
     HttpURLConnection connection = client.buildConnection("/search", parameter);
-    assertEquals("https://serpapi.com/search?output=json&q=Coffee&serp_api_key=" + GoogleSearchResults.serp_api_key_default + "&location=Austin%2C+Texas", connection.getURL().toString());
+    assertEquals("https://serpapi.com/search?output=json&q=Coffee&api_key=" + GoogleSearchResults.serp_api_key_default + "&location=Austin%2C+Texas", connection.getURL().toString());
   }
 
   @Test
   public void triggerGoogleSearchException() throws Exception
   {
     try {
-      String content = ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/error_sample.json")).toString();
+      String content = ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/error_sample.json")).toString();
+      System.out.println(content);
       client.triggerGoogleSearchException(content);
     }
     catch(Exception ex)
