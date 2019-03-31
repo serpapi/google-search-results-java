@@ -191,13 +191,14 @@ public class GoogleSearchResultsClient
   
   public void triggerGoogleSearchException(String content) throws GoogleSearchException
   {
+    String errorMessage;
     try {
       JsonObject element = gson.fromJson(content, JsonObject.class);
-      JsonPrimitive error = element.getAsJsonPrimitive("error");
-      throw new GoogleSearchException(error.getAsString());
+      errorMessage = element.get("error").getAsString();
     } catch(Exception e) {
       throw new AssertionError("invalid response format: " + content);
     } 
+    throw new GoogleSearchException(errorMessage);
   }
 
   public int getHttpConnectionTimeout()
