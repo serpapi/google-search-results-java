@@ -65,7 +65,7 @@ public class GoogleSearchResultsTest {
   public void getHtml() throws Exception {
     GoogleSearchResultsClient client = mock(GoogleSearchResultsClient.class);
 
-    String htmlContent = ReadJsonFile.readAsString(Paths.get("src/test/java/serpapi/search_coffee_sample.html"));
+    String htmlContent = ReadJsonFile.readAsString(Paths.get("src/test/java/serpapi/data/search_coffee_sample.html"));
     when(client.getResults(ArgumentMatchers.<String, String>anyMap())).thenReturn(htmlContent);
 
     Map<String, String> parameter = new HashMap<>();
@@ -96,11 +96,10 @@ public class GoogleSearchResultsTest {
   @Test
   public void searchCoffee() throws GoogleSearchException {
     // skip test if no api_key provided
-    if(GoogleSearchResults.serp_api_key_default == null)
+    if(System.getenv("API_KEY") == null)
       return;
 
     Map<String, String> parameter = new HashMap<>();
-
     parameter.put("q", "Coffee");
     parameter.put("location", "Austin, Texas, United States");
     parameter.put("hl", "en");
