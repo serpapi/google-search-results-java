@@ -113,7 +113,7 @@ public class GoogleSearchResultsTest {
 
     GoogleSearchResults result = new GoogleSearchResults(parameter);
     JsonObject results = result.getJson();
-    assertTrue(results.getAsJsonArray("organic_results").size() >= 10);
+    assertEquals(9, results.getAsJsonArray("organic_results").size());
   }
 
 }

@@ -24,10 +24,10 @@ public class SearchArchiveApiTest {
     GoogleSearchResults client = new GoogleSearchResults(parameter);
     JsonObject result = client.getJson();
 
-    int search_id = result.get("search_metadata").getAsJsonObject().get("id").getAsInt();
-    JsonObject archived_result = client.getSearchArchive(search_id);
+    String searchID = result.get("search_metadata").getAsJsonObject().get("id").getAsString();
+    JsonObject archived_result = client.getSearchArchive(searchID);
     System.out.println(archived_result.toString());
 
-    assertEquals(search_id, archived_result.get("search_metadata").getAsJsonObject().get("id").getAsInt());
+    assertEquals(searchID, archived_result.get("search_metadata").getAsJsonObject().get("id").getAsString());
   }
 }

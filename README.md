@@ -113,10 +113,10 @@ query_parameter = {
   "num": "Number of Results",
   "start": "Pagination Offset",
   "serp_api_key": "Your SERP API Key",
-  "tbm": "nws|isch|shop"
-  "tbs": "custom to be search criteria"
-  "async": true|false # allow async 
-  "output": "json|html" # output format
+  "tbm": "nws|isch|shop",
+  "tbs": "custom to be search criteria",
+  "async": true|false,    // allow async request - non-blocker
+  "output": "json|html",  // output format
 }
 
 query = GoogleSearchResults.new(query_parameter)

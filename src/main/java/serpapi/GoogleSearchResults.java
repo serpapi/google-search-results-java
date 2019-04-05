@@ -180,12 +180,12 @@ public class GoogleSearchResults extends Exception {
   /***
    * Get search result from the Search Archive API
    * 
-   * @param search_id archived search result = search_metadata.id
+   * @param searchID archived search result = search_metadata.id
    * @return JsonObject search result
    * @throws GoogleSearchException
    */
-  public JsonObject getSearchArchive(Integer search_id) throws GoogleSearchException {
-    Map<String, String> query = buildQuery("/searches/" + search_id.toString() + ".json", "json");
+  public JsonObject getSearchArchive(String searchID) throws GoogleSearchException {
+    Map<String, String> query = buildQuery("/searches/" + searchID + ".json", "json");
     query.remove("output");
     query.remove("q");
     return asJson(client.getResults(query));

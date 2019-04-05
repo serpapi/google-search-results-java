@@ -72,17 +72,14 @@ public class GoogleSearchResultsClient
       throw new GoogleSearchException(e);
     }
 
-    if(parameter.get("output") == null)
+    String outputFormat = parameter.get("output");
+    if(outputFormat == null)
     {
-      if( path.startsWith("/locations.json") || path.startsWith("/account")) 
-      {
-      }
-      else
-      {
-        throw new GoogleSearchException("output format must be defined");
+      if(path.startsWith("/search?")) { 
+        throw new GoogleSearchException("output format must be defined: " + path);
       }
     }
-    else if (parameter.get("output").startsWith("json"))
+    else if (outputFormat.startsWith("json"))
     {
       con.setRequestProperty("Content-Type", "application/json");
     }
