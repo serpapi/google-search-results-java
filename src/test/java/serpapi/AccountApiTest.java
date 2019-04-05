@@ -27,8 +27,9 @@ public class AccountApiTest {
     GoogleSearchResults client = new GoogleSearchResults();
     if (GoogleSearchResults.serp_api_key_default == null) {
       GoogleSearchResultsClient stub = mock(GoogleSearchResultsClient.class);
+      String data = ReadJsonFile.readAsString(Paths.get("src/test/java/serpapi/data/account.json"));
       when(stub.getResults(ArgumentMatchers.<String, String>anyMap()))
-          .thenReturn(ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/account.json")).toString());
+          .thenReturn(data);
       client.client = stub;
 
       // fallback to default

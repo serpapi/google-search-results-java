@@ -49,7 +49,6 @@ public class GoogleSearchResultsClientTest
   {
     try {
       String content = ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/error_sample.json")).toString();
-      System.out.println(content);
       client.triggerGoogleSearchException(content);
     }
     catch(Exception ex)
