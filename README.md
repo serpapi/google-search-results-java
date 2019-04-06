@@ -214,16 +214,28 @@ To enable a type of search, the field tbm (to be matched) must be set to:
 
 Issue
 ---
- - SerpAPI is using HTTPS / SSLv3. The older version of Java are not supporting this protocol. 
- You must upgrade to 1.8_201+
-If you see the exception: javax.net.ssl.SSLHandshakeException
+### SSL handshake error.
 
-On OSX you can switch versino of Java.
+#### symptom
+
+javax.net.ssl.SSLHandshakeException
+
+#### cause
+SerpAPI is using HTTPS / SSLv3. Older JVM version is not supporting this protocol. 
+
+#### solution
+upgrade java to 1.8_201+ (which is recommended by Oracle anyway).
+
+ * On OSX you can switch versino of Java.
 ```sh
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_201`
 java -version
 ```
 
+ * On Windows upgrade your JDK / JVM to latest.
+
+ * On Linux, Oracle JDK 8 (1.8_151+) seems to work fine.
+see: https://travis-ci.org/serpapi/google-search-results-java
 
 Source
 ---
@@ -232,4 +244,4 @@ Source
 
 Author
 ---
-Victor Benarbia
+Victor Benarbia - victor@serpapi.com
