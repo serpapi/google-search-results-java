@@ -221,10 +221,10 @@ Issue
 javax.net.ssl.SSLHandshakeException
 
 #### cause
-SerpAPI is using HTTPS / SSLv3. Older JVM version is not supporting this protocol. 
+SerpAPI is using HTTPS / SSLv3. Older JVM version do not support this protocol because it's more recent. 
 
 #### solution
-upgrade java to 1.8_201+ (which is recommended by Oracle anyway).
+Upgrade java to 1.8_201+ (which is recommended by Oracle).
 
  * On OSX you can switch versino of Java.
 ```sh
@@ -232,7 +232,7 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_201`
 java -version
 ```
 
- * On Windows upgrade your JDK / JVM to latest.
+ * On Windows manually upgrade your JDK / JVM to the latest.
 
  * On Linux, Oracle JDK 8 (1.8_151+) seems to work fine.
 see: https://travis-ci.org/serpapi/google-search-results-java
