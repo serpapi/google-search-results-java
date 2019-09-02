@@ -3,7 +3,7 @@ Google Search Results JAVA API
 
 [![Build Status](https://travis-ci.org/serpapi/google-search-results-java.svg?branch=master)](https://travis-ci.org/serpapi/google-search-results-java)
 
-This Java package enables to scrape and parse Google search results using [SerpApi](https://serpapi.com). Feel free to fork this repository to add more backends.
+This Java package enables to scrape and parse Google, Bing and Baidu search results using [SerpApi](https://serpapi.com). Feel free to fork this repository to add more backends.
 
 This project is an implementation of SerpApi in Java 7.
 This code depends on GSON for efficient JSON processing.
@@ -73,11 +73,18 @@ The Serp API service (backend)
  - searches on Google using the query: q = "coffee"
  - parses the messy HTML responses
  - return a standardized JSON response
-The Ruby class GoogleSearchResults
+The class GoogleSearchResults
  - Format the request to Serp API server
  - Execute GET http request
  - Parse JSON into Ruby Hash using JSON standard library provided by Ruby
 Et voila..
+
+Alternatively, you can search:
+ - Bing using BingSearchResults class
+ - Baidu using BaiduSearchResults class
+
+See the playground to generate your code.
+ https://serpapi.com/playground
 
 ## Example
  * [How to set SERP API key](#how-to-set-serp-api-key)
@@ -224,6 +231,10 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_201`
 java -version
 ```
 
+Change logs
+---
+- 1.3 Add support for Bing and Baidu
+- 1.2 Add support for location API, account API, search API
 
 Source
 ---

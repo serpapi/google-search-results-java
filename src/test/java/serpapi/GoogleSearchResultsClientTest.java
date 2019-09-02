@@ -13,15 +13,13 @@ import static org.junit.Assert.*;
 /**
  * Test HTTP client
  */
-public class GoogleSearchResultsClientTest
-{
-  GoogleSearchResultsClient client;
+public class GoogleSearchResultsClientTest {
+  BasicHttpClient client;
   private HashMap<String, String> parameter;
 
   @Before
-  public void setUp() throws Exception
-  {
-    client = new GoogleSearchResultsClient("/search");
+  public void setUp() throws Exception {
+    client = new BasicHttpClient("/search");
 
     parameter = new HashMap<>();
     parameter.put("q", "Coffee");
@@ -29,7 +27,7 @@ public class GoogleSearchResultsClientTest
     parameter.put("output", "json");
 
     String api_key = System.getenv("API_KEY");
-    if(api_key == null) {
+    if (api_key == null) {
       GoogleSearchResults.serp_api_key_default = "demo";
       parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, "demo");
     } else {
@@ -38,22 +36,19 @@ public class GoogleSearchResultsClientTest
   }
 
   @Test
-  public void buildConnection() throws GoogleSearchException
-  {
+  public void buildConnection() throws SerpApiClientException {
     HttpURLConnection connection = client.buildConnection("/search", parameter);
-    assertEquals("https://serpapi.com/search?output=json&q=Coffee&api_key=" + GoogleSearchResults.serp_api_key_default + "&location=Austin%2C+Texas", connection.getURL().toString());
+    assertEquals("https://serpapi.com/search?output=json&q=Coffee&api_key=" + GoogleSearchResults.serp_api_key_default
+        + "&location=Austin%2C+Texas", connection.getURL().toString());
   }
 
   @Test
-  public void triggerGoogleSearchException() throws Exception
-  {
+  public void triggerSerpApiClientException() throws Exception {
     try {
       String content = ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/error_sample.json")).toString();
-      client.triggerGoogleSearchException(content);
-    }
-    catch(Exception ex)
-    {
-      assertEquals(GoogleSearchException.class, ex.getClass());
+      client.triggerSerpApiClientException(content);
+    } catch (Exception ex) {
+      assertEquals(SerpApiClientException.class, ex.getClass());
     }
   }
 

@@ -28,7 +28,7 @@ public class GoogleSearchResultsTest {
   }
 
   @Test
-  public void buildParameter() throws GoogleSearchException {
+  public void buildParameter() throws SerpApiClientException {
     Map<String, String> parameter = new HashMap<>();
     parameter.put("q", "Coffee");
     parameter.put("location", "Austin, Texas");
@@ -39,7 +39,7 @@ public class GoogleSearchResultsTest {
   }
 
   @Test
-  public void builParameterForInstance() throws GoogleSearchException {
+  public void builParameterForInstance() throws SerpApiClientException {
     GoogleSearchResults client = new GoogleSearchResults();
     client.buildQuery("/search", "json");
     assertEquals(client.parameter.get("source"), "java");
@@ -63,7 +63,7 @@ public class GoogleSearchResultsTest {
 
   @Test
   public void getHtml() throws Exception {
-    GoogleSearchResultsClient client = mock(GoogleSearchResultsClient.class);
+    BasicHttpClient client = mock(BasicHttpClient.class);
 
     String htmlContent = ReadJsonFile.readAsString(Paths.get("src/test/java/serpapi/data/search_coffee_sample.html"));
     when(client.getResults(ArgumentMatchers.<String, String>anyMap())).thenReturn(htmlContent);
@@ -83,9 +83,9 @@ public class GoogleSearchResultsTest {
     parameter.put("q", "Coffee");
     parameter.put("location", "Austin, Texas");
 
-    GoogleSearchResultsClient stub = mock(GoogleSearchResultsClient.class);
-    when(stub.getResults(ArgumentMatchers.<String, String>anyMap()))
-        .thenReturn(ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/search_coffee_sample.json")).toString());
+    BasicHttpClient stub = mock(BasicHttpClient.class);
+    when(stub.getResults(ArgumentMatchers.<String, String>anyMap())).thenReturn(
+        ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/search_coffee_sample.json")).toString());
 
     GoogleSearchResults client = new GoogleSearchResults(parameter);
     client.client = stub;
@@ -94,9 +94,9 @@ public class GoogleSearchResultsTest {
   }
 
   @Test
-  public void searchCoffee() throws GoogleSearchException {
+  public void searchCoffee() throws SerpApiClientException {
     // skip test if no api_key provided
-    if(System.getenv("API_KEY") == null)
+    if (System.getenv("API_KEY") == null)
       return;
 
     Map<String, String> parameter = new HashMap<>();
@@ -113,7 +113,7 @@ public class GoogleSearchResultsTest {
 
     GoogleSearchResults result = new GoogleSearchResults(parameter);
     JsonObject results = result.getJson();
-    assertEquals(9, results.getAsJsonArray("organic_results").size());
+    assertTrue(results.getAsJsonArray("organic_results").size() > 5);
   }
 
 }
