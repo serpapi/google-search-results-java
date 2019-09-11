@@ -73,11 +73,16 @@ The Serp API service (backend)
  - searches on Google using the query: q = "coffee"
  - parses the messy HTML responses
  - return a standardized JSON response
-The Ruby class GoogleSearchResults
- - Format the request to Serp API server
- - Execute GET http request
- - Parse JSON into Ruby Hash using JSON standard library provided by Ruby
+ 
+The class GoogleSearchResults
+ - Format the request
+ - Execute GET http request against SerAPI service
+ - Parse JSON response using GSON library
 Et voila..
+
+Alternatively, you can search:
+ - Bing using BingSearchResults class
+ - Baidu using BaiduSearchResults class
 
 ## Example
  * [How to set SERP API key](#how-to-set-serp-api-key)
