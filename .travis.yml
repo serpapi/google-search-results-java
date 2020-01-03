@@ -1,5 +1,5 @@
 language: java
 jdk:
-  - oraclejdk10
+  - openjdk11
 script: 
   - ./gradlew test --info
