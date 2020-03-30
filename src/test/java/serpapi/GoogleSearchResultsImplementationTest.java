@@ -37,7 +37,7 @@ public class GoogleSearchResultsImplementationTest {
     GoogleSearchResults serp = new GoogleSearchResults(parameter);
 
     JsonObject data = serp.getJson();
-    JsonArray results = (JsonArray) data.get("local_results");
+    JsonArray results = data.get("organic_results").getAsJsonArray();
     JsonObject first_result = results.get(0).getAsJsonObject();
     assertNotNull(first_result.get("title"));
   }

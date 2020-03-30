@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 /**
  * Test main class
  */
-public class GoogleSearchResultsTest {
+public class SerpApiClientTest {
 
   GoogleSearchResults client;
 
@@ -84,8 +84,8 @@ public class GoogleSearchResultsTest {
     parameter.put("location", "Austin, Texas");
 
     SerpApiHttpClient stub = mock(SerpApiHttpClient.class);
-    when(stub.getResults(ArgumentMatchers.<String, String>anyMap())).thenReturn(
-        ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/search_coffee_sample.json")).toString());
+    when(stub.getResults(ArgumentMatchers.<String, String>anyMap()))
+        .thenReturn(ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/search_coffee_sample.json")).toString());
 
     GoogleSearchResults client = new GoogleSearchResults(parameter);
     client.client = stub;
@@ -96,7 +96,7 @@ public class GoogleSearchResultsTest {
   @Test
   public void searchCoffee() throws SerpApiClientException {
     // skip test if no api_key provided
-    if (System.getenv("API_KEY") == null)
+    if(System.getenv("API_KEY") == null)
       return;
 
     Map<String, String> parameter = new HashMap<>();

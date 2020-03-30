@@ -31,7 +31,7 @@ public class SerpApiClient extends Exception {
   private static Gson gson = new Gson();
 
   // https client implementation for Java 7+
-  public BasicHttpClient client;
+  public SerpApiHttpClient client;
 
   /*
    * Constructor
@@ -84,7 +84,7 @@ public class SerpApiClient extends Exception {
   public Map<String, String> buildQuery(String path, String output) throws SerpApiClientException {
     // Initialize client if not done
     if (client == null) {
-      this.client = new BasicHttpClient(path);
+      this.client = new SerpApiHttpClient(path);
       this.client.setHttpConnectionTimeout(6000);
     } else {
       this.client.path = path;
@@ -152,7 +152,7 @@ public class SerpApiClient extends Exception {
   /***
    * @return http client
    */
-  public BasicHttpClient getClient() {
+  public SerpApiHttpClient getClient() {
     return this.client;
   }
 

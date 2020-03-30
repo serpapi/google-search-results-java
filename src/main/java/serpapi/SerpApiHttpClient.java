@@ -16,7 +16,7 @@ import com.google.gson.JsonPrimitive;
 /**
  * HTTPS client for Serp API
  */
-public class BasicHttpClient {
+public class SerpApiHttpClient {
   // http request configuration
   private int httpConnectionTimeout;
   private int httpReadTimeout;
@@ -33,7 +33,7 @@ public class BasicHttpClient {
   /***
    * @param String path
    */
-  public BasicHttpClient(String path) {
+  public SerpApiHttpClient(String path) {
     this.path = path;
   }
 

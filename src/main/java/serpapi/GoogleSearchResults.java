@@ -5,12 +5,15 @@ import java.util.Map;
 /***
  * Google Search Results using SerpApi
  *
- * Usage --- ```java Map<String, String> parameter = new HashMap<>();
- * parameter.put("q", "Coffee"); parameter.put("location", "Austin,Texas");
- * parameter.put(SerpApiClient.SERP_API_KEY_NAME, "your secret key");
- * SerpApiClient serp = new SerpApiClient(parameter); ```
- * 
- * JsonObject data = serp.getJson();
+ * Usage 
+ * --- 
+ * ```java 
+ * Map<String, String> parameter = new HashMap<>();
+ * parameter.put("q", "Coffee");
+ * GoogleSearchResults google = new GoogleSearchResults(parameter, "secret api key"); 
+ * JsonObject data = google.getJson();
+ * JsonObject organic_results = data.getJsonAsObject("organic_results");
+ * ```
  */
 class GoogleSearchResults extends SerpApiClient {
 
@@ -25,4 +28,6 @@ class GoogleSearchResults extends SerpApiClient {
   public GoogleSearchResults(Map<String, String> parameter) {
     super(parameter, "google");
   }
+
+// end
 }

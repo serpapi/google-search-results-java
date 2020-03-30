@@ -14,12 +14,12 @@ import static org.junit.Assert.*;
  * Test HTTP client
  */
 public class GoogleSearchResultsClientTest {
-  BasicHttpClient client;
+  SerpApiHttpClient client;
   private HashMap<String, String> parameter;
 
   @Before
   public void setUp() throws Exception {
-    client = new BasicHttpClient("/search");
+    client = new SerpApiHttpClient("/search");
 
     parameter = new HashMap<>();
     parameter.put("q", "Coffee");

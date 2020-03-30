@@ -26,7 +26,7 @@ public class AccountApiTest {
     // mock response if run on github
     GoogleSearchResults client = new GoogleSearchResults();
     if (System.getenv("API_KEY") == null) {
-      BasicHttpClient stub = mock(BasicHttpClient.class);
+      SerpApiHttpClient stub = mock(SerpApiHttpClient.class);
       String data = ReadJsonFile.readAsString(Paths.get("src/test/java/serpapi/data/account.json"));
       when(stub.getResults(ArgumentMatchers.<String, String>anyMap())).thenReturn(data);
       client.client = stub;

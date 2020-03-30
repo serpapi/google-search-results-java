@@ -24,7 +24,7 @@ public class LocationApiTest {
     // mock response if run on github
     GoogleSearchResults client = new GoogleSearchResults();
     if (GoogleSearchResults.serp_api_key_default == null) {
-      BasicHttpClient stub = mock(BasicHttpClient.class);
+      SerpApiHttpClient stub = mock(SerpApiHttpClient.class);
       when(stub.getResults(ArgumentMatchers.<String, String>anyMap()))
           .thenReturn(ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/location.json")).toString());
       client.client = stub;
