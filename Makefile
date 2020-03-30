@@ -14,8 +14,7 @@ build: clean
 	./gradlew build -x test 
 
 # Create a release using GitHub
-release:
-	./gradlew distZip
+release: build
 	@echo "drag drop file"
 	open build/libs/
 	open build/distributions/

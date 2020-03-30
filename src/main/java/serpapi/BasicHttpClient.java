@@ -16,8 +16,7 @@ import com.google.gson.JsonPrimitive;
 /**
  * HTTPS client for Serp API
  */
-public class GoogleSearchResultsClient
-{
+public class BasicHttpClient {
   // http request configuration
   private int httpConnectionTimeout;
   private int httpReadTimeout;
@@ -27,64 +26,53 @@ public class GoogleSearchResultsClient
 
   // initialize gson
   private static Gson gson = new Gson();
-  
+
   // path
   public String path;
 
-/***
- * @param String path
- */
-  public GoogleSearchResultsClient(String path)
-  {
+  /***
+   * @param String path
+   */
+  public BasicHttpClient(String path) {
     this.path = path;
   }
+
   /***
    * Build URL
    *
-   * @param path url end point
-   * @param param hash 
+   * @param path  url end point
+   * @param param hash
    * @return httpUrlConnection
    * @throws IOException
    */
-  public HttpURLConnection buildConnection(String path, Map<String, String> parameter) throws GoogleSearchException
-  {
+  public HttpURLConnection buildConnection(String path, Map<String, String> parameter) throws SerpApiClientException {
     HttpURLConnection con;
-    try
-    {
+    try {
       allowHTTPS();
       String query = ParameterStringBuilder.getParamsString(parameter);
       URL url = new URL(BACKEND + path + "?" + query);
       con = (HttpURLConnection) url.openConnection();
       con.setRequestMethod("GET");
-    }
-    catch(IOException e)
-    {
-      throw new GoogleSearchException(e);
-    }
-    catch(NoSuchAlgorithmException e)
-    {
+    } catch (IOException e) {
+      throw new SerpApiClientException(e);
+    } catch (NoSuchAlgorithmException e) {
       e.printStackTrace();
-      throw new GoogleSearchException(e);
-    }
-    catch(KeyManagementException e)
-    {
+      throw new SerpApiClientException(e);
+    } catch (KeyManagementException e) {
       e.printStackTrace();
-      throw new GoogleSearchException(e);
+      throw new SerpApiClientException(e);
     }
 
     String outputFormat = parameter.get("output");
-    if(outputFormat == null)
-    {
-      if(path.startsWith("/search?")) { 
-        throw new GoogleSearchException("output format must be defined: " + path);
+    if (outputFormat == null) {
+      if (path.startsWith("/search?")) {
+        throw new SerpApiClientException("output format must be defined: " + path);
       }
-    }
-    else if (outputFormat.startsWith("json"))
-    {
+    } else if (outputFormat.startsWith("json")) {
       con.setRequestProperty("Content-Type", "application/json");
     }
 
-    //TODO Enable to set different timeout
+    // TODO Enable to set different timeout
     con.setConnectTimeout(getHttpConnectionTimeout());
     con.setReadTimeout(getHttpReadTimeout());
 
@@ -92,21 +80,20 @@ public class GoogleSearchResultsClient
     return con;
   }
 
-  private void allowHTTPS() throws NoSuchAlgorithmException, KeyManagementException
-  {
+  private void allowHTTPS() throws NoSuchAlgorithmException, KeyManagementException {
     TrustManager[] trustAllCerts;
-    trustAllCerts = new TrustManager[] {
-        new X509TrustManager() {
-          public X509Certificate[] getAcceptedIssuers() {
-            return null;
-          }
+    trustAllCerts = new TrustManager[] { new X509TrustManager() {
+      public X509Certificate[] getAcceptedIssuers() {
+        return null;
+      }
 
-          public void checkClientTrusted(X509Certificate[] certs, String authType) {  }
+      public void checkClientTrusted(X509Certificate[] certs, String authType) {
+      }
 
-          public void checkServerTrusted(X509Certificate[] certs, String authType) {  }
+      public void checkServerTrusted(X509Certificate[] certs, String authType) {
+      }
 
-        }
-    };
+    } };
 
     SSLContext sc = SSLContext.getInstance("SSL");
     sc.init(null, trustAllCerts, new java.security.SecureRandom());
@@ -131,8 +118,7 @@ public class GoogleSearchResultsClient
    * @param parameter
    * @return http response body
    */
-  public String getResults(Map<String, String> parameter) throws GoogleSearchException
-  {
+  public String getResults(Map<String, String> parameter) throws SerpApiClientException {
     HttpURLConnection con = buildConnection(this.path, parameter);
 
     // Get HTTP status
@@ -141,82 +127,66 @@ public class GoogleSearchResultsClient
     InputStream is = null;
     // Read buffer
     BufferedReader in = null;
-    try
-    {
+    try {
       statusCode = con.getResponseCode();
 
-      if(statusCode == 200) 
-      {
+      if (statusCode == 200) {
         is = con.getInputStream();
-      }
-      else 
-      {
+      } else {
         is = con.getErrorStream();
       }
-      
+
       Reader reader = new InputStreamReader(is);
       in = new BufferedReader(reader);
-    }
-    catch(IOException e)
-    {
-      throw new GoogleSearchException(e);
+    } catch (IOException e) {
+      throw new SerpApiClientException(e);
     }
 
     String inputLine;
     StringBuffer content = new StringBuffer();
-    try
-    {
+    try {
       while ((inputLine = in.readLine()) != null) {
         content.append(inputLine);
       }
       in.close();
-    }
-    catch(IOException e)
-    {
-      throw new GoogleSearchException(e);
+    } catch (IOException e) {
+      throw new SerpApiClientException(e);
     }
 
     // Disconnect
     con.disconnect();
-    
-    if(statusCode != 200)
-    {
-      triggerGoogleSearchException(content.toString());
+
+    if (statusCode != 200) {
+      triggerSerpApiClientException(content.toString());
     }
     return content.toString();
   }
-  
-  public void triggerGoogleSearchException(String content) throws GoogleSearchException
-  {
+
+  public void triggerSerpApiClientException(String content) throws SerpApiClientException {
     String errorMessage;
     try {
       JsonObject element = gson.fromJson(content, JsonObject.class);
       errorMessage = element.get("error").getAsString();
-    } catch(Exception e) {
+    } catch (Exception e) {
       throw new AssertionError("invalid response format: " + content);
-    } 
-    throw new GoogleSearchException(errorMessage);
+    }
+    throw new SerpApiClientException(errorMessage);
   }
 
-  public int getHttpConnectionTimeout()
-  {
+  public int getHttpConnectionTimeout() {
     return httpConnectionTimeout;
   }
 
-  public void setHttpConnectionTimeout(int httpConnectionTimeout)
-  {
+  public void setHttpConnectionTimeout(int httpConnectionTimeout) {
     this.httpConnectionTimeout = httpConnectionTimeout;
   }
 
-  public int getHttpReadTimeout()
-  {
+  public int getHttpReadTimeout() {
     return httpReadTimeout;
   }
 
-  public void setHttpReadTimeout(int httpReadTimeout)
-  {
+  public void setHttpReadTimeout(int httpReadTimeout) {
     this.httpReadTimeout = httpReadTimeout;
   }
 
 }
-

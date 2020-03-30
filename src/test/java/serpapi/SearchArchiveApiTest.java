@@ -10,9 +10,9 @@ import static org.junit.Assert.*;
 public class SearchArchiveApiTest {
 
   @Test
-  public void getSearchArchive() throws GoogleSearchException {
+  public void getSearchArchive() throws SerpApiClientException {
     // skip test if no api_key provided
-    if(System.getenv("API_KEY") == null)
+    if (System.getenv("API_KEY") == null)
       return;
 
     GoogleSearchResults.serp_api_key_default = System.getenv("API_KEY");

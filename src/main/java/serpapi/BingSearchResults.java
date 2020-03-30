@@ -3,7 +3,7 @@ package serpapi;
 import java.util.Map;
 
 /***
- * Google Search Results using SerpApi
+ * Bing Search Results using SerpApi
  *
  * Usage --- ```java Map<String, String> parameter = new HashMap<>();
  * parameter.put("q", "Coffee"); parameter.put("location", "Austin,Texas");
@@ -12,17 +12,17 @@ import java.util.Map;
  * 
  * JsonObject data = serp.getJson();
  */
-class GoogleSearchResults extends SerpApiClient {
+class BingSearchResults extends SerpApiClient {
 
-  public GoogleSearchResults(Map<String, String> parameter, String apiKey) {
-    super(parameter, apiKey, "google");
+  public BingSearchResults(Map<String, String> parameter, String apiKey) {
+    super(parameter, apiKey, "bing");
   }
 
-  public GoogleSearchResults() {
-    super("google");
+  public BingSearchResults() {
+    super("bing");
   }
 
-  public GoogleSearchResults(Map<String, String> parameter) {
-    super(parameter, "google");
+  public BingSearchResults(Map<String, String> parameter) {
+    super(parameter, "bing");
   }
 }

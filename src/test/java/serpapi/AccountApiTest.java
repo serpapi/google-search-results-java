@@ -18,7 +18,7 @@ public class AccountApiTest {
       GoogleSearchResults.serp_api_key_default = System.getenv("API_KEY");
     }
   }
-  
+
   @Test
   public void getAccount() throws Exception {
     String expected_api_key = GoogleSearchResults.serp_api_key_default;
@@ -26,16 +26,15 @@ public class AccountApiTest {
     // mock response if run on github
     GoogleSearchResults client = new GoogleSearchResults();
     if (System.getenv("API_KEY") == null) {
-      GoogleSearchResultsClient stub = mock(GoogleSearchResultsClient.class);
+      BasicHttpClient stub = mock(BasicHttpClient.class);
       String data = ReadJsonFile.readAsString(Paths.get("src/test/java/serpapi/data/account.json"));
-      when(stub.getResults(ArgumentMatchers.<String, String>anyMap()))
-          .thenReturn(data);
+      when(stub.getResults(ArgumentMatchers.<String, String>anyMap())).thenReturn(data);
       client.client = stub;
 
       // fallback to default
       expected_api_key = "demo";
     }
-    
+
     JsonObject info = client.getAccount();
     System.out.println(info.toString());
     assertEquals(expected_api_key, info.getAsJsonObject().get("api_key").getAsString());
