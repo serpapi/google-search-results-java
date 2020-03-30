@@ -4,14 +4,17 @@ import java.util.Map;
 import com.google.gson.JsonArray;
 
 /***
- * Google Search Results using SerpApi
+ * Baidu Search Results using SerpApi
  *
- * Usage --- ```java Map<String, String> parameter = new HashMap<>();
- * parameter.put("q", "Coffee"); parameter.put("location", "Austin,Texas");
- * parameter.put(SerpApiClient.SERP_API_KEY_NAME, "your secret key");
- * SerpApiClient serp = new SerpApiClient(parameter); ```
- * 
- * JsonObject data = serp.getJson();
+ * Usage 
+ * --- 
+ * ```java 
+ * Map<String, String> parameter = new HashMap<>();
+ * parameter.put("q", "Coffee");
+ * BaiduSearchResults baidu = new BaiduSearchResults(parameter, "secret api key"); 
+ * JsonObject data = baidu.getJson();
+ * JsonArray organic_results = data.get("organic_results").getAsJsonArray();
+ * ```
  */
 class BaiduSearchResults extends SerpApiClient {
 
@@ -28,7 +31,7 @@ class BaiduSearchResults extends SerpApiClient {
   }
 
   @Override
-  public JsonArray getLocation(String q, Integer limit) throws SerpApiClientException {
-    throw new SerpApiClientException("location is not supported for Baidu");
-  }
+   public JsonArray getLocation(String q, Integer limit) throws SerpApiClientException {
+     throw new SerpApiClientException("location is not supported for Baidu");
+   }
 }

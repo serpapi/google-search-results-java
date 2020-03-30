@@ -1,6 +1,7 @@
 package serpapi;
 
 import java.util.Map;
+import com.google.gson.JsonArray;
 
 /***
  * Google Search Results using SerpApi
@@ -12,7 +13,7 @@ import java.util.Map;
  * parameter.put("q", "Coffee");
  * GoogleSearchResults google = new GoogleSearchResults(parameter, "secret api key"); 
  * JsonObject data = google.getJson();
- * JsonObject organic_results = data.getJsonAsObject("organic_results");
+ * JsonArray organic_results = data.get("organic_results").getAsJsonArray();
  * ```
  */
 class GoogleSearchResults extends SerpApiClient {

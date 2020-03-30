@@ -14,16 +14,16 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Test bing search results 
+ * Test yandex search results 
  */
-public class BingSearchResultsTest {
+public class YandexSearchResultsTest {
 
-  BingSearchResults client;
+  YandexSearchResults client;
 
   @Before
   public void setUp() throws Exception {
     if (System.getenv("API_KEY") != null) {
-      BingSearchResults.serp_api_key_default = System.getenv("API_KEY");
+      YandexSearchResults.serp_api_key_default = System.getenv("API_KEY");
     }
   }
 
@@ -34,9 +34,9 @@ public class BingSearchResultsTest {
       return;
 
     Map<String, String> parameter = new HashMap<>();
-    parameter.put("q", "Coffee");
+    parameter.put("text", "Coffee");
 
-    BingSearchResults result = new BingSearchResults(parameter);
+    YandexSearchResults result = new YandexSearchResults(parameter);
     JsonObject results = result.getJson();
     assertTrue(results.getAsJsonArray("organic_results").size() > 5);
   }
