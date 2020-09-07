@@ -9,9 +9,9 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- * SerpApiClient wraps HTTP interaction with the service serpapi.com
+ * SerpApiSearch wraps HTTP interaction with the service serpapi.com
  */
-public class SerpApiClient extends Exception {
+public class SerpApiSearch extends Exception {
   // Set of constant
   public static final String SERP_API_KEY_NAME = "api_key";
 
@@ -30,8 +30,8 @@ public class SerpApiClient extends Exception {
   // initialize gson
   private static Gson gson = new Gson();
 
-  // https client implementation for Java 7+
-  public SerpApiHttpClient client;
+  // https search implementation for Java 7+
+  public SerpApiHttpClient search;
 
   /*
    * Constructor
@@ -40,7 +40,7 @@ public class SerpApiClient extends Exception {
    * 
    * @param serp_api_key
    */
-  public SerpApiClient(Map<String, String> parameter, String api_key, String engine) {
+  public SerpApiSearch(Map<String, String> parameter, String api_key, String engine) {
     this.parameter = parameter;
     this.api_key = api_key;
     this.engine = engine;
@@ -51,7 +51,7 @@ public class SerpApiClient extends Exception {
    *
    * @param parameter
    */
-  public SerpApiClient(Map<String, String> parameter, String engine) {
+  public SerpApiSearch(Map<String, String> parameter, String engine) {
     this.parameter = parameter;
     this.engine = engine;
   }
@@ -59,7 +59,7 @@ public class SerpApiClient extends Exception {
   /***
    * Constructor with no parameter
    */
-  public SerpApiClient(String engine) {
+  public SerpApiSearch(String engine) {
     this.parameter = new HashMap<String, String>();
     this.engine = engine;
   }
@@ -69,7 +69,7 @@ public class SerpApiClient extends Exception {
    *
    * @param serp_api_key
    */
-  public SerpApiClient(String serp_api_key, String engine) {
+  public SerpApiSearch(String serp_api_key, String engine) {
     this.api_key = serp_api_key;
     this.engine = engine;
   }
@@ -79,15 +79,15 @@ public class SerpApiClient extends Exception {
    *
    * @param output type of output format (json, html, json_with_images)
    * @return query
-   * @throws SerpApiClientException
+   * @throws SerpApiSearchException
    */
-  public Map<String, String> buildQuery(String path, String output) throws SerpApiClientException {
-    // Initialize client if not done
-    if (client == null) {
-      this.client = new SerpApiHttpClient(path);
-      this.client.setHttpConnectionTimeout(6000);
+  public Map<String, String> buildQuery(String path, String output) throws SerpApiSearchException {
+    // Initialize search if not done
+    if (search == null) {
+      this.search = new SerpApiHttpClient(path);
+      this.search.setHttpConnectionTimeout(6000);
     } else {
-      this.client.path = path;
+      this.search.path = path;
     }
 
     // Set current programming language
@@ -100,7 +100,7 @@ public class SerpApiClient extends Exception {
       } else if (getSerpApiKey() != null) {
         this.parameter.put(SERP_API_KEY_NAME, getSerpApiKey());
       } else {
-        // throw new SerpApiClientException(SERP_API_KEY_NAME + " is not defined");
+        // throw new SerpApiSearchException(SERP_API_KEY_NAME + " is not defined");
       }
     }
 
@@ -120,22 +120,22 @@ public class SerpApiClient extends Exception {
    * Get HTML output
    * 
    * @return String
-   * @throws SerpApiClientException
+   * @throws SerpApiSearchException
    */
-  public String getHtml() throws SerpApiClientException {
+  public String getHtml() throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/search", "html");
-    return client.getResults(query);
+    return search.getResults(query);
   }
 
   /***
    * Get JSON output
    * 
    * @return JsonObject parent node
-   * @throws SerpApiClientException
+   * @throws SerpApiSearchException
    */
-  public JsonObject getJson() throws SerpApiClientException {
+  public JsonObject getJson() throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/search", "json");
-    return asJson(client.getResults(query));
+    return asJson(search.getResults(query));
   }
 
   /***
@@ -150,10 +150,10 @@ public class SerpApiClient extends Exception {
   }
 
   /***
-   * @return http client
+   * @return http search
    */
   public SerpApiHttpClient getClient() {
-    return this.client;
+    return this.search;
   }
 
   /***
@@ -162,15 +162,15 @@ public class SerpApiClient extends Exception {
    * @param q     query
    * @param limit number of location
    * @return JsonObject location using Location API
-   * @throws SerpApiClientException
+   * @throws SerpApiSearchException
    */
-  public JsonArray getLocation(String q, Integer limit) throws SerpApiClientException {
+  public JsonArray getLocation(String q, Integer limit) throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/locations.json", "json");
     query.remove("output");
     query.remove(SERP_API_KEY_NAME);
     query.put("q", q);
     query.put("limit", limit.toString());
-    String s = client.getResults(query);
+    String s = search.getResults(query);
     return gson.fromJson(s, JsonArray.class);
   }
 
@@ -179,26 +179,26 @@ public class SerpApiClient extends Exception {
    * 
    * @param searchID archived search result = search_metadata.id
    * @return JsonObject search result
-   * @throws SerpApiClientException
+   * @throws SerpApiSearchException
    */
-  public JsonObject getSearchArchive(String searchID) throws SerpApiClientException {
+  public JsonObject getSearchArchive(String searchID) throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/searches/" + searchID + ".json", "json");
     query.remove("output");
     query.remove("q");
-    return asJson(client.getResults(query));
+    return asJson(search.getResults(query));
   }
 
   /***
    * Get account information using Account API
    * 
    * @return JsonObject account information
-   * @throws SerpApiClientException
+   * @throws SerpApiSearchException
    */
-  public JsonObject getAccount() throws SerpApiClientException {
+  public JsonObject getAccount() throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/account", "json");
     query.remove("output");
     query.remove("q");
-    return asJson(client.getResults(query));
+    return asJson(search.getResults(query));
   }
 
 }

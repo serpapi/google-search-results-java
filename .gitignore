@@ -2,4 +2,12 @@ build/
 .idea/
 .gradle/
 .settings/
-
+ .classpath
+.project
+bin/
+data.json
+demo/gradle/
+demo/libs/*.jar
+derive.rb
+gradlew.bat
+switch_java.sh

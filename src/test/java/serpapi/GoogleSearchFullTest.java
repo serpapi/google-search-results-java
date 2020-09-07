@@ -16,63 +16,63 @@ import static org.mockito.Mockito.*;
 /**
  * Test main class
  */
-public class GoogleSearchResultsFullTest {
+public class GoogleSearchFullTest {
 
-  GoogleSearchResults client;
+  GoogleSearch search;
 
   @Before
   public void setUp() throws Exception {
     if (System.getenv("API_KEY") != null) {
-      GoogleSearchResults.serp_api_key_default = System.getenv("API_KEY");
+      GoogleSearch.serp_api_key_default = System.getenv("API_KEY");
     }
   }
 
   @Test
-  public void buildParameter() throws SerpApiClientException {
+  public void buildParameter() throws SerpApiSearchException {
     Map<String, String> parameter = new HashMap<>();
     parameter.put("q", "Coffee");
     parameter.put("location", "Austin, Texas");
-    client = new GoogleSearchResults(parameter);
-    client.buildQuery("/search", "html");
-    assertEquals(client.parameter.get("source"), "java");
-    assertEquals(client.parameter.get(GoogleSearchResults.SERP_API_KEY_NAME), GoogleSearchResults.serp_api_key_default);
+    search = new GoogleSearch(parameter);
+    search.buildQuery("/search", "html");
+    assertEquals(search.parameter.get("source"), "java");
+    assertEquals(search.parameter.get(GoogleSearch.SERP_API_KEY_NAME), GoogleSearch.serp_api_key_default);
   }
 
   @Test
-  public void builParameterForInstance() throws SerpApiClientException {
-    GoogleSearchResults client = new GoogleSearchResults();
-    client.buildQuery("/search", "json");
-    assertEquals(client.parameter.get("source"), "java");
-    assertEquals(client.parameter.get("output"), "json");
-    assertEquals(client.parameter.get(GoogleSearchResults.SERP_API_KEY_NAME), GoogleSearchResults.serp_api_key_default);
+  public void builParameterForInstance() throws SerpApiSearchException {
+    GoogleSearch search = new GoogleSearch();
+    search.buildQuery("/search", "json");
+    assertEquals(search.parameter.get("source"), "java");
+    assertEquals(search.parameter.get("output"), "json");
+    assertEquals(search.parameter.get(GoogleSearch.SERP_API_KEY_NAME), GoogleSearch.serp_api_key_default);
   }
 
   @Test
   public void getSerpApiKey() throws Exception {
-    GoogleSearchResults.serp_api_key_default = "abc";
-    assertEquals("abc", GoogleSearchResults.getSerpApiKey());
+    GoogleSearch.serp_api_key_default = "abc";
+    assertEquals("abc", GoogleSearch.getSerpApiKey());
   }
 
   @Test
   public void asJson() throws Exception {
-    GoogleSearchResults client = new GoogleSearchResults();
+    GoogleSearch search = new GoogleSearch();
     JsonObject expectation = new JsonObject();
     expectation.add("status", new JsonPrimitive("ok"));
-    assertEquals(expectation, client.asJson("{\"status\": \"ok\"}"));
+    assertEquals(expectation, search.asJson("{\"status\": \"ok\"}"));
   }
 
   @Test
   public void getHtml() throws Exception {
-    SerpApiHttpClient client = mock(SerpApiHttpClient.class);
+    SerpApiHttpClient search = mock(SerpApiHttpClient.class);
 
     String htmlContent = ReadJsonFile.readAsString(Paths.get("src/test/java/serpapi/data/search_coffee_sample.html"));
-    when(client.getResults(ArgumentMatchers.<String, String>anyMap())).thenReturn(htmlContent);
+    when(search.getResults(ArgumentMatchers.<String, String>anyMap())).thenReturn(htmlContent);
 
     Map<String, String> parameter = new HashMap<>();
     parameter.put("q", "Coffee");
     parameter.put("location", "Austin, Texas");
-    GoogleSearchResults result = new GoogleSearchResults(parameter);
-    result.client = client;
+    GoogleSearch result = new GoogleSearch(parameter);
+    result.search = search;
 
     assertEquals(htmlContent, result.getHtml());
   }
@@ -87,14 +87,14 @@ public class GoogleSearchResultsFullTest {
     when(stub.getResults(ArgumentMatchers.<String, String>anyMap())).thenReturn(
         ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/search_coffee_sample.json")).toString());
 
-    GoogleSearchResults client = new GoogleSearchResults(parameter);
-    client.client = stub;
+    GoogleSearch search = new GoogleSearch(parameter);
+    search.search = stub;
 
-    assertEquals(3, client.getJson().getAsJsonArray("local_results").size());
+    assertEquals(3, search.getJson().getAsJsonArray("local_results").size());
   }
 
   @Test
-  public void searchCoffee() throws SerpApiClientException {
+  public void searchCoffee() throws SerpApiSearchException {
     // skip test if no api_key provided
     if (System.getenv("API_KEY") == null)
       return;
@@ -111,7 +111,7 @@ public class GoogleSearchResultsFullTest {
     parameter.put("num", "10");
     parameter.put("device", "desktop");
 
-    GoogleSearchResults result = new GoogleSearchResults(parameter);
+    GoogleSearch result = new GoogleSearch(parameter);
     JsonObject results = result.getJson();
     assertTrue(results.getAsJsonArray("organic_results").size() > 5);
   }

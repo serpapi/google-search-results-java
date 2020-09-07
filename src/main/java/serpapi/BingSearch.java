@@ -11,22 +11,22 @@ import com.google.gson.JsonArray;
  * ```java 
  * Map<String, String> parameter = new HashMap<>();
  * parameter.put("q", "Coffee");
- * BingSearchResults bing = new BingSearchResults(parameter, "secret api key"); 
+ * BingSearch bing = new BingSearch(parameter, "secret api key"); 
  * JsonObject data = bing.getJson();
  * JsonArray organic_results = data.get("organic_results").getAsJsonArray();
  * ```
  */
-class BingSearchResults extends SerpApiClient {
+public class BingSearch extends SerpApiSearch {
 
-  public BingSearchResults(Map<String, String> parameter, String apiKey) {
+  public BingSearch(Map<String, String> parameter, String apiKey) {
     super(parameter, apiKey, "bing");
   }
 
-  public BingSearchResults() {
+  public BingSearch() {
     super("bing");
   }
 
-  public BingSearchResults(Map<String, String> parameter) {
+  public BingSearch(Map<String, String> parameter) {
     super(parameter, "bing");
   }
 

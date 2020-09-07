@@ -11,7 +11,10 @@ test:
 	./gradlew test --info
 
 build: clean
-	./gradlew build -x test 
+	./gradlew build -x test
+
+oobt: build
+	$(MAKE) -C demo
 
 # Create a release using GitHub
 release: build

@@ -8,13 +8,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import serpapi.GoogleSearchException;
-import serpapi.GoogleSearchResults;
+import serpapi.SerpApiSearchException;
+import serpapi.GoogleSearch;
 import java.util.Map;
 import java.util.HashMap;
 
 public class App {
-    public static void main(String[] args) throws GoogleSearchException {
+    public static void main(String[] args) throws SerpApiSearchException {
         if(args.length != 1) {
             System.out.println("Usage: app <secret api key>");
             System.exit(1);
@@ -27,20 +27,19 @@ public class App {
         Map<String, String> parameter = new HashMap<>();
         parameter.put("q", "Coffee");
         parameter.put("location", location);
-        parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, args[0]);
+        parameter.put(GoogleSearch.SERP_API_KEY_NAME, args[0]);
 
-        // Create client
-        GoogleSearchResults client = new GoogleSearchResults(parameter);
+        // Create search
+        GoogleSearch search = new GoogleSearch(parameter);
 
         try {
             // Execute search
-            JsonObject data = client.getJson();
-
-            // Decode response
-            JsonArray results = (JsonArray) data.get("local_results");
-            JsonObject first_result = results.get(0).getAsJsonObject();
-            System.out.println("first coffee: " + first_result.get("title").getAsString() + " in " + location);
-        } catch (GoogleSearchException e) {
+            JsonObject data = search.getJson();
+           // Decode response
+           JsonArray results = data.get("local_results").getAsJsonObject().get("places").getAsJsonArray();
+           JsonObject first_result = results.get(0).getAsJsonObject();
+           System.out.println("first coffee shop: " + first_result.get("title").getAsString() + " found on Google in " + location);
+        } catch (SerpApiSearchException e) {
             System.out.println("oops exception detected!");
             e.printStackTrace();
         }

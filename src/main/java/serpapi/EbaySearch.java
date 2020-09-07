@@ -11,27 +11,27 @@ import com.google.gson.JsonArray;
  * ```java 
  * Map<String, String> parameter = new HashMap<>();
  * parameter.put("_nkw", "Coffee");
- * EbaySearchResults ebay = new EbaySearchResults(parameter, "secret api key"); 
+ * EbaySearch ebay = new EbaySearch(parameter, "secret api key"); 
  * JsonObject data = ebay.getJson();
  * JsonArray organic_results = data.get("organic_results").getAsJsonArray();
  * ```
  */
-class EbaySearchResults extends SerpApiClient {
+public class EbaySearch extends SerpApiSearch {
 
-  public EbaySearchResults(Map<String, String> parameter, String apiKey) {
+  public EbaySearch(Map<String, String> parameter, String apiKey) {
     super(parameter, apiKey, "ebay");
   }
 
-  public EbaySearchResults() {
+  public EbaySearch() {
     super("ebay");
   }
 
-  public EbaySearchResults(Map<String, String> parameter) {
+  public EbaySearch(Map<String, String> parameter) {
     super(parameter, "ebay");
   }
 
   @Override
-   public JsonArray getLocation(String q, Integer limit) throws SerpApiClientException {
-     throw new SerpApiClientException("location is not supported for Baidu");
+   public JsonArray getLocation(String q, Integer limit) throws SerpApiSearchException {
+     throw new SerpApiSearchException("location is not supported for Baidu");
    }
 }

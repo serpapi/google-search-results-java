@@ -11,27 +11,27 @@ import com.google.gson.JsonArray;
  * ```java 
  * Map<String, String> parameter = new HashMap<>();
  * parameter.put("text", "Coffee");
- * YandexSearchResults yandex = new YandexSearchResults(parameter, "secret api key"); 
+ * YandexSearch yandex = new YandexSearch(parameter, "secret api key"); 
  * JsonObject data = yandex.getJson();
  * JsonArray organic_results = data.get("organic_results").getAsJsonArray();
  * ```
  */
-class YandexSearchResults extends SerpApiClient {
+public class YandexSearch extends SerpApiSearch {
 
-  public YandexSearchResults(Map<String, String> parameter, String apiKey) {
+  public YandexSearch(Map<String, String> parameter, String apiKey) {
     super(parameter, apiKey, "yandex");
   }
 
-  public YandexSearchResults() {
+  public YandexSearch() {
     super("yandex");
   }
 
-  public YandexSearchResults(Map<String, String> parameter) {
+  public YandexSearch(Map<String, String> parameter) {
     super(parameter, "yandex");
   }
 
   @Override
-   public JsonArray getLocation(String q, Integer limit) throws SerpApiClientException {
-     throw new SerpApiClientException("location is not supported for Baidu");
+   public JsonArray getLocation(String q, Integer limit) throws SerpApiSearchException {
+     throw new SerpApiSearchException("location is not supported for Baidu");
    }
 }

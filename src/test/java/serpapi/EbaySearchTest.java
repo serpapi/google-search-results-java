@@ -14,30 +14,31 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Test google search results 
+ * Test ebay search results 
  */
-public class GoogleSearchResultsTest {
+public class EbaySearchTest {
 
-  GoogleSearchResults client;
+  EbaySearch search;
 
   @Before
   public void setUp() throws Exception {
     if (System.getenv("API_KEY") != null) {
-      GoogleSearchResults.serp_api_key_default = System.getenv("API_KEY");
+      EbaySearch.serp_api_key_default = System.getenv("API_KEY");
     }
   }
 
   @Test
-  public void searchCoffee() throws SerpApiClientException {
+  public void searchCoffee() throws SerpApiSearchException {
     // skip test if no api_key provided
     if (System.getenv("API_KEY") == null)
       return;
 
     Map<String, String> parameter = new HashMap<>();
-    parameter.put("q", "Coffee");
+    parameter.put("_nkw", "Coffee");
 
-    GoogleSearchResults result = new GoogleSearchResults(parameter);
+    EbaySearch result = new EbaySearch(parameter);
     JsonObject results = result.getJson();
+    System.out.println(results);
     assertTrue(results.getAsJsonArray("organic_results").size() > 5);
   }
 

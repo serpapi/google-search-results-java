@@ -10,7 +10,7 @@ This code depends on GSON for efficient JSON processing.
 The HTTP response are converted to JSON Object.
 
 An example is provided in the test.
-@see src/test/java/GoogleSearchResultsImplementationTest.java
+@see src/test/java/GoogleSearchImplementationTest.java
 
 [The full documentation is available here.](https://serpapi.com/search-api)
 
@@ -28,12 +28,12 @@ git clone https://github.com/serpapi/google_search_results_java.git
 cd google_search_results_java/demo
 make run api_key=<your private key>
 ```
-Note: You need an account with SerpAPI to obtain this key from: https://serpapi.com/dashboard
+Note: You need an account with SerpApi to obtain this key from: https://serpapi.com/dashboard
 
 file: demo/src/main/java/demo/App.java
 ```java
 public class App {
-    public static void main(String[] args) throws GoogleSearchException {
+    public static void main(String[] args) throws SerpApiSearchException {
         if(args.length != 1) {
             System.out.println("Usage: app <secret api key>");
             System.exit(1);
@@ -46,20 +46,20 @@ public class App {
         Map<String, String> parameter = new HashMap<>();
         parameter.put("q", "Coffee");
         parameter.put("location", location);
-        parameter.put(GoogleSearchResults.SERP_API_KEY_NAME, args[0]);
+        parameter.put(GoogleSearch.SERP_API_KEY_NAME, args[0]);
 
-        // Create client
-        GoogleSearchResults client = new GoogleSearchResults(parameter);
+        // Create search
+        GoogleSearch search = new GoogleSearch(parameter);
 
         try {
             // Execute search
-            JsonObject data = client.getJson();
+            JsonObject data = search.getJson();
 
             // Decode response
             JsonArray results = (JsonArray) data.get("local_results");
             JsonObject first_result = results.get(0).getAsJsonObject();
             System.out.println("first coffee: " + first_result.get("title").getAsString() + " in " + location);
-        } catch (GoogleSearchException e) {
+        } catch (SerpApiSearchException e) {
             System.out.println("oops exception detected!");
             e.printStackTrace();
         }
@@ -73,15 +73,15 @@ The Serp API service (backend)
  - searches on Google using the query: q = "coffee"
  - parses the messy HTML responses
  - return a standardized JSON response
-The class GoogleSearchResults
+The class GoogleSearch
  - Format the request to Serp API server
  - Execute GET http request
  - Parse JSON into Ruby Hash using JSON standard library provided by Ruby
 Et voila..
 
 Alternatively, you can search:
- - Bing using BingSearchResults class
- - Baidu using BaiduSearchResults class
+ - Bing using BingSearch class
+ - Baidu using BaiduSearch class
 
 See the playground to generate your code.
  https://serpapi.com/playground
@@ -97,13 +97,13 @@ See the playground to generate your code.
 ## How to set SERP API key
 The Serp API key can be set globally using a singleton pattern.
 ```java
-GoogleSearchResults.serp_api_key_default = "Your Private Key"
-client = GoogleSearchResults(parameter)
+GoogleSearch.serp_api_key_default = "Your Private Key"
+search = GoogleSearch(parameter)
 ```
 Or the Serp API key can be provided for each query.
 
 ```java
-client = GoogleSearchResults(parameter, "Your Private Key")
+search = GoogleSearch(parameter, "Your Private Key")
 ```
 
 ## Example with all params and all outputs
@@ -126,7 +126,7 @@ query_parameter = {
   "output": "json|html",  // output format
 }
 
-query = GoogleSearchResults.new(query_parameter)
+query = GoogleSearch.new(query_parameter)
 query.parameter.put("location", "Austin,Texas")
 
 String html_results = query.getHtml()
@@ -147,8 +147,8 @@ To run the test:
 ### Location API
 
 ```java
-GoogleSearchResults client = new GoogleSearchResults(new HashMap<String, String());
-JsonArray locationList = client.getLocation("Austin", 3);
+GoogleSearch search = new GoogleSearch(new HashMap<String, String());
+JsonArray locationList = search.getLocation("Austin", 3);
 System.out.println(locationList.toString());
 ```
 it prints the first 3 location matching Austin (Texas, Texas, Rochester)
@@ -161,14 +161,14 @@ Map<String, String> parameter = new HashMap<>();
 parameter.put("q", "Coffee");
 parameter.put("location", "Austin,Texas");
 
-GoogleSearchResults client = new GoogleSearchResults(parameter);
-JsonObject result = client.getJson();
+GoogleSearch search = new GoogleSearch(parameter);
+JsonObject result = search.getJson();
 int search_id = result.get("search_metadata").getAsJsonObject().get("id").getAsInt();
 ```
 
 Now let retrieve the previous search from the archive.
 ```java
-JsonObject archived_result = client.getSearchArchive(search_id);
+JsonObject archived_result = search.getSearchArchive(search_id);
 System.out.println(archived_result.toString());
 ```
 it prints the search from the archive.
@@ -176,9 +176,9 @@ it prints the search from the archive.
 ### Account API
 Get account API
 ```java
-GoogleSearchResults.serp_api_key_default = "Your Private Key"
-GoogleSearchResults client = new GoogleSearchResults();
-JsonObject info = client.getAccount();
+GoogleSearch.serp_api_key_default = "Your Private Key"
+GoogleSearch search = new GoogleSearch();
+JsonObject info = search.getAccount();
 System.out.println(info.toString());
 ```
 it prints your account information.
@@ -228,7 +228,7 @@ Issue
 javax.net.ssl.SSLHandshakeException
 
 #### cause
-SerpAPI is using HTTPS / SSLv3. Older JVM version do not support this protocol because it's more recent. 
+SerpApi is using HTTPS / SSLv3. Older JVM version do not support this protocol because it's more recent. 
 
 #### solution
 Upgrade java to 1.8_201+ (which is recommended by Oracle).
@@ -244,8 +244,10 @@ java -version
  * On Linux, Oracle JDK 8 (1.8_151+) seems to work fine.
 see: https://travis-ci.org/serpapi/google-search-results-java
 
-Change logs
+Changelog
 ---
+- 2.0 refractor API : suffix SearchResults renamed Search
+- 1.4 Add support for Yandex, Yahoo, Ebay
 - 1.3 Add support for Bing and Baidu
 - 1.2 Add support for location API, account API, search API
 

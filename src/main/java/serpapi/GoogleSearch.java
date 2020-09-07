@@ -11,22 +11,22 @@ import com.google.gson.JsonArray;
  * ```java 
  * Map<String, String> parameter = new HashMap<>();
  * parameter.put("q", "Coffee");
- * GoogleSearchResults google = new GoogleSearchResults(parameter, "secret api key"); 
+ * GoogleSearch google = new GoogleSearch(parameter, "secret api key"); 
  * JsonObject data = google.getJson();
  * JsonArray organic_results = data.get("organic_results").getAsJsonArray();
  * ```
  */
-class GoogleSearchResults extends SerpApiClient {
+public class GoogleSearch extends SerpApiSearch {
 
-  public GoogleSearchResults(Map<String, String> parameter, String apiKey) {
+  public GoogleSearch(Map<String, String> parameter, String apiKey) {
     super(parameter, apiKey, "google");
   }
 
-  public GoogleSearchResults() {
+  public GoogleSearch() {
     super("google");
   }
 
-  public GoogleSearchResults(Map<String, String> parameter) {
+  public GoogleSearch(Map<String, String> parameter) {
     super(parameter, "google");
   }
 

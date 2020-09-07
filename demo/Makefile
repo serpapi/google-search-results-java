@@ -1,14 +1,18 @@
 .PHONY: build
 
-api_key="must be defined"
+api_key=${API_KEY}
 
-all: dep build
+all: clean dep build run
 
+clean:
+	./gradlew clean
+	
 dep:
 	$(MAKE) -C ../ build
+	rm -rf libs/*.jar
 	cp ../build/libs/* libs
 
-build:
+build: clean
 	./gradlew build
 
 run:

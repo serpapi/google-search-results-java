@@ -14,7 +14,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 /**
- * HTTPS client for Serp API
+ * HTTPS search for Serp API
  */
 public class SerpApiHttpClient {
   // http request configuration
@@ -45,7 +45,7 @@ public class SerpApiHttpClient {
    * @return httpUrlConnection
    * @throws IOException
    */
-  public HttpURLConnection buildConnection(String path, Map<String, String> parameter) throws SerpApiClientException {
+  public HttpURLConnection buildConnection(String path, Map<String, String> parameter) throws SerpApiSearchException {
     HttpURLConnection con;
     try {
       allowHTTPS();
@@ -54,19 +54,19 @@ public class SerpApiHttpClient {
       con = (HttpURLConnection) url.openConnection();
       con.setRequestMethod("GET");
     } catch (IOException e) {
-      throw new SerpApiClientException(e);
+      throw new SerpApiSearchException(e);
     } catch (NoSuchAlgorithmException e) {
       e.printStackTrace();
-      throw new SerpApiClientException(e);
+      throw new SerpApiSearchException(e);
     } catch (KeyManagementException e) {
       e.printStackTrace();
-      throw new SerpApiClientException(e);
+      throw new SerpApiSearchException(e);
     }
 
     String outputFormat = parameter.get("output");
     if (outputFormat == null) {
       if (path.startsWith("/search?")) {
-        throw new SerpApiClientException("output format must be defined: " + path);
+        throw new SerpApiSearchException("output format must be defined: " + path);
       }
     } else if (outputFormat.startsWith("json")) {
       con.setRequestProperty("Content-Type", "application/json");
@@ -118,7 +118,7 @@ public class SerpApiHttpClient {
    * @param parameter
    * @return http response body
    */
-  public String getResults(Map<String, String> parameter) throws SerpApiClientException {
+  public String getResults(Map<String, String> parameter) throws SerpApiSearchException {
     HttpURLConnection con = buildConnection(this.path, parameter);
 
     // Get HTTP status
@@ -139,7 +139,7 @@ public class SerpApiHttpClient {
       Reader reader = new InputStreamReader(is);
       in = new BufferedReader(reader);
     } catch (IOException e) {
-      throw new SerpApiClientException(e);
+      throw new SerpApiSearchException(e);
     }
 
     String inputLine;
@@ -150,7 +150,7 @@ public class SerpApiHttpClient {
       }
       in.close();
     } catch (IOException e) {
-      throw new SerpApiClientException(e);
+      throw new SerpApiSearchException(e);
     }
 
     // Disconnect
@@ -162,7 +162,7 @@ public class SerpApiHttpClient {
     return content.toString();
   }
 
-  public void triggerSerpApiClientException(String content) throws SerpApiClientException {
+  public void triggerSerpApiClientException(String content) throws SerpApiSearchException {
     String errorMessage;
     try {
       JsonObject element = gson.fromJson(content, JsonObject.class);
@@ -170,7 +170,7 @@ public class SerpApiHttpClient {
     } catch (Exception e) {
       throw new AssertionError("invalid response format: " + content);
     }
-    throw new SerpApiClientException(errorMessage);
+    throw new SerpApiSearchException(errorMessage);
   }
 
   public int getHttpConnectionTimeout() {
