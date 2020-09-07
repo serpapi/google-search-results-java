@@ -1,6 +1,6 @@
 .PHONY: build
 
-api_key=${API_KEY}
+api_key=$(API_KEY)
 
 all: clean dep build run
 
