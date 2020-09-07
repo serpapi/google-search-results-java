@@ -1,7 +1,7 @@
 Google Search Results JAVA API
 ===
 
-[![Build Status](https://travis-ci.org/serpapi/google-search-results-java.svg?branch=master)](https://travis-ci.org/serpapi/google-search-results-java)
+![test](https://github.com/serpapi/google-search-results-java/workflows/test/badge.svg)
 
 This Java package enables to scrape and parse Google, Bing and Baidu search results using [SerpApi](https://serpapi.com). Feel free to fork this repository to add more backends.
 
