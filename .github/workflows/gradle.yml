@@ -24,3 +24,5 @@ jobs:
       run: chmod +x gradlew
     - name: test
       run: make test
+      env:
+        API_KEY: ${{secrets.API_KEY}
