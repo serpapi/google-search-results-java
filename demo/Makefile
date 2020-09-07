@@ -10,6 +10,7 @@ all: init clean dep build run
 
 init:
 	gradle wrapper
+	chmod +x ./gradlew
 
 clean:
 	./gradlew clean
@@ -20,7 +21,7 @@ dep:
 	cp ../build/libs/* libs
 
 build: clean
-	./gradlew build
+	@./gradlew build
 
 run:
-	./gradlew run --args="$(API_KEY)"
+	@./gradlew run --args="$(API_KEY)"

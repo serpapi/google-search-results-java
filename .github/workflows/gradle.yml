@@ -24,5 +24,7 @@ jobs:
       run: chmod +x gradlew
     - name: test
       run: make test
+    - name: make version
+      run: make --version
     - name: oobt
       run: make oobt
