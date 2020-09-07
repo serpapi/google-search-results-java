@@ -27,4 +27,4 @@ jobs:
     - name: make version
       run: make --version
     - name: oobt
-      run: make oobt
+      run: make -C demo all
