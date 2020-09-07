@@ -14,7 +14,7 @@ build: clean
 	./gradlew build -x test
 
 oobt: build
-	$(MAKE) -C demo
+	$(MAKE) -C demo all
 
 # Create a release using GitHub
 release: build

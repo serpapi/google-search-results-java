@@ -1,8 +1,15 @@
 .PHONY: build
 
-api_key=$(API_KEY)
+ifndef API_KEY
+$(error "API_KEY must be defined")
+else
+$(info "found API_KEY variable")
+endif
 
-all: clean dep build run
+all: init clean dep build run
+
+init:
+	gradle wrapper
 
 clean:
 	./gradlew clean
@@ -16,8 +23,4 @@ build: clean
 	./gradlew build
 
 run:
-	./gradlew run --args="$(api_key)"
-
-# Upgrade gradle wrapper
-upgrade_wrapper:
-	gradle wrapper
+	./gradlew run --args="$(API_KEY)"
