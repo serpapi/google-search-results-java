@@ -18,6 +18,7 @@ clean:
 dep:
 	$(MAKE) -C ../ build
 	rm -rf libs/*.jar
+	mkdir -p libs
 	cp ../build/libs/* libs
 
 build: clean
