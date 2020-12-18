@@ -21,7 +21,7 @@ public class SerpApiHttpClient {
   private int httpConnectionTimeout;
   private int httpReadTimeout;
 
-  public static String VERSION = "1.2.0";
+  public static String VERSION = "2.0.1";
   public static String BACKEND = "https://serpapi.com";
 
   // initialize gson

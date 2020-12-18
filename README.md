@@ -246,6 +246,7 @@ see: https://travis-ci.org/serpapi/google-search-results-java
 
 Changelog
 ---
+- 2.0.1 update gradle 6.7.1 
 - 2.0 refractor API : suffix SearchResults renamed Search
 - 1.4 Add support for Yandex, Yahoo, Ebay
 - 1.3 Add support for Bing and Baidu
