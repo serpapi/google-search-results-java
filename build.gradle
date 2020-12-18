@@ -5,7 +5,7 @@ plugins {
 
 // Package default
 archivesBaseName = 'google-search-results-java'
-version = '2.1.0'
+version = '2.0.1'
 group = 'serpapi'
 
 // Load repositories
