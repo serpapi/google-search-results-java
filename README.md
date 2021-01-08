@@ -14,10 +14,15 @@ An example is provided in the test.
 
 [The full documentation is available here.](https://serpapi.com/search-api)
 
-## Requirement
+## Requirements
 
-You must be using the latest version of Java.
-Older version of java do not support SSLv3 which lead to Java sending an exception: javax.net.ssl.SSLHandshakeException
+Runtime:
+ - Java / JDK 8+ (https://www.java.com/en/download/)
+   Older version of java do not support HTTPS protocol. 
+   The SSLv3 is buggy which leads to Java raising this exception: javax.net.ssl.SSLHandshakeException
+
+For development:
+ - Gradle 6.7+ (https://gradle.org/install/) 
 
 ## Quick start
 
