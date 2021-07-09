@@ -11,3 +11,4 @@ demo/libs/*.jar
 derive.rb
 gradlew.bat
 switch_java.sh
+target/

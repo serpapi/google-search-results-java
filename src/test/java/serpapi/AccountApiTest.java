@@ -36,7 +36,7 @@ public class AccountApiTest {
     }
 
     JsonObject info = search.getAccount();
-    System.out.println(info.toString());
+//    System.out.println(info.toString());
     assertEquals(expected_api_key, info.getAsJsonObject().get("api_key").getAsString());
   }
 }

@@ -32,8 +32,7 @@ public class ReadJsonFile
   {
     JsonReader reader = new JsonReader(new FileReader(path.toFile()));
     reader.setLenient(true);
-    return new JsonParser()
-        .parse(reader)
+    return JsonParser.parseReader(reader)
         .getAsJsonObject();
   }
 }
