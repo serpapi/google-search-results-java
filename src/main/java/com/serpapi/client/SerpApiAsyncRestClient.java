@@ -7,12 +7,6 @@ import com.serpapi.model.responses.AccountResponse;
 import com.serpapi.model.responses.ErrorResponse;
 import com.serpapi.model.responses.LocationsResponse;
 import com.serpapi.model.responses.SearchResponse;
-import jakarta.ws.rs.client.Client;
-import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.client.InvocationCallback;
-import jakarta.ws.rs.client.WebTarget;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpStatus;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -23,6 +17,12 @@ import org.glassfish.jersey.jsonp.JsonProcessingFeature;
 import org.glassfish.jersey.logging.LoggingFeature;
 
 import javax.net.ssl.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.InvocationCallback;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -54,7 +54,7 @@ public class SerpApiAsyncRestClient implements SerpApiAsyncClient {
 
     private static final AtomicBoolean TRUST_ALL_HAS_BEEN_SETUP = new AtomicBoolean(false);
 
-    private final Client jakartaClient;
+    private final Client javaxClient; // as opposed to a jakarta (ws.rs.) client
     private final ExecutorService es; // a thread pool to run the async responses in
 
     public SerpApiAsyncRestClient() throws SerpApiException {
@@ -72,7 +72,7 @@ public class SerpApiAsyncRestClient implements SerpApiAsyncClient {
         config.property(ApacheClientProperties.CONNECTION_MANAGER, connMgr);
         config.connectorProvider(new ApacheConnectorProvider());
 
-        this.jakartaClient = ClientBuilder.newBuilder()
+        this.javaxClient = ClientBuilder.newBuilder()
                 .withConfig(config)
                 .executorService(es)
                 .register(JsonProcessingFeature.class)
@@ -136,7 +136,7 @@ public class SerpApiAsyncRestClient implements SerpApiAsyncClient {
         try {
             Map<String, String> params = paramsProvider.get();
             MediaType mediaType = getMediaType(params);
-            WebTarget webTarget = jakartaClient.target(SERPAPI_BASE_URL)
+            WebTarget webTarget = javaxClient.target(SERPAPI_BASE_URL)
                     .path("search")
                     .queryParam(PARAM_API_KEY, apiKey.key())
                     .queryParam(PARAM_SOURCE_LANGUAGE, SOURCE_LANGUAGE);
@@ -176,7 +176,7 @@ public class SerpApiAsyncRestClient implements SerpApiAsyncClient {
     public void search(ApiKey apiKey, String searchId, AsyncCallback<SearchResponse> callback)
             throws SerpApiException {
         try {
-            jakartaClient.target(SERPAPI_BASE_URL)
+            javaxClient.target(SERPAPI_BASE_URL)
                     // "/searches/" + searchID + ".json"
                     .path("searches")
                     .path("{searchId}.json")
@@ -211,7 +211,7 @@ public class SerpApiAsyncRestClient implements SerpApiAsyncClient {
     public void account(ApiKey apiKey, AsyncCallback<AccountResponse> callback)
             throws SerpApiException {
         try {
-            jakartaClient.target(SERPAPI_BASE_URL)
+            javaxClient.target(SERPAPI_BASE_URL)
                     .path("account")
                     .queryParam(PARAM_API_KEY, apiKey.key())
                     .queryParam(PARAM_SOURCE_LANGUAGE, SOURCE_LANGUAGE)
@@ -244,7 +244,7 @@ public class SerpApiAsyncRestClient implements SerpApiAsyncClient {
             throws SerpApiException {
         try {
             // do not add the SERPAPI_KEY_NAME
-            WebTarget webTarget = jakartaClient.target(SERPAPI_BASE_URL)
+            WebTarget webTarget = javaxClient.target(SERPAPI_BASE_URL)
                     .path("locations.json")
                     .queryParam(PARAM_SOURCE_LANGUAGE, SOURCE_LANGUAGE)
                     .queryParam(QueryParamConstants.PARAM_Q, locSubstr);
@@ -277,7 +277,7 @@ public class SerpApiAsyncRestClient implements SerpApiAsyncClient {
 
     @Override
     public void close() {
-        jakartaClient.close();
+        javaxClient.close();
         es.shutdown();
     }
 }
