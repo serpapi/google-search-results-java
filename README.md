@@ -1,18 +1,28 @@
-Google Search Results JAVA API
+serpapi4j - the Java API to access SerpApi services
 ===
 
 ![test](https://github.com/serpapi/google-search-results-java/workflows/test/badge.svg)
 
-This Java package enables to scrape and parse Google, Bing and Baidu search results using [SerpApi](https://serpapi.com). Feel free to fork this repository to add more backends.
+This Java package enables to scrape and parse search results using [SerpApi](https://serpapi.com) from various
+search providers like Google, Bing, Baidu, etc. Feel free to fork this repository to add more backends.
 
-This project is an implementation of SerpApi in Java 7.
-This code depends on GSON for efficient JSON processing.
-The HTTP response are converted to JSON Object.
+The default language version for this package is Java 16, but if a lower version package is required
+feel free to contact me at my email below. This code depends on GSON for efficient JSON processing.
+The HTTP responses are converted to JSON using GSON.
 
-An example is provided in the test.
-@see src/test/java/GoogleSearchImplementationTest.java
+There are two native clients available to talk SerpApi. The asynchronous client provides callbacks
+when search results are available. The synchronous client is written on top of the async client that 
+blocks the thread until the results are available.
 
-[The full documentation is available here.](https://serpapi.com/search-api)
+For an example usage, either see the demo App, which uses the ParamsBasedSearch class, at:
+src/main/java/com/serpapi/demo/App.java
+or see the unit test, which uses the SerpApiSyncClient directly, at:
+src/test/java/com/serpapi/query/search/SearchParamsTest.java
+
+For understanding how to use SerpApiAsyncClient, see the implementation of SerpApiSyncClient.
+The APIs in SerpApiAsyncClient/SerpApiSyncClient are fairly self-explanatory.
+
+[The full documentation for SerpApi is available here.](https://serpapi.com/search-api)
 
 ## Requirements
 
@@ -22,71 +32,72 @@ Runtime:
    The SSLv3 is buggy which leads to Java raising this exception: javax.net.ssl.SSLHandshakeException
 
 For development:
- - Gradle 6.7+ (https://gradle.org/install/) 
+ - Maven 3.8.1 (on a Mac)
 
 ## Quick start
 
 To get started with this project in Java. 
 We provided a fully working example.
 ```bash
-git clone https://github.com/serpapi/google_search_results_java.git
-cd google_search_results_java/demo
-make run api_key=<your private key>
+git clone https://github.com/rumpelstiltzkin/google-search-results-java
+cd google_search_results_java/
+SERPAPI_KEY="<your serpapi key>" mvn clean install
 ```
 Note: You need an account with SerpApi to obtain this key from: https://serpapi.com/dashboard
 
-file: demo/src/main/java/demo/App.java
+file: src/main/java/com/serpapi/demo/App.java
 ```java
 public class App {
-    public static void main(String[] args) throws SerpApiSearchException {
-        if(args.length != 1) {
-            System.out.println("Usage: app <secret api key>");
+    public static void main(String[] args) throws SerpApiException {
+        if (args.length != 1) {
+            System.out.println("Usage: app <serp api key>");
             System.exit(1);
         }
 
+        // Create a search against a provider like Google using your API-key.
+        ParamsBasedSearch paramsBasedSearch = new ParamsBasedSearch(new ApiKey(args[0]));
+        GoogleSearchParamsBuilder paramsBuilder = new GoogleSearchParamsBuilder();
+
         String location = "Austin,Texas";
         System.out.println("find the first Coffee in " + location);
-
         // parameters
-        Map<String, String> parameter = new HashMap<>();
-        parameter.put("q", "Coffee");
-        parameter.put("location", location);
-        parameter.put(GoogleSearch.SERP_API_KEY_NAME, args[0]);
-
-        // Create search
-        GoogleSearch search = new GoogleSearch(parameter);
+        paramsBuilder.withSearchItem("Coffee").withLocation(location);
 
         try {
             // Execute search
-            JsonObject data = search.getJson();
-
+            SearchResponse searchResponse = paramsBasedSearch.getResult(paramsBuilder);
             // Decode response
-            JsonArray results = (JsonArray) data.get("local_results");
+            JsonArray results = searchResponse.getJsonObject()
+                    .get("local_results").getAsJsonObject()
+                    .get("places").getAsJsonArray();
             JsonObject first_result = results.get(0).getAsJsonObject();
-            System.out.println("first coffee: " + first_result.get("title").getAsString() + " in " + location);
-        } catch (SerpApiSearchException e) {
-            System.out.println("oops exception detected!");
-            e.printStackTrace();
+            System.out.println("first coffee shop: " + first_result.get("title").getAsString() + " found on Google in " + location);
+            paramsBasedSearch.close();
+        } catch (SerpApiException | IOException exception) {
+            System.out.println(exception.getMessage() + " - while performing search");
+            exception.printStackTrace();
         }
+
+        System.exit(0);
     }
 }
 ```
 
-This example runs a search about "coffee" using your secret api key.
+This example runs a search for "Coffee" using your serp api key.
 
 The Serp API service (backend)
  - searches on Google using the query: q = "coffee"
- - parses the messy HTML responses
+ - parses the HTML responses
  - return a standardized JSON response
-The class GoogleSearch
- - Format the request to Serp API server
- - Execute GET http request
- - Parse JSON into Ruby Hash using JSON standard library provided by Ruby
-Et voila..
 
-Alternatively, you can search:
- - Bing using BingSearch class
- - Baidu using BaiduSearch class
+The classes ParamsBasedSearch or SerpApi*Client:
+ - Format the request to SerpApi server
+ - Execute a GET http request
+ - Parse the JSON using Gson
+to provide the results whose individual fields can be parsed out of the JSON.
+
+To use different search providers like Bing, DuckDuckGo, etc. simply use the appropriate
+SearchParamsBuilder (e.g. DuckDuckGoSearchParamsBuilder).
 
 See the playground to generate your code.
  https://serpapi.com/playground
@@ -99,19 +110,17 @@ See the playground to generate your code.
  * [Search Archive API](#search-archive-api)
  * [Account API](#account-api)
 
-## How to set SERP API key
-The Serp API key can be set globally using a singleton pattern.
+## How to use your SerpApi key
+The SerpApi key can be used with the client for the APIs that need the key
 ```java
-GoogleSearch.serp_api_key_default = "Your Private Key"
-search = GoogleSearch(parameter)
-```
-Or the Serp API key can be provided for each query.
-
-```java
-search = GoogleSearch(parameter, "Your Private Key")
+GoogleSearchParamsBuilder params = new GoogleSearchParamsBuilder();
+params.withSearchItem("Coffee");
+SearchResponse searchResponse = searchClient.search(new ApiKey("<your api key>"), providerParams);
 ```
 
-## Example with all params and all outputs
+## Possible search params
+These are all the possible params to SerApi. Not all are implemented.
+Feel free to fork this repo and add methods to AbstractSearchParamsBuilder.
 
 ```java
 query_parameter = {
@@ -130,85 +139,72 @@ query_parameter = {
   "async": true|false,    // allow async request - non-blocker
   "output": "json|html",  // output format
 }
-
-query = GoogleSearch.new(query_parameter)
-query.parameter.put("location", "Austin,Texas")
-
-String html_results = query.getHtml()
-JsonObject json_results = query.getJson()
 ```
-
-### Example by specification
-
-We love true open source, continuous integration and Test Drive Development (TDD). 
- We are using RSpec to test [our infrastructure around the clock](https://travis-ci.org/serpapi/google-search-results-ruby) to achieve the best QoS (Quality Of Service).
- 
-The directory test/ includes specification/examples.
-
-To run the test:
-```gradle test```
-
 
 ### Location API
 
 ```java
-GoogleSearch search = new GoogleSearch(new HashMap<String, String());
-JsonArray locationList = search.getLocation("Austin", 3);
-System.out.println(locationList.toString());
+SerpApiSyncClient client = new SerpApiSyncClient();
+LocationsResponse locationsResponse = client.locations("San Jose", 3);
+JsonArray locations = locationsResponse.getJsonArray();
+Assert.assertEquals(10, locations.size());
+client.close();
 ```
-it prints the first 3 location matching Austin (Texas, Texas, Rochester)
+This gets the first 3 locations matching "San Jose".
 
 ### Search Archive API
 
 Let's run a search to get a search_id.
 ```java
-Map<String, String> parameter = new HashMap<>();
-parameter.put("q", "Coffee");
-parameter.put("location", "Austin,Texas");
+// First run a params-based search to get an Id.
+GoogleSearchParamsBuilder paramsBuilder = new GoogleSearchParamsBuilder(); // use google for this
+paramsBuilder.withSearchItem("Coffee");
+SearchResponse searchResponse = searchClient.search(getTestApiKey(), paramsBuilder);
+JsonObject paramsBasedResults = searchResponse.getJsonObject();
+Assert.assertTrue(paramsBasedResults.getAsJsonArray("organic_results").size() > 5);
 
-GoogleSearch search = new GoogleSearch(parameter);
-JsonObject result = search.getJson();
-int search_id = result.get("search_metadata").getAsJsonObject().get("id").getAsInt();
+// Then search again with the search id to get it from the archive
+String searchId = paramsBasedResults.get("search_metadata").getAsJsonObject().get("id").getAsString();
+JsonObject archivedResult = searchClient.search(getTestApiKey(), searchId).getJsonObject();
+Assert.assertEquals(searchId, archivedResult.get("search_metadata").getAsJsonObject().get("id").getAsString());
+Assert.assertEquals(paramsBasedResults, archivedResult);
 ```
-
-Now let retrieve the previous search from the archive.
-```java
-JsonObject archived_result = search.getSearchArchive(search_id);
-System.out.println(archived_result.toString());
-```
-it prints the search from the archive.
 
 ### Account API
 Get account API
 ```java
-GoogleSearch.serp_api_key_default = "Your Private Key"
-GoogleSearch search = new GoogleSearch();
-JsonObject info = search.getAccount();
-System.out.println(info.toString());
+SerpApiSyncClient client = new SerpApiSyncClient();
+AccountResponse accountResponse = client.account(getTestApiKey());
+JsonObject account = accountResponse.getJsonObject();
+Assert.assertEquals(getTestApiKey(), new ApiKey(account.get("api_key").getAsString()));
+client.close();
 ```
-it prints your account information.
+This prints your account information.
 
 ## Build project
+```
+$> mvn clean install
+```
 
 ### How to build from the source ?
 
 You must clone this repository.
 ```bash
-git clone https://github.com/serpapi/google_search_results_java.git
+$> git clone https://github.com/rumpelstiltzkin/google-search-results-java
 ```
 Build the jar file.
 ```bash
-gradle build
+$> mvn clean install
 ```
 Copy the jar to your project lib/ directory.
 ```bash
-cp build/libs/google_search_results_java.jar path/to/yourproject/lib
+$> cp target/serpapi4j-2.0.1-SNAPSHOT.jar path/to/yourproject/lib
 ```
 
 ### How to test ?
 
 ```bash
-make test
+$> mvn clean install
 ```
 
 ### Conclusion
@@ -251,6 +247,7 @@ see: https://travis-ci.org/serpapi/google-search-results-java
 
 Changelog
 ---
+- 2.0.2-SNAPSHOT serpapi4j
 - 2.0.1 update gradle 6.7.1 
 - 2.0 refractor API : suffix SearchResults renamed Search
 - 1.4 Add support for Yandex, Yahoo, Ebay
@@ -259,9 +256,11 @@ Changelog
 
 Source
 ---
- * http://www.baeldung.com/java-http-request
+ * https://www.baeldung.com/jersey-jax-rs-client
  * https://github.com/google/gson
 
 Author
 ---
-Victor Benarbia - victor@serpapi.com
+Anand Ganesh - rumpelgit@gmail.com. 
+
+Forked and modified from the work done by Victor Benarbia - victor@serpapi.com

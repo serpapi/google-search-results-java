@@ -4,14 +4,14 @@ all: clean test
 
 # clean
 clean:
-	./gradlew clean
+	mvn clean
 
-# Run gradle test with information
+# Run tests
 test:
-	./gradlew test --info
+	mvn surefire:test
 
 build: clean
-	./gradlew build -x test
+	mvn install
 
 oobt: build
 	$(MAKE) -C demo all
