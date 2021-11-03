@@ -2,6 +2,7 @@ package com.serpapi.query.search;
 
 import com.serpapi.client.QueryParamConstants;
 import com.serpapi.client.SearchParamsSupplier;
+import com.serpapi.model.search.AdvancedSearchParams;
 import com.serpapi.model.search.SearchType;
 
 import java.util.Collections;
@@ -17,6 +18,8 @@ import static com.serpapi.client.QueryParamConstants.*;
  * Time: 10:50 PM
  */
 public abstract class AbstractSearchParamsBuilder implements SearchParamsSupplier {
+    private static final String URL_COMMA = "%2C";
+
     private final Map<String, String> params = new HashMap<>();
 
     public AbstractSearchParamsBuilder(String provider) {
@@ -67,6 +70,16 @@ public abstract class AbstractSearchParamsBuilder implements SearchParamsSupplie
         return this;
     }
 
+    public AbstractSearchParamsBuilder withAdvancedSearchParams(AdvancedSearchParams advSearchParams) {
+        String advSearchParamStr = switch (advSearchParams) {
+            case IMGSZ_MEDIUM -> PARAM_ADVANCED_SEARCH_IMAGE_SIZE_MEDIUM;
+            case IMGLIC_COMMON -> PARAM_ADVANCED_SEARCH_IMAGE_LICENSE_COMMON;
+            default -> throw new UnsupportedOperationException("advanced search param = "
+                    + advSearchParams + " is not supported");
+        };
+        return paramAppend(PARAM_ADVANCED_SEARCH_PARAMS, advSearchParamStr);
+    }
+
     public AbstractSearchParamsBuilder clearParam(String paramName) {
         params.remove(paramName);
         return this;
@@ -74,6 +87,13 @@ public abstract class AbstractSearchParamsBuilder implements SearchParamsSupplie
 
     private AbstractSearchParamsBuilder param(String paramName, String paramValue) {
         params.put(paramName, paramValue);
+        return this;
+    }
+
+    private AbstractSearchParamsBuilder paramAppend(String paramName, String paramValue) {
+        String existing = params.get(paramName);
+        String newVal = existing == null ? paramValue : existing + URL_COMMA + paramValue;
+        params.put(paramName, newVal);
         return this;
     }
 

@@ -23,6 +23,9 @@ public class QueryParamConstants {
     public static final String PARAM_LANGUAGE = "hl"; // e.g. "en", etc.
     public static final String PARAM_COUNTRY = "gl"; // e.g. "us", etc.
     public static final String PARAM_SEARCH_TYPE = "tbm"; // e.g. "shop", "vid", etc.
+    public static final String PARAM_ADVANCED_SEARCH_PARAMS = "tbs"; // applies to images
+    public static final String PARAM_ADVANCED_SEARCH_IMAGE_SIZE_MEDIUM = "isz:m";
+    public static final String PARAM_ADVANCED_SEARCH_IMAGE_LICENSE_COMMON = "il:cl";
 
     // provider names
     public static final String PROVIDER_BAIDU = "baidu";

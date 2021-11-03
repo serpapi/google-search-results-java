@@ -12,3 +12,4 @@ derive.rb
 gradlew.bat
 switch_java.sh
 target/
+SERPAPI_KEY
