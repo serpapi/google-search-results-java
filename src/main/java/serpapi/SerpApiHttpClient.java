@@ -21,17 +21,21 @@ public class SerpApiHttpClient {
   private int httpConnectionTimeout;
   private int httpReadTimeout;
 
+  // current API version
   public static String VERSION = "2.0.1";
+
+  // backend service
   public static String BACKEND = "https://serpapi.com";
 
   // initialize gson
   private static Gson gson = new Gson();
 
-  // path
+  // current backend HTTP path
   public String path;
 
   /***
-   * @param String path
+   * Constructor
+   * @param path
    */
   public SerpApiHttpClient(String path) {
     this.path = path;
@@ -40,12 +44,12 @@ public class SerpApiHttpClient {
   /***
    * Build URL
    *
-   * @param path  url end point
-   * @param param hash
+   * @param path url end point
+   * @param parameter search parameter map like: { "q": "coffee", "location": "Austin, TX"}
    * @return httpUrlConnection
-   * @throws IOException
+   * @throws SerpApiSearchException
    */
-  public HttpURLConnection buildConnection(String path, Map<String, String> parameter) throws SerpApiSearchException {
+  protected HttpURLConnection buildConnection(String path, Map<String, String> parameter) throws SerpApiSearchException {
     HttpURLConnection con;
     try {
       allowHTTPS();
@@ -115,7 +119,7 @@ public class SerpApiHttpClient {
   /***
    * Get results
    *
-   * @param parameter
+   * @param parameter user search parameters
    * @return http response body
    */
   public String getResults(Map<String, String> parameter) throws SerpApiSearchException {
@@ -162,7 +166,7 @@ public class SerpApiHttpClient {
     return content.toString();
   }
 
-  public void triggerSerpApiClientException(String content) throws SerpApiSearchException {
+  protected void triggerSerpApiClientException(String content) throws SerpApiSearchException {
     String errorMessage;
     try {
       JsonObject element = gson.fromJson(content, JsonObject.class);
@@ -173,18 +177,30 @@ public class SerpApiHttpClient {
     throw new SerpApiSearchException(errorMessage);
   }
 
+  /**
+    * @return current HTTP connection timeout
+    */
   public int getHttpConnectionTimeout() {
     return httpConnectionTimeout;
   }
 
+  /**
+   * @param httpConnectionTimeout set HTTP connection timeout
+   */
   public void setHttpConnectionTimeout(int httpConnectionTimeout) {
     this.httpConnectionTimeout = httpConnectionTimeout;
   }
 
+  /**
+   * @return current HTTP read timeout
+   */
   public int getHttpReadTimeout() {
     return httpReadTimeout;
   }
 
+  /**
+   * @param httpReadTimeout set HTTP read timeout
+   */
   public void setHttpReadTimeout(int httpReadTimeout) {
     this.httpReadTimeout = httpReadTimeout;
   }

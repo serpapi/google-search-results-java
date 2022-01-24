@@ -12,33 +12,41 @@ import java.util.HashMap;
  * SerpApiSearch wraps HTTP interaction with the service serpapi.com
  */
 public class SerpApiSearch extends Exception {
-  // Set of constant
-  public static final String SERP_API_KEY_NAME = "api_key";
+  /** 
+   * Set of constant
+   */
+  public static final String API_KEY_NAME = "api_key";
 
-  // default static key
-  public static String serp_api_key_default;
+  /**
+   * default static key
+   */ 
+  public static String api_key_default;
 
   // instance level key
-  private String api_key;
+  protected String api_key;
 
   // current search engine
-  private String engine;
+  protected String engine;
 
-  // persist query parameter
+ /** 
+  * search parameters
+  */
   public Map<String, String> parameter;
 
   // initialize gson
   private static Gson gson = new Gson();
 
-  // https search implementation for Java 7+
+  /**
+  * https search implementation for Java 7+
+  */
   public SerpApiHttpClient search;
 
-  /*
+  /***
    * Constructor
    *
-   * @param parameter
-   * 
-   * @param serp_api_key
+   * @param parameter user search
+   * @param api_key secret user API key
+   * @param engine service like: google, naver, yahoo...
    */
   public SerpApiSearch(Map<String, String> parameter, String api_key, String engine) {
     this.parameter = parameter;
@@ -49,36 +57,40 @@ public class SerpApiSearch extends Exception {
   /***
    * Constructor
    *
-   * @param parameter
+   * @param parameter user search
+   * @param engine service like: google, yahoo, bing...
    */
   public SerpApiSearch(Map<String, String> parameter, String engine) {
     this.parameter = parameter;
     this.engine = engine;
   }
 
-  /***
-   * Constructor with no parameter
-   */
+ /***
+  * Constructor with no parameter
+  * @param engine service like: google, bing, yahoo...
+  */
   public SerpApiSearch(String engine) {
     this.parameter = new HashMap<String, String>();
     this.engine = engine;
   }
 
-  /*
-   * Constructor
-   *
-   * @param serp_api_key
-   */
-  public SerpApiSearch(String serp_api_key, String engine) {
-    this.api_key = serp_api_key;
+ /** 
+  * Constructor
+  *
+  * @param api_key secret API key
+  * @param engine service like: google, bing, yahoo...
+  */
+  public SerpApiSearch(String api_key, String engine) {
+    this.api_key = api_key;
     this.engine = engine;
   }
 
   /***
    * Build a serp API query by expanding existing parameter
    *
+   * @param path backend HTTP path
    * @param output type of output format (json, html, json_with_images)
-   * @return query
+   * @return format parameter hash map
    * @throws SerpApiSearchException
    */
   public Map<String, String> buildQuery(String path, String output) throws SerpApiSearchException {
@@ -93,14 +105,14 @@ public class SerpApiSearch extends Exception {
     // Set current programming language
     this.parameter.put("source", "java");
 
-    // Set serp_api_key
-    if (this.parameter.get(SERP_API_KEY_NAME) == null) {
+    // Set api_key
+    if (this.parameter.get(API_KEY_NAME) == null) {
       if (this.api_key != null) {
-        this.parameter.put(SERP_API_KEY_NAME, this.api_key);
+        this.parameter.put(API_KEY_NAME, this.api_key);
       } else if (getSerpApiKey() != null) {
-        this.parameter.put(SERP_API_KEY_NAME, getSerpApiKey());
+        this.parameter.put(API_KEY_NAME, getSerpApiKey());
       } else {
-        // throw new SerpApiSearchException(SERP_API_KEY_NAME + " is not defined");
+        throw new SerpApiSearchException(API_KEY_NAME + " is not defined");
       }
     }
 
@@ -112,8 +124,11 @@ public class SerpApiSearch extends Exception {
     return this.parameter;
   }
 
+ /**
+  * @return current secret api key
+  */
   public static String getSerpApiKey() {
-    return serp_api_key_default;
+    return api_key_default;
   }
 
   /***
@@ -167,7 +182,7 @@ public class SerpApiSearch extends Exception {
   public JsonArray getLocation(String q, Integer limit) throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/locations.json", "json");
     query.remove("output");
-    query.remove(SERP_API_KEY_NAME);
+    query.remove(API_KEY_NAME);
     query.put("q", q);
     query.put("limit", limit.toString());
     String s = search.getResults(query);

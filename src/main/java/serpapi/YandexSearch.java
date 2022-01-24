@@ -8,13 +8,15 @@ import com.google.gson.JsonArray;
  *
  * Usage 
  * --- 
- * ```java 
+ * <pre>
+ * {@code 
  * Map<String, String> parameter = new HashMap<>();
  * parameter.put("text", "Coffee");
  * YandexSearch yandex = new YandexSearch(parameter, "secret api key"); 
  * JsonObject data = yandex.getJson();
  * JsonArray organic_results = data.get("organic_results").getAsJsonArray();
- * ```
+ * }
+ * </pre>
  */
 public class YandexSearch extends SerpApiSearch {
 
