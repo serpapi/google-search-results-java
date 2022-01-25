@@ -28,17 +28,17 @@ public class GoogleSearchClientTest {
 
     String api_key = System.getenv("API_KEY");
     if (api_key == null) {
-      GoogleSearch.serp_api_key_default = "demo";
-      parameter.put(GoogleSearch.SERP_API_KEY_NAME, "demo");
+      GoogleSearch.api_key_default = "demo";
+      parameter.put(GoogleSearch.API_KEY_NAME, "demo");
     } else {
-      parameter.put(GoogleSearch.SERP_API_KEY_NAME, api_key);
+      parameter.put(GoogleSearch.API_KEY_NAME, api_key);
     }
   }
 
   @Test
   public void buildConnection() throws SerpApiSearchException {
     HttpURLConnection connection = search.buildConnection("/search", parameter);
-    assertEquals("https://serpapi.com/search?output=json&q=Coffee&api_key=" + GoogleSearch.serp_api_key_default
+    assertEquals("https://serpapi.com/search?output=json&q=Coffee&api_key=" + GoogleSearch.api_key_default
         + "&location=Austin%2C+Texas", connection.getURL().toString());
   }
 

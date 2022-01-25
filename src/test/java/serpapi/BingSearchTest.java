@@ -23,7 +23,7 @@ public class BingSearchTest {
   @Before
   public void setUp() throws Exception {
     if (System.getenv("API_KEY") != null) {
-      BingSearch.serp_api_key_default = System.getenv("API_KEY");
+      BingSearch.api_key_default = System.getenv("API_KEY");
     }
   }
 
@@ -38,7 +38,7 @@ public class BingSearchTest {
 
     BingSearch result = new BingSearch(parameter);
     JsonObject results = result.getJson();
-    assertTrue(results.getAsJsonArray("organic_results").size() > 5);
+    assertTrue(results.getAsJsonArray("organic_results").size() > 0);
   }
 
 }

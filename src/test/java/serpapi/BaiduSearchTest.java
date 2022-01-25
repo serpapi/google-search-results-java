@@ -23,7 +23,7 @@ public class BaiduSearchTest {
   @Before
   public void setUp() throws Exception {
     if (System.getenv("API_KEY") != null) {
-      BaiduSearch.serp_api_key_default = System.getenv("API_KEY");
+      BaiduSearch.api_key_default = System.getenv("API_KEY");
     }
   }
 

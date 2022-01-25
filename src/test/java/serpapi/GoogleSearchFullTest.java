@@ -23,7 +23,7 @@ public class GoogleSearchFullTest {
   @Before
   public void setUp() throws Exception {
     if (System.getenv("API_KEY") != null) {
-      GoogleSearch.serp_api_key_default = System.getenv("API_KEY");
+      GoogleSearch.api_key_default = System.getenv("API_KEY");
     }
   }
 
@@ -35,7 +35,7 @@ public class GoogleSearchFullTest {
     search = new GoogleSearch(parameter);
     search.buildQuery("/search", "html");
     assertEquals(search.parameter.get("source"), "java");
-    assertEquals(search.parameter.get(GoogleSearch.SERP_API_KEY_NAME), GoogleSearch.serp_api_key_default);
+    assertEquals(search.parameter.get(GoogleSearch.API_KEY_NAME), GoogleSearch.api_key_default);
   }
 
   @Test
@@ -44,13 +44,13 @@ public class GoogleSearchFullTest {
     search.buildQuery("/search", "json");
     assertEquals(search.parameter.get("source"), "java");
     assertEquals(search.parameter.get("output"), "json");
-    assertEquals(search.parameter.get(GoogleSearch.SERP_API_KEY_NAME), GoogleSearch.serp_api_key_default);
+    assertEquals(search.parameter.get(GoogleSearch.API_KEY_NAME), GoogleSearch.api_key_default);
   }
 
   @Test
-  public void getSerpApiKey() throws Exception {
-    GoogleSearch.serp_api_key_default = "abc";
-    assertEquals("abc", GoogleSearch.getSerpApiKey());
+  public void getApiKey() throws Exception {
+    GoogleSearch.api_key_default = "abc";
+    assertEquals("abc", GoogleSearch.getApiKey());
   }
 
   @Test

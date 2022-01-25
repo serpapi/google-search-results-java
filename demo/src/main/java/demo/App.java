@@ -27,7 +27,7 @@ public class App {
         Map<String, String> parameter = new HashMap<>();
         parameter.put("q", "Coffee");
         parameter.put("location", location);
-        parameter.put(GoogleSearch.SERP_API_KEY_NAME, args[0]);
+        parameter.put(GoogleSearch.API_KEY_NAME, args[0]);
 
         // Create search
         GoogleSearch search = new GoogleSearch(parameter);

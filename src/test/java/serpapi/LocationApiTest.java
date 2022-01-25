@@ -15,7 +15,7 @@ public class LocationApiTest {
   @Before
   public void setUp() throws Exception {
     if (System.getenv("API_KEY") != null) {
-      GoogleSearch.serp_api_key_default = System.getenv("API_KEY");
+      GoogleSearch.api_key_default = System.getenv("API_KEY");
     }
   }
 
@@ -23,7 +23,7 @@ public class LocationApiTest {
   // public void getLocation() throws Exception {
   //   // mock response if run on github
   //   GoogleSearch search = new GoogleSearch();
-  //   if (GoogleSearch.serp_api_key_default == null) {
+  //   if (GoogleSearch.api_key_default == null) {
   //     SerpApiHttpClient stub = mock(SerpApiHttpClient.class);
   //     when(stub.getResults(ArgumentMatchers.<String, String>anyMap()))
   //         .thenReturn(ReadJsonFile.readAsJson(Paths.get("src/test/java/serpapi/data/location.json")).toString());

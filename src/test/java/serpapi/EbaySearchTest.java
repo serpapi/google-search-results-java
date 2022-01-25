@@ -23,7 +23,7 @@ public class EbaySearchTest {
   @Before
   public void setUp() throws Exception {
     if (System.getenv("API_KEY") != null) {
-      EbaySearch.serp_api_key_default = System.getenv("API_KEY");
+      EbaySearch.api_key_default = System.getenv("API_KEY");
     }
   }
 

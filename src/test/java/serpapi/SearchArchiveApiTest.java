@@ -15,7 +15,7 @@ public class SearchArchiveApiTest {
     if (System.getenv("API_KEY") == null)
       return;
 
-    GoogleSearch.serp_api_key_default = System.getenv("API_KEY");
+    GoogleSearch.api_key_default = System.getenv("API_KEY");
 
     Map<String, String> parameter = new HashMap<>();
     parameter.put("q", "Coffee");

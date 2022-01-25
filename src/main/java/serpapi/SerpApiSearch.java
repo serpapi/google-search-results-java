@@ -109,8 +109,8 @@ public class SerpApiSearch extends Exception {
     if (this.parameter.get(API_KEY_NAME) == null) {
       if (this.api_key != null) {
         this.parameter.put(API_KEY_NAME, this.api_key);
-      } else if (getSerpApiKey() != null) {
-        this.parameter.put(API_KEY_NAME, getSerpApiKey());
+      } else if (getApiKey() != null) {
+        this.parameter.put(API_KEY_NAME, getApiKey());
       } else {
         throw new SerpApiSearchException(API_KEY_NAME + " is not defined");
       }
@@ -127,7 +127,7 @@ public class SerpApiSearch extends Exception {
  /**
   * @return current secret api key
   */
-  public static String getSerpApiKey() {
+  public static String getApiKey() {
     return api_key_default;
   }
 

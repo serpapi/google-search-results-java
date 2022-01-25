@@ -15,7 +15,7 @@ public class GoogleSearchImplementationTest {
   @Before
   public void setUp() throws Exception {
     if (System.getenv("API_KEY") != null) {
-      GoogleSearch.serp_api_key_default = System.getenv("API_KEY");
+      GoogleSearch.api_key_default = System.getenv("API_KEY");
     }
   }
 
@@ -33,7 +33,7 @@ public class GoogleSearchImplementationTest {
     if (api_key == null) {
       api_key = "demo";
     }
-    parameter.put(GoogleSearch.SERP_API_KEY_NAME, api_key);
+    parameter.put(GoogleSearch.API_KEY_NAME, api_key);
     GoogleSearch serp = new GoogleSearch(parameter);
 
     JsonObject data = serp.getJson();

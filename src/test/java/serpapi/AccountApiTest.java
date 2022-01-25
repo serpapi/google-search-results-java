@@ -15,13 +15,13 @@ public class AccountApiTest {
   @Before
   public void setUp() throws Exception {
     if (System.getenv("API_KEY") != null) {
-      GoogleSearch.serp_api_key_default = System.getenv("API_KEY");
+      GoogleSearch.api_key_default = System.getenv("API_KEY");
     }
   }
 
   @Test
   public void getAccount() throws Exception {
-    String expected_api_key = GoogleSearch.serp_api_key_default;
+    String expected_api_key = GoogleSearch.api_key_default;
 
     // mock response if run on github
     GoogleSearch search = new GoogleSearch();
