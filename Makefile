@@ -11,13 +11,18 @@ test:
 	./gradlew test --info
 
 build: clean
-	./gradlew build -x test
+# ./gradlew build -x test
+	./gradlew build publishToMavenLocal
+	@echo "see build/lib"
 
 oobt: build
 	$(MAKE) -C demo all
 
+doc:
+	gradle javadoc:javadoc
+
 # Create a release using GitHub
-release: build
+release: doc build
 	@echo "drag drop file"
 	open build/libs/
 	open build/distributions/

@@ -9,7 +9,7 @@ plugins {
 
 // Package default
 archivesBaseName = 'google-search-results-java'
-version = '2.0.1'
+version = '2.0.2'
 group = 'serpapi'
 
 // java version 

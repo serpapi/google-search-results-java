@@ -22,7 +22,7 @@ public class SerpApiHttpClient {
   private int httpReadTimeout;
 
   // current API version
-  public static String VERSION = "2.0.1";
+  public static String VERSION = "2.0.2";
 
   // backend service
   public static String BACKEND = "https://serpapi.com";
