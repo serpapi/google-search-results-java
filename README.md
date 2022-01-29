@@ -24,6 +24,24 @@ Runtime:
 For development:
  - Gradle 6.7+ (https://gradle.org/install/) 
 
+## Maven / Gradle support
+
+Edit your build.gradle file
+```java
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation 'com.github.serpapi:google-search-results-java:2.0.2'
+}
+```
+
+To list all the version available.
+https://jitpack.io/api/builds/com.github.serpapi/google-search-results-java
+
+Note: jitpack.io enables to download maven package directly from github release.
+
 ## Quick start
 
 To get started with this project in Java. 

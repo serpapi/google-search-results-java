@@ -11,7 +11,10 @@ import java.util.Map;
 public class ParameterStringBuilder
  {
    /***
+    * getParamsString 
     * @param params search parameters
+    * @return concatenated parameters
+    * @throws UnsupportedEncodingException when none UTF-8 character is part of the parameter
     */
     public static String getParamsString(Map<String, String> params)
       throws UnsupportedEncodingException

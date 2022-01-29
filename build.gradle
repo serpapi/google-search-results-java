@@ -9,8 +9,8 @@ plugins {
 
 // Package default
 archivesBaseName = 'google-search-results-java'
-version = '2.0.2'
-group = 'serpapi'
+version = '2.0.3'
+group = 'com.github.serpapi'
 
 // java version 
 sourceCompatibility = 1.8

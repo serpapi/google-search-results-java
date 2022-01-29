@@ -21,21 +21,29 @@ public class SerpApiHttpClient {
   private int httpConnectionTimeout;
   private int httpReadTimeout;
 
-  // current API version
-  public static String VERSION = "2.0.2";
+  /**
+   * current API version
+   */
+  public static String VERSION = "2.0.3";
 
-  // backend service
+  /**
+   * backend service
+   */
   public static String BACKEND = "https://serpapi.com";
 
-  // initialize gson
+  /**
+   * initialize gson
+   */
   private static Gson gson = new Gson();
 
-  // current backend HTTP path
+  /**
+   * current backend HTTP path
+   */
   public String path;
 
   /***
    * Constructor
-   * @param path
+   * @param path HTTP url path
    */
   public SerpApiHttpClient(String path) {
     this.path = path;
@@ -47,7 +55,7 @@ public class SerpApiHttpClient {
    * @param path url end point
    * @param parameter search parameter map like: { "q": "coffee", "location": "Austin, TX"}
    * @return httpUrlConnection
-   * @throws SerpApiSearchException
+   * @throws SerpApiSearchException wraps error message
    */
   protected HttpURLConnection buildConnection(String path, Map<String, String> parameter) throws SerpApiSearchException {
     HttpURLConnection con;
@@ -121,6 +129,7 @@ public class SerpApiHttpClient {
    *
    * @param parameter user search parameters
    * @return http response body
+   * @throws SerpApiSearchException wraps error message
    */
   public String getResults(Map<String, String> parameter) throws SerpApiSearchException {
     HttpURLConnection con = buildConnection(this.path, parameter);
@@ -166,6 +175,11 @@ public class SerpApiHttpClient {
     return content.toString();
   }
 
+  /**
+   * trigger a exception on error
+   * @param content raw JSON response from serpapi.com
+   * @throws SerpApiSearchException wraps error message
+   */
   protected void triggerSerpApiClientException(String content) throws SerpApiSearchException {
     String errorMessage;
     try {

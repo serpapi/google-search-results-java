@@ -22,10 +22,14 @@ public class SerpApiSearch extends Exception {
    */ 
   public static String api_key_default;
 
-  // instance level key
+  /**
+   * user secret API key
+   */
   protected String api_key;
 
-  // current search engine
+  /**
+  * Current search engine
+  */
   protected String engine;
 
  /** 
@@ -91,7 +95,7 @@ public class SerpApiSearch extends Exception {
    * @param path backend HTTP path
    * @param output type of output format (json, html, json_with_images)
    * @return format parameter hash map
-   * @throws SerpApiSearchException
+   * @throws SerpApiSearchException wraps backend error message
    */
   public Map<String, String> buildQuery(String path, String output) throws SerpApiSearchException {
     // Initialize search if not done
@@ -134,8 +138,8 @@ public class SerpApiSearch extends Exception {
   /***
    * Get HTML output
    * 
-   * @return String
-   * @throws SerpApiSearchException
+   * @return raw HTML response from the search engine for custom parsing
+   * @throws SerpApiSearchException wraps backend error message
    */
   public String getHtml() throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/search", "html");
@@ -146,7 +150,7 @@ public class SerpApiSearch extends Exception {
    * Get JSON output
    * 
    * @return JsonObject parent node
-   * @throws SerpApiSearchException
+   * @throws SerpApiSearchException wraps backend error message
    */
   public JsonObject getJson() throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/search", "json");
@@ -156,8 +160,8 @@ public class SerpApiSearch extends Exception {
   /***
    * Convert HTTP content to JsonValue
    * 
-   * @param content
-   * @return JsonObject
+   * @param content raw JSON HTTP response
+   * @return JsonObject created by gson parser
    */
   public JsonObject asJson(String content) {
     JsonElement element = gson.fromJson(content, JsonElement.class);
@@ -177,7 +181,7 @@ public class SerpApiSearch extends Exception {
    * @param q     query
    * @param limit number of location
    * @return JsonObject location using Location API
-   * @throws SerpApiSearchException
+   * @throws SerpApiSearchException wraps backend error message
    */
   public JsonArray getLocation(String q, Integer limit) throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/locations.json", "json");
@@ -194,7 +198,7 @@ public class SerpApiSearch extends Exception {
    * 
    * @param searchID archived search result = search_metadata.id
    * @return JsonObject search result
-   * @throws SerpApiSearchException
+   * @throws SerpApiSearchException wraps backend error message
    */
   public JsonObject getSearchArchive(String searchID) throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/searches/" + searchID + ".json", "json");
@@ -207,7 +211,7 @@ public class SerpApiSearch extends Exception {
    * Get account information using Account API
    * 
    * @return JsonObject account information
-   * @throws SerpApiSearchException
+   * @throws SerpApiSearchException wraps backend error message
    */
   public JsonObject getAccount() throws SerpApiSearchException {
     Map<String, String> query = buildQuery("/account", "json");
