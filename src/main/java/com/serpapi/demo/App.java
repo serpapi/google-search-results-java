@@ -19,16 +19,16 @@ public class App {
 
         // Create a search against a provider like Google using your API-key.
         ParamsBasedSearch paramsBasedSearch = new ParamsBasedSearch(new ApiKey(args[0]));
-        GoogleSearchParamsBuilder paramsBuilder = new GoogleSearchParamsBuilder();
+        GoogleSearchParamsBuilder googleSearchParams = new GoogleSearchParamsBuilder();
 
         String location = "Austin,Texas";
         System.out.println("find the first Coffee in " + location);
         // parameters
-        paramsBuilder.withSearchItem("Coffee").withLocation(location);
+        googleSearchParams.withSearchItem("Coffee").withLocation(location);
 
         try {
             // Execute search
-            SearchResponse searchResponse = paramsBasedSearch.getResult(paramsBuilder);
+            SearchResponse searchResponse = paramsBasedSearch.getResult(googleSearchParams);
             // Decode response
             JsonArray results = searchResponse.getJsonObject()
                     .get("local_results").getAsJsonObject()
