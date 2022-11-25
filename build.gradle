@@ -62,11 +62,12 @@ artifacts {
     archives javadocJar
 }
 
-// To specify a license in the pom:
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            pom {
+            from components.java
+
+            pom { // To specify a license in the pom:
                 licenses {
                     license {
                         name = 'MIT License'
