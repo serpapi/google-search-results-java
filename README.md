@@ -6,8 +6,8 @@
 
 <div align="center">
 
-  <a href="">![test](https://github.com/serpapi/google-search-results-java/workflows/test/badge.svg)</a>
-
+  ![test](https://github.com/serpapi/google-search-results-java/workflows/test/badge.svg)
+  
 </div>
 
 This Java package enables to scrape and parse Google, Bing and Baidu search results using [SerpApi](https://serpapi.com). Feel free to fork this repository to add more backends.
