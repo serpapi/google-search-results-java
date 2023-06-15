@@ -1,14 +1,6 @@
-<h1 align="center">Google Search Results in JAVA</h1>
+# Google Search Results JAVA API
 
-<div align="center">
-   <img src="https://user-images.githubusercontent.com/78694043/233933707-d73e9c25-091c-4981-8100-58f36c9174c2.svg" width="600" alt="google-search-results-java-logo">
-</div>
-
-<div align="center">
-
-  ![test](https://github.com/serpapi/google-search-results-java/workflows/test/badge.svg)
-  
-</div>
+![test](https://github.com/serpapi/google-search-results-java/workflows/test/badge.svg)
 
 This Java package enables to scrape and parse Google, Bing and Baidu search results using [SerpApi](https://serpapi.com). Feel free to fork this repository to add more backends.
 
