@@ -1,5 +1,14 @@
 # Google Search Results JAVA API
 
+
+> [!WARNING]
+> This package is **deprecated** in favor of [serpapi-java](https://github.com/serpapi/serpapi-java).
+> Please migrate to the newer implementation.
+
+----
+
+https://github.com/serpapi/serpapi-golang
+
 ![test](https://github.com/serpapi/google-search-results-java/workflows/test/badge.svg)
 
 This Java package enables to scrape and parse Google, Bing and Baidu search results using [SerpApi](https://serpapi.com). Feel free to fork this repository to add more backends.
