@@ -48,7 +48,7 @@ https://jitpack.io/api/builds/com.github.serpapi/google-search-results-java
 
 Note: jitpack.io enables to download maven package directly from github release.
 
-## Quick start
+## Quick start for Google Search
 
 To get started with this project in Java. 
 We provided a fully working example.
@@ -107,6 +107,30 @@ The class GoogleSearch
  - Execute GET http request
  - Parse JSON into Ruby Hash using JSON standard library provided by Ruby
 Et voila..
+
+## Usage for other search engines
+For other search engines, you can use the `SerpApiSearch` class and adjust the `engine`.
+Example for our Google Lens API: 
+
+```
+public void runSearch() {
+    Map<String, String> parameter = new HashMap<>();
+
+    parameter.put("engine", "google_lens"); // You can adjust the engine here
+    parameter.put("url", "https://i.imgur.com/HBrB8p0.png");
+    parameter.put("api_key", serpApiKey);
+
+    SerpApiSearch search = new SerpApiSearch(parameter); // Use SerpApiSearch class
+
+    try {
+      JsonObject results = search.getJson();
+      JsonElement searchResults = results.get("visual_matches");
+      System.out.println(searchResults);
+    } catch (SerpApiSearchException e) {
+      e.printStackTrace();
+    }
+  }
+```
 
 Alternatively, you can search:
  - Bing using BingSearch class
