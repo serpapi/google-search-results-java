@@ -7,8 +7,6 @@
 
 ----
 
-https://github.com/serpapi/serpapi-golang
-
 ![test](https://github.com/serpapi/google-search-results-java/workflows/test/badge.svg)
 
 This Java package enables to scrape and parse Google, Bing and Baidu search results using [SerpApi](https://serpapi.com). Feel free to fork this repository to add more backends.
